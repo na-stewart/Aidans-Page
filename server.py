@@ -1,14 +1,21 @@
 from sanic import Sanic
+from tortoise.contrib.sanic import register_tortoise
 
-from blog.blueprints.security.view import security_bp
+from blog.blueprints.view import api, bp_models
+from blog.common.config import config
 
-app = Sanic("DriveTheVote")
+app = Sanic("Blog")
 
-app.blueprint(security_bp)
+app.blueprint(api)
 
-app.static("/", "./resources/static")
-app.static("/", "./resources/static/login.html")
+app.static("/", "blog/static")
+app.static("/", "blog/static/index.html")
 
+register_tortoise(
+    app,
+    db_url=config.DATABASE_URL,
+    modules={"models": ["sanic_security.models"] + bp_models},
+    generate_schemas=True,
+)
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8000, workers=1)
-
