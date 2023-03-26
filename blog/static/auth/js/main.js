@@ -18,11 +18,11 @@ function login() {
     return Promise.reject(response); 
   })
   .then(data => {
-    alert("Test");
+    location.assign("/");
   })
   .catch(error => {
     error.json().then(error => {
-      alert(error.message);
+      document.getElementById("response-msg").innerHTML = error.message;
     });
   });
   
@@ -42,11 +42,11 @@ function register() {
     return Promise.reject(response); 
   })
   .then(data => {
-    alert("Test");
+    location.assign("/login");
   })
   .catch(error => {
     error.json().then(error => {
-      alert(error.message);
+      document.getElementById("response-msg").innerHTML = error.message;
     });
   });
   

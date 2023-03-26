@@ -9,7 +9,7 @@ security_bp = Blueprint("security")
 @security_bp.post("/register")
 @requires_captcha()
 async def on_register(request, captcha_session):
-    account = await register(request)
+    account = await register(request, True)
     response = json("Registration successful.", account.json)
     return response
 
