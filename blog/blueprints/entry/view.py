@@ -19,13 +19,13 @@ async def on_entry_create(request):
     return json("Entry created successfully.", entry.json)
 
 
-@entry_bp.get("entry")
+@entry_bp.get("entry/published")
 async def on_entry_get(request):
-    entry = await Entry.get(id=request.parms.get("id"), deleted=False)
-    return json("Entry created successfully.", entry.json)
+    entry = await Entry.get(id=request.parms.get("id"), deleted=False, published=True)
+    return json("Entry created retrieved.", entry.json)
 
 
-@entry_bp.get("entry/all")
-async def on_entry_get(request):
-    entries = await Entry.filter(deleted=False).all()
-    return json("Entry created successfully.", [entry.json for entry in entries])
+@entry_bp.get("entry/all/published")
+async def on_entry_get_all(request):
+    entries = await Entry.filter(deleted=False, published=True).all()
+    return json("Entries retrieved successfully.", [entry.json for entry in entries])
