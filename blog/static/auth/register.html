@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="auth/css/styles.css">
+    <title>Register</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>New Account Registration</h1>
+      <form id="registration-form" onsubmit="return register()">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Username" required>
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <img id="captcha-img" src="auth/img/capt-placeholder.png">
+        <label for="password">Captcha</label>
+        <input type="text" id="captcha" name="captcha" placeholder="Captcha" required>
+        <button type="submit">Register</button>
+        <p>Response Message</p>
+      </form>
+    </div>
+   <script src="auth/js/main.js"></script>
+  </body>
+</html>
