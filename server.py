@@ -15,6 +15,7 @@ app.static("/", "blog/static")
 app.static("/", "blog/static/blog/index.html")
 app.static("/login", "blog/static/auth/index.html")
 app.static("/register", "blog/static/auth/register.html")
+app.static("/entry", "blog/static/blog/single-post.html")
 
 
 @app.exception(SanicException)
@@ -31,4 +32,3 @@ register_tortoise(
 create_initial_admin_account(app)
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8000, workers=1, debug=True)
-

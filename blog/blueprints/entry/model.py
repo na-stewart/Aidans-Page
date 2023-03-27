@@ -29,5 +29,8 @@ class Entry(BaseModel):
             "content": self.content,
             "thumbnail_url": self.thumbnail_url,
             "published": self.published,
-            "author": self.author.username if isinstance(self.author, Account) else None
+            "author": self.author.username
+            if isinstance(self.author, Account)
+            else None,
+            "tags": [tag.json for tag in self.tags],
         }
