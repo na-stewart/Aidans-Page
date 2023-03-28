@@ -1,7 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-  captcha();
-});
-
 function login() {
   const loginForm = document.getElementById('login-form');
 
@@ -17,7 +13,7 @@ function login() {
       return response.json();
     return Promise.reject(response); 
   })
-  .then(data => {
+  .then(json => {
     location.assign("/");
   })
   .catch(error => {
@@ -41,7 +37,7 @@ function register() {
       return response.json();
     return Promise.reject(response); 
   })
-  .then(data => {
+  .then(json => {
     location.assign("/login");
   })
   .catch(error => {

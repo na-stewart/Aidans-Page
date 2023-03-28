@@ -9,7 +9,7 @@
     <link href="blog/css/bootstrap.min.css" rel="stylesheet">
     <link href="blog/css/style.min.css" rel="stylesheet">
   </head>
-  <body>
+  <body onload="getEntry()">
     <svg style="display: none;">
       <symbol viewBox="0 0 512 512" id="ios-search">
         <path d="M448.3,424.7L335,311.3c20.8-26,33.3-59.1,33.3-95.1c0-84.1-68.1-152.2-152-152.2c-84,0-152,68.2-152,152.2
@@ -166,47 +166,22 @@
         <div class="col-md-8  col-lg-9">
           <div class="single-post">
             <div class="single-post__image">
-              <img src="blog/img/img1.jpg" alt="Cup Of Coffee On The Window Sill">
+              <img id="entry-thumbnail" src="blog/img/img1.jpg" alt="Entry Thumbnail">
             </div>
             <div class="single-post__title">
-              <h2>Cup Of Coffee On The Window Sill</h2>
+              <h2 id="entry-title">Entry Title</h2>
             </div>
             <div class="single-post__info">
-              <span>By <a href="#">Daniel Anri</a></span>
-              <span>January 25, 2021</span>
+              <span id="entry-date">January 25, 2021</span>
               <span><a href="#">3 Comments</a></span>
             </div>
-            <div class="single-post__content">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="#">Suspendisse lobortis</a> commodo ullamcorper. Duis pretium convallis odio non varius. Nulla quis lorem metus. Fusce velit magna, ultricies quis elit sit amet, lacinia porttitor magna. Nulla scelerisque, ex quis imperdiet finibus, elit massa dictum arcu, et fermentum orci felis in ipsum. Suspendisse rutrum nec ipsum id feugiat. Nunc eu lacinia turpis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam dapibus cursus justo.</p>
-              <img class="single-post__content-imagefull" src="blog/img/single-post1.jpg" alt="Cup Of Coffee On The Window Sill">
-              <p>Quis eu odio imperdiet dictumst faucibus quam nostra lorem lorem facilisi sem eget aliquet dignissim ornare ultrices ut. Posuere aliquam maecenas imperdiet sit nonummy. Aenean auctor nulla est auctor conubia porttitor elementum taciti hymenaeos Aptent dui justo donec porta neque Lacinia Dui aliquet. Cras ullamcorper nulla tortor eros maecenas sodales magnis natoque sit placerat parturient mattis nunc dictumst. Non molestie justo pharetra natoque nec. Integer tristique lacinia ultrices.</p>
-              <img class="single-post__content-imagefull" src="blog/img/single-post2.jpg" alt="Cup Of Coffee On The Window Sill">
-              <p>Mauris. Nunc quis justo felis Nibh Elementum eu proin lacinia magnis nonummy. Consectetuer. Enim maecenas. Dictum id sed. Habitasse magna taciti suscipit sociis tellus ad, diam orci et lorem purus in rutrum molestie parturient urna porta auctor inceptos venenatis eget congue. Metus vivamus Convallis, primis felis sodales nulla viverra dictum platea sed. Curabitur, varius justo platea. Libero litora, gravida nibh risus turpis ornare congue vestibulum mus.</p>
-              <ul>
-                <li>Porttitor justo lobortis sapien.</li>
-                <li>Phasellus inceptos Porttitor.</li>
-                <li>Aliquam in fames et.</li>
-                <li>Elementum odio rutrum vehicula. Platea.</li>
-                <li>Dui amet lacinia congue.</li>
-              </ul>
-              <ol>
-                <li>Suscipit adipiscing vitae risus tellus.</li>
-                <li>Tempor. Elit. Nascetur. Dis elementum.</li>
-                <li>Dignissim. Ultricies lobortis blandit.</li>
-                <li>Rhoncus etiam, leo cum euismod semper, molestie, turpis.</li>
-                <li>Mi volutpat sagittis tempor, mi dignissim elit potenti.</li>
-              </ol>
-              <p>Feugiat ante proin mi volutpat Torquent habitasse aliquet orci sapien fringilla gravida. Ridiculus ultrices adipiscing ornare, et platea pretium sit elit dictum tortor vivamus mattis. Bibendum. Hendrerit porttitor lacus eget ante facilisis arcu sodales vel aenean. Imperdiet netus. Blandit potenti tristique penatibus risus morbi ante Magnis arcu proin placerat sociosqu suspendisse. Dolor. Tortor per sapien Dictumst Vitae Eleifend sociis ultrices quis a. Rutrum ligula ornare. Turpis.</p>
-              <blockquote>
-                <p>Pulvinar neque. <a href="#">Habitant integer</a> ultricies sapien penatibus scelerisque molestie. Nostra libero per ipsum velit faucibus neque nonummy. Justo. Pellentesque tempor facilisis inceptos Fringilla mus curabitur posuere nam. Litora. Rhoncus commodo nonummy.</p>
-              </blockquote>
-              <p>Diam pede metus porta. Fermentum ac suspendisse euismod dui nisl sapien vehicula etiam suscipit aptent risus nostra facilisi commodo sagittis ligula ultricies Facilisis ante egestas metus tristique cum turpis odio lacinia porttitor ullamcorper nonummy hac nostra blandit quisque. Tellus. Inceptos faucibus sed platea montes. Condimentum euismod Enim eros imperdiet id luctus dapibus.</p>
-              <img class="single-post__content-imagefull" src="blog/img/single-post3.jpg" alt="Cup Of Coffee On The Window Sill">
+            <div id="entry-content" class="single-post__content">
+
             </div>
             <div class="single-post__footer">
               <div class="single-post__footer-tags">
                 <h3>Tags:</h3>
-                <div class="single-post__footer-tags-list">
+                <div id="tags" class="single-post__footer-tags-list">
                   <a href="#">Arts</a>
                   <a href="#">Creative</a>
                 </div>
@@ -247,8 +222,8 @@
                 <img src="blog/img/author.jpg" alt="Author">
               </div>
               <div class="single-post__author-info">
-                <h5>Written by Daniel Anri</h5>
-                <p>Massa est vehicula mauris dignissim vulputate turpis massa, eget sociis nonummy tristique at suscipit quis natoque dolor penatibus praesent odio nisi erat. Consequat eget cubilia. Mi elementum augue. Nisi sociis.</p>
+                <h5 id="author">Written by Daniel Anri</h5>
+                <p>Author Profile Bio</p>
                 <div class="single-post__author-info-social">
                   <a href="#">
                     <svg>
@@ -675,5 +650,6 @@
     <div class="content-overlay"></div>
     <script src="blog/js/jquery-3.1.1.min.js"></script>
     <script src="blog/js/script.js"></script>
+    <script src="blog/js/main.js"></script>
   </body>
 </html>

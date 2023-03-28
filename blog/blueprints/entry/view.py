@@ -17,6 +17,7 @@ async def on_entry_create(request, authentication_session):
         summary=request.json.get("summary"),
         content=request.json.get("content"),
         thumbnail_url=request.json.get("thumbnail_url"),
+        author=authentication_session.bearer,
         published=str_to_bool(request.json.get("published")),
     )
     for tag_id in request.json.get("tags"):
@@ -30,7 +31,7 @@ async def on_entry_create(request, authentication_session):
 async def on_entry_get_published(request):
     entry = await Entry.get(
         id=request.args.get("id"), deleted=False, published=True
-    ).prefetch_related("tags")
+    ).prefetch_related("tags", "author")
     return json("Entry retrieved.", entry.json)
 
 
@@ -38,7 +39,7 @@ async def on_entry_get_published(request):
 @require_permissions("entry:get")
 async def on_entry_get(request, authentication_session):
     entry = await Entry.get(id=request.args.get("id"), deleted=False).prefetch_related(
-        "tags"
+        "tags", "author"
     )
     return json("Entry retrieved.", entry.json)
 
@@ -46,7 +47,7 @@ async def on_entry_get(request, authentication_session):
 @entry_bp.get("entry/all/published")
 async def on_entry_get_all_published(request):
     entries = (
-        await Entry.filter(deleted=False, published=True).prefetch_related("tags").all()
+        await Entry.filter(deleted=False, published=True).prefetch_related("tags", "author").all()
     )
     return json("Entries retrieved.", [entry.json for entry in entries])
 
@@ -54,5 +55,5 @@ async def on_entry_get_all_published(request):
 @entry_bp.get("entry/all")
 @require_permissions("entry:get")
 async def on_entry_get_all(request, authentication_session):
-    entries = await Entry.filter(deleted=False).prefetch_related("tags").all()
+    entries = await Entry.filter(deleted=False).prefetch_related("tags", "author").all()
     return json("Entries retrieved.", [entry.json for entry in entries])

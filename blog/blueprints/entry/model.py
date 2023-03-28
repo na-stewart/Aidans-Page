@@ -11,9 +11,7 @@ class Entry(BaseModel):
     content: str = fields.TextField()
     published: bool = fields.BooleanField(default=False)
     thumbnail_url: str = fields.CharField(max_length=255)
-    author: fields.ForeignKeyRelation["Account"] = fields.ForeignKeyField(
-        "models.Account", null=True
-    )
+    author: fields.ForeignKeyRelation["Account"] = fields.ForeignKeyField("models.Account")
     tags: fields.ManyToManyRelation["Tag"] = fields.ManyToManyField(
         "models.Tag", through="entry_tag"
     )
@@ -29,8 +27,6 @@ class Entry(BaseModel):
             "content": self.content,
             "thumbnail_url": self.thumbnail_url,
             "published": self.published,
-            "author": self.author.username
-            if isinstance(self.author, Account)
-            else None,
+            "author": self.author.username,
             "tags": [tag.json for tag in self.tags],
         }
