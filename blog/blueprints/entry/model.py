@@ -11,7 +11,9 @@ class Entry(BaseModel):
     content: str = fields.TextField()
     published: bool = fields.BooleanField(default=False)
     thumbnail_url: str = fields.CharField(max_length=255)
-    author: fields.ForeignKeyRelation["Account"] = fields.ForeignKeyField("models.Account")
+    author: fields.ForeignKeyRelation["Account"] = fields.ForeignKeyField(
+        "models.Account"
+    )
     tags: fields.ManyToManyRelation["Tag"] = fields.ManyToManyField(
         "models.Tag", through="entry_tag"
     )

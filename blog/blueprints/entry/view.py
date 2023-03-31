@@ -1,3 +1,5 @@
+from math import ceil
+
 from sanic import Blueprint
 from sanic.utils import str_to_bool
 from sanic_security.authorization import require_permissions
@@ -27,6 +29,28 @@ async def on_entry_create(request, authentication_session):
     return json("Entry created.", entry.json)
 
 
+@entry_bp.get("entry/all/published")
+async def on_entry_get_all_published(request):
+    entries_per_page = 6
+    total_entries = await Entry.all().count()
+    page = 1 if request.args.get("page") in (None, "null") else int(request.args.get("page"))
+    offset = (page - 1) * entries_per_page
+    entries = (
+        await Entry.filter(deleted=False, published=True)
+        .all()
+        .prefetch_related("author", "tags")
+        .offset(offset)
+        .limit(entries_per_page)
+    )
+    return json(
+        "Entries retrieved.",
+        {
+            "total_pages": ceil(total_entries / entries_per_page),
+            "entries": [entry.json for entry in entries],
+        },
+    )
+
+
 @entry_bp.get("entry/published")
 async def on_entry_get_published(request):
     entry = await Entry.get(
@@ -42,14 +66,6 @@ async def on_entry_get(request, authentication_session):
         "tags", "author"
     )
     return json("Entry retrieved.", entry.json)
-
-
-@entry_bp.get("entry/all/published")
-async def on_entry_get_all_published(request):
-    entries = (
-        await Entry.filter(deleted=False, published=True).prefetch_related("tags", "author").all()
-    )
-    return json("Entries retrieved.", [entry.json for entry in entries])
 
 
 @entry_bp.get("entry/all")

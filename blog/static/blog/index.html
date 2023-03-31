@@ -9,7 +9,7 @@
     <link href="blog/css/bootstrap.min.css" rel="stylesheet">
     <link href="blog/css/style.min.css" rel="stylesheet">
   </head>
-  <body>
+  <body onload="getEntries()">
     <svg style="display: none;">
       <symbol viewBox="0 0 512 512" id="ios-search">
         <path d="M448.3,424.7L335,311.3c20.8-26,33.3-59.1,33.3-95.1c0-84.1-68.1-152.2-152-152.2c-84,0-152,68.2-152,152.2
@@ -81,7 +81,7 @@
     <header class="container  page-header">
       <div class="page-header__logo">
         <div class="logo">
-          <h1><a class="logo__link" href="index.html">Daniel Anri.</a></h1>
+          <h1><a class="logo__link" href="/">Aidan's Page.</a></h1>
           <div class="logo__description">Personal Blog Template</div>
         </div>
       </div>
@@ -163,25 +163,8 @@
     </header>
     <main>
       <div class="container">
-        <div id="blog-post-container" class="col-md-8  col-lg-9">
-          <div class="blog-post">
-            <div class="blog-post__image">
-              <a href="single-post.html"><img src="blog/img/img1.jpg" alt="Cup Of Coffee On The Window Sill"></a>
-            </div>
-            <div class="blog-post__title">
-              <h2><a href="single-post.html">Cup Of Coffee On The Window Sill</a></h2>
-            </div>
-            <div class="blog-post__info">
-              <span>By <a href="#">Daniel Anri</a></span>
-              <span>January 25, 2021</span>
-              <span><a href="#">3 Comments</a></span>
-            </div>
-            <div class="blog-post__content">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lobortis commodo ullamcorper. Duis pretium convallis odio non varius. Nulla quis lorem metus. Fusce velit magna, ultricies quis elit sit amet, lacinia porttitor magna. Nulla scelerisque, ex quis imperdiet finibus, elit massa dictum arcu, et fermentum orci felis in ipsum. Suspendisse rutrum nec ipsum id feugiat. Nunc eu lacinia turpis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam dapibus cursus justo.</p>
-            </div>
-            <div class="blog-post__footer">
-              <a class="blog-post__footer-link" href="single-post.html">Read more</a>
-            </div>
+        <div class="col-md-8  col-lg-9">
+          <div id="entries-container">
           </div>
           <nav class="blog-pagination">
             <ul class="blog-pagination__items">
@@ -447,5 +430,6 @@
     <div class="content-overlay"></div>
     <script src="blog/js/jquery-3.1.1.min.js"></script>
     <script src="blog/js/script.js"></script>
+    <script src="blog/js/main.js"></script>
   </body>
 </html>
