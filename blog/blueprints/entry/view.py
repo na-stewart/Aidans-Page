@@ -7,7 +7,6 @@ from sanic_security.utils import json
 from tortoise.expressions import Q
 
 from blog.blueprints.entry.model import Entry
-from blog.blueprints.tag.model import Tag
 
 entry_bp = Blueprint("Entry")
 
@@ -23,27 +22,18 @@ async def on_entry_create(request, authentication_session):
         author=authentication_session.bearer,
         published=str_to_bool(request.json.get("published")),
     )
-    for tag_id in request.json.get("tags"):
-        tag = await Tag.get(id=tag_id, deleted=False)
-        await entry.tags.add(tag)
-    await entry.fetch_related("tags")
     return json("Entry created.", entry.json)
 
 
 @entry_bp.get("entry/all/published")
 async def on_entry_get_all_published(request):
-    entries_per_page = 6
-    page = (
-        1
-        if request.args.get("page") in (None, "null")
-        else int(request.args.get("page"))
-    )
     filter_query = Q(deleted=False, published=True)
     if request.args.get("search") not in (None, "null"):
         filter_query = filter_query & (
             Q(title__icontains=request.args.get("search"))
             | Q(summary__icontains=request.args.get("search"))
         )
+    page = 1 if request.args.get("page") in (None, "null") else int(request.args.get("page"))
     entries = (
         await Entry.filter(filter_query)
         .only(
@@ -57,14 +47,14 @@ async def on_entry_get_all_published(request):
             "author_id",
         )
         .all()
-        .prefetch_related("author", "tags")
-        .offset((page - 1) * entries_per_page)
-        .limit(entries_per_page)
+        .prefetch_related("author")
+        .offset((page - 1) * 6)
+        .limit(6)
     )
     return json(
         "Entries retrieved.",
         {
-            "total_pages": ceil(await Entry.all().count() / entries_per_page),
+            "total_pages": ceil(await Entry.all().count() / 6),
             "entries": [entry.json for entry in entries],
         },
     )
@@ -74,21 +64,19 @@ async def on_entry_get_all_published(request):
 async def on_entry_get_published(request):
     entry = await Entry.get(
         id=request.args.get("id"), deleted=False, published=True
-    ).prefetch_related("tags", "author")
+    ).prefetch_related("author")
     return json("Entry retrieved.", entry.json)
 
 
 @entry_bp.get("entry")
 @require_permissions("entry:get")
 async def on_entry_get(request, authentication_session):
-    entry = await Entry.get(id=request.args.get("id"), deleted=False).prefetch_related(
-        "tags", "author"
-    )
+    entry = await Entry.get(id=request.args.get("id"), deleted=False).prefetch_related("author")
     return json("Entry retrieved.", entry.json)
 
 
 @entry_bp.get("entry/all")
 @require_permissions("entry:get")
 async def on_entry_get_all(request, authentication_session):
-    entries = await Entry.filter(deleted=False).prefetch_related("tags", "author").all()
+    entries = await Entry.filter(deleted=False).prefetch_related("author").all()
     return json("Entries retrieved.", [entry.json for entry in entries])

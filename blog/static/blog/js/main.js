@@ -1,6 +1,6 @@
 function pagination(forward) {
   const pageElement = document.getElementById("page");
-  pageElement.value = forward ? pageElement.value++ : pageElement.value--;
+  pageElement.value = forward ? parseInt(pageElement.value) + 1 : parseInt(pageElement.value) - 1;
   if (pageElement.value > document.getElementById("total-pages").innerHTML)
     pageElement.value--;
   else if (pageElement.value < 1)
