@@ -15,7 +15,7 @@ app.static("/", "blog/static")
 app.static("/", "blog/static/blog/index.html")
 app.static("/login", "blog/static/auth/index.html")
 app.static("/register", "blog/static/auth/register.html")
-app.static("/entry", "blog/static/blog/single-post-fullsize.html")
+app.static("/entry", "blog/static/blog/entry.html")
 
 
 @app.exception(SanicException)
