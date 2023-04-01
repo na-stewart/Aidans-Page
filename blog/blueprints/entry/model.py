@@ -26,9 +26,9 @@ class Entry(BaseModel):
             "date_updated": str(self.date_updated),
             "title": self.title,
             "summary": self.summary,
-            "content": self.content,
+            "content": self.content if hasattr(self, "content") else None,
             "thumbnail_url": self.thumbnail_url,
             "published": self.published,
-            "author": self.author.username,
+            "author": {"id": self.id, "username": self.author.username},
             "tags": [tag.json for tag in self.tags],
         }

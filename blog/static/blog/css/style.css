@@ -404,7 +404,7 @@ blockquote::before {
 }
 .blog-post__info span::after {
   content: "/";
-  margin-left: 5px;
+  margin-left: 3px;
 }
 .blog-post__info span:last-child::after {
   content: "";

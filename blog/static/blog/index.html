@@ -82,7 +82,7 @@
       <div class="page-header__logo">
         <div class="logo">
           <h1><a class="logo__link" href="/">Aidan's Page.</a></h1>
-          <div class="logo__description">Personal Blog Template</div>
+          <div class="logo__description">Opinion Blog</div>
         </div>
       </div>
       <nav class="main-nav">
@@ -168,14 +168,20 @@
           </div>
           <nav class="blog-pagination">
             <ul class="blog-pagination__items">
-              <li class="blog-pagination__item  blog-pagination__item--active">
-                <a>1</a>
+              <li class="blog-pagination__item">
+                <p onclick="pagination(false)" style="cursor: pointer;"><</p>
               </li>
               <li class="blog-pagination__item">
-                <a href="#">2</a>
+                <input style="width: 30px; text-align: center;" type="text" id="page" value="1" onchange="getEntries(`page=${this.value}`)">
               </li>
               <li class="blog-pagination__item">
-                <a href="#">Next Page</a>
+                <p>/</p>
+              </li>
+              <li class="blog-pagination__item">
+                <p id="total-pages">0</p>
+              </li>
+              <li class="blog-pagination__item">
+                <p onclick="pagination(true)" style="cursor: pointer;">></p>
               </li>
             </ul>
           </nav>
@@ -386,7 +392,7 @@
       </div>
       <div class="container  page-footer__bottom">
         <div class="col-sm-8  col-md-8  page-footer__bottom-copyright">
-          <p>2021 © Anri. Personal Blog Template by Feelman.</p>
+          <p>2021 © Anri. Opinion Blog by Feelman.</p>
         </div>
         <div class="col-sm-4  col-md-4  page-footer__bottom-social">
           <a href="#">

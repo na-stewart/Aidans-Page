@@ -4,6 +4,7 @@ from sanic import Blueprint
 from sanic.utils import str_to_bool
 from sanic_security.authorization import require_permissions
 from sanic_security.utils import json
+from tortoise.expressions import Q
 
 from blog.blueprints.entry.model import Entry
 from blog.blueprints.tag.model import Tag
@@ -32,20 +33,38 @@ async def on_entry_create(request, authentication_session):
 @entry_bp.get("entry/all/published")
 async def on_entry_get_all_published(request):
     entries_per_page = 6
-    total_entries = await Entry.all().count()
-    page = 1 if request.args.get("page") in (None, "null") else int(request.args.get("page"))
-    offset = (page - 1) * entries_per_page
+    page = (
+        1
+        if request.args.get("page") in (None, "null")
+        else int(request.args.get("page"))
+    )
+    filter_query = Q(deleted=False, published=True)
+    if request.args.get("search") not in (None, "null"):
+        filter_query = filter_query & (
+            Q(title__icontains=request.args.get("search"))
+            | Q(summary__icontains=request.args.get("search"))
+        )
     entries = (
-        await Entry.filter(deleted=False, published=True)
+        await Entry.filter(filter_query)
+        .only(
+            "date_created",
+            "date_updated",
+            "id",
+            "title",
+            "summary",
+            "published",
+            "thumbnail_url",
+            "author_id",
+        )
         .all()
         .prefetch_related("author", "tags")
-        .offset(offset)
+        .offset((page - 1) * entries_per_page)
         .limit(entries_per_page)
     )
     return json(
         "Entries retrieved.",
         {
-            "total_pages": ceil(total_entries / entries_per_page),
+            "total_pages": ceil(await Entry.all().count() / entries_per_page),
             "entries": [entry.json for entry in entries],
         },
     )
