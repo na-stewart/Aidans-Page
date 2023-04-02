@@ -5,7 +5,6 @@ from sanic.utils import str_to_bool
 from sanic_security.authorization import require_permissions
 from sanic_security.utils import json
 from tortoise.expressions import Q
-from tortoise.functions import Count
 
 from blog.blueprints.entry.model import Entry
 
