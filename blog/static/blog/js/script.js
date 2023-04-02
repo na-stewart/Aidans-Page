@@ -1,4 +1,5 @@
 $('.main-nav__search').on('click', function(){
+  $('#search').select();
   $('.search-popup').addClass('search-popup--active').find('input[type="text"]').focus();
 });
 

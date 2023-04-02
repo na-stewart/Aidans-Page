@@ -5,6 +5,7 @@ from sanic.utils import str_to_bool
 from sanic_security.authorization import require_permissions
 from sanic_security.utils import json
 from tortoise.expressions import Q
+from tortoise.functions import Count
 
 from blog.blueprints.entry.model import Entry
 
@@ -28,14 +29,18 @@ async def on_entry_create(request, authentication_session):
 @entry_bp.get("entry/all/published")
 async def on_entry_get_all_published(request):
     filter_query = Q(deleted=False, published=True)
-    if request.args.get("search") not in (None, "null"):
+    if request.args.get("search") not in (None, "null", ""):
         filter_query = filter_query & (
             Q(title__icontains=request.args.get("search"))
             | Q(summary__icontains=request.args.get("search"))
         )
-    page = 1 if request.args.get("page") in (None, "null") else int(request.args.get("page"))
-    entries = (
-        await Entry.filter(filter_query)
+    page = (
+        1
+        if request.args.get("page") in (None, "null")
+        else int(request.args.get("page"))
+    )
+    entries_query = (
+        Entry.filter(filter_query)
         .only(
             "date_created",
             "date_updated",
@@ -46,16 +51,18 @@ async def on_entry_get_all_published(request):
             "thumbnail_url",
             "author_id",
         )
+        .order_by("-date_created")
         .all()
         .prefetch_related("author")
-        .offset((page - 1) * 6)
-        .limit(6)
     )
     return json(
         "Entries retrieved.",
         {
-            "total_pages": ceil(await Entry.all().count() / 6),
-            "entries": [entry.json for entry in entries],
+            "total_pages": ceil(await entries_query.count() / 6),
+            "entries": [
+                entry.json
+                for entry in await entries_query.offset((page - 1) * 6).limit(6)
+            ],
         },
     )
 
@@ -71,7 +78,9 @@ async def on_entry_get_published(request):
 @entry_bp.get("entry")
 @require_permissions("entry:get")
 async def on_entry_get(request, authentication_session):
-    entry = await Entry.get(id=request.args.get("id"), deleted=False).prefetch_related("author")
+    entry = await Entry.get(id=request.args.get("id"), deleted=False).prefetch_related(
+        "author"
+    )
     return json("Entry retrieved.", entry.json)
 
 
