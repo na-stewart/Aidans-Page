@@ -62,7 +62,7 @@ async def on_login(request):
             f"Your verification code is: {two_step_session.code}",
         )
         two_step_session.encode(e.json)
-        raise e
+        return e.json
     return response
 
 

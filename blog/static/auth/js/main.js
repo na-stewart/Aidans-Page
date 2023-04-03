@@ -19,9 +19,9 @@ function login() {
   .catch(error => {
     error.json().then(error => {
       document.getElementById("response-msg").innerHTML = error.message;
-      if (error.data = "UnverifiedError") {
+      if (error.data == "UnverifiedError") {
         location.assign("/verify");
-      }
+      } 
     });
   });
   
@@ -73,10 +73,7 @@ function verify() {
   })
   .catch(error => {
     error.json().then(error => {
-      if (error == "MaxedOutChallengeError") 
-        document.getElementById("response-msg").innerHTML = "The maximum amount of attempts has been reached. Please login and try again.";
-      else
-        document.getElementById("response-msg").innerHTML = error.message;
+      document.getElementById("response-msg").innerHTML = error.message;
     });
   });
   return false; 
