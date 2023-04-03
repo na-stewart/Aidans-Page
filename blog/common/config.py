@@ -9,7 +9,8 @@ DEFAULT_CONFIG = {
 
 class Config(dict):
     DATABASE_URL: str
-    SENDGRID_KEY: str
+    SMTP_USERNAME: str
+    SMTP_PASSWORD: str
 
     def load_environment_variables(self, load_env="BLOG_") -> None:
         """

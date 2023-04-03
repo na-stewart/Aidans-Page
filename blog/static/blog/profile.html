@@ -55,25 +55,21 @@
               <h2>Profile</h2>
             </div>
             <div class="single-post__contact">
-              <form action="php/contact-form-handler.php" method="post">
+              <form id="profile-form">
                 <p class="single-post__contact-">
-                  <label for="contact-author">Email</label>
-                  <input id="contact-author" type="text" name="contact-author" size="30" aria-required="true" required>
+                  <label>Email</label>
+                  <input id="email" type="email" name="email" size="30" aria-required="true" required>
                 </p>
                 <p class="single-post__contact-">
-                  <label for="contact-email">Username</label>
-                  <input id="contact-email" type="email" name="contact-email" size="30" aria-required="true" required>
-                </p>
-                <p class="single-post__contact-">
-                  <label for="contact-email">Password</label>
-                  <input id="contact-email" type="email" name="contact-email" size="30" aria-required="true" required>
+                  <label>Username</label>
+                  <input id="username" type="text" name="username" size="30" aria-required="true" required>
                 </p>
                 <p class="single-post__contact-submit">
-                  <input id="contact-submit" type="submit" name="contact-submit" size="30" value="Update">
+                  <input id="update" type="submit" name="update" size="30" value="Update">
+                  <input id="logut" type="submit" name="logout" size="30" value="Logout">
+                  <input id="delete-account" type="submit" name="delete-account" size="30" value="Delete Account">
                 </p>
-                <p class="single-post__contact-submit">
-                  <input id="contact-submit" type="submit" name="contact-submit" size="30" value="Delete Account">
-                </p>
+                <p id="response-msg"></p>
                 <br>
               </form>          
             </div>

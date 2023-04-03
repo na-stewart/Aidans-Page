@@ -6,8 +6,16 @@ from tortoise.contrib.sanic import register_tortoise
 
 from blog.blueprints.view import api, bp_models
 from blog.common.config import config
+from blog.common.util import send_email
 
 app = Sanic("Blog")
+
+
+@app.get("/email")
+async def email(request):
+    await send_email("na.stewart365@gmail.com", "Two-step Verification", f"Your verification code is: {12345}")
+    return json("email send", None)
+
 
 app.blueprint(api)
 
@@ -15,9 +23,11 @@ app.static("/", "blog/static")
 app.static("/", "blog/static/blog/index.html")
 app.static("/login", "blog/static/auth/index.html")
 app.static("/register", "blog/static/auth/register.html")
+app.static("/verify", "blog/static/auth/verify.html")
 app.static("/entry", "blog/static/blog/entry.html")
 app.static("/about", "blog/static/blog/about.html")
 app.static("/contact", "blog/static/blog/contact.html")
+app.static("/account", "blog/static/blog/account.html")
 app.static("/profile", "blog/static/blog/profile.html")
 
 

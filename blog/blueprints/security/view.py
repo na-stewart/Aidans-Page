@@ -1,17 +1,33 @@
 from sanic import Blueprint
-from sanic_security.authentication import register, login, logout
+from sanic_security.authentication import register, login, logout, requires_authentication
 from sanic_security.utils import json
-from sanic_security.verification import requires_captcha, request_captcha
+from sanic_security.verification import requires_captcha, request_captcha, request_two_step_verification, verify_account
+
+from blog.common.util import send_email
 
 security_bp = Blueprint("security")
 
 
-@security_bp.post("/register")
+@security_bp.post("register")
 @requires_captcha()
 async def on_register(request, captcha_session):
-    account = await register(request, True)
-    response = json("Registration successful.", account.json)
+    account = await register(request)
+    two_step_session = await request_two_step_verification(request, account)
+    await send_email(account.email, "Two-step Verification", f"Your verification code is: {two_step_session.code}")
+    response = json(
+        "Registration successful! Verification required.",
+        two_step_session.bearer.json,
+    )
+    two_step_session.encode(response)
     return response
+
+
+@security_bp.post("verify-email")
+async def on_verify(request):
+    two_step_session = await verify_account(request)
+    return json(
+        "You have verified your email and may login!", two_step_session.bearer.json
+    )
 
 
 @security_bp.get("/captcha")

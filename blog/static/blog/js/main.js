@@ -9,15 +9,20 @@ function pagination(forward) {
     getEntries();
 }
 
-document.getElementById('search-form').addEventListener('submit', function(event) {
-  event.preventDefault();
-  document.getElementById('page').value = 1;
-  getEntries();  
-  $(this).closest('.search-popup').removeClass('search-popup--active'); //From script.js
-  return false;
-});
 
-function getEntries(args) {
+function initIndex(){
+  document.getElementById('search-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    document.getElementById('page').value = 1;
+    getEntries();  
+    $(this).closest('.search-popup').removeClass('search-popup--active'); //From script.js
+  });
+  getProfile();
+  getEntries();
+}
+
+
+function getEntries() {
   fetch(`api/v1/entry/all/published?page=${document.getElementById('page').value}&search=${document.getElementById('search').value}`, {
     method: 'GET',
   })
@@ -91,8 +96,18 @@ function getEntry() {
   });
 }
 
+function initProfile(){
+  document.getElementById('profile-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    document.getElementById('page').value = 1;
+    getEntries();  
+    $(this).closest('.search-popup').removeClass('search-popup--active'); //From script.js
+  });
+}
+
 function getProfile(){
-  fetch(`api/v1/profile`, {
+  fetch(`api/v1/account/profile`, {
     method: 'GET',
   })
   .then(response => {
@@ -101,10 +116,11 @@ function getProfile(){
     return Promise.reject(response); 
   })
   .then(json => {
-    
+    document.getElementById("email").value = json.data.email;
+    document.getElementById("username").value = json.data.username;
   })
   .catch(error => {
-    window.location.href = '/login';
+    if (window.location.pathname == '/profile')
+      window.location.href = '/login';
   });
-
 }

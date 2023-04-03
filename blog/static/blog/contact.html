@@ -9,7 +9,7 @@
     <link href="blog/css/bootstrap.min.css" rel="stylesheet">
     <link href="blog/css/style.min.css" rel="stylesheet">
   </head>
-  <body>
+  <body onload="getProfile()">
     <svg style="display: none;">
       <symbol viewBox="0 0 512 512" id="toggle">
         <g>
@@ -59,13 +59,13 @@
             </div>
             <div class="single-post__contact">
               <form action="php/contact-form-handler.php" method="post">
-                <p class="single-post__contact-author">
-                  <label for="contact-author">Name*</label>
-                  <input id="contact-author" type="text" name="contact-author" size="30" aria-required="true" required>
+                <p class="single-post__contact-">
+                  <label>Name</label>
+                  <input id="username" type="text" name="name" size="30" aria-required="true" required>
                 </p>
-                <p class="single-post__contact-email">
-                  <label for="contact-email">Email*</label>
-                  <input id="contact-email" type="email" name="contact-email" size="30" aria-required="true" required>
+                <p class="single-post__contact-">
+                  <label>Email</label>
+                  <input id="email" type="email" name="email" size="30" aria-required="true" required>
                 </p>
                 <p class="single-post__contact-message">
                   <label for="contact-message">Message</label>
@@ -84,5 +84,6 @@
     <div class="content-overlay"></div>
     <script src="blog/js/jquery-3.1.1.min.js"></script>
     <script src="blog/js/script.js"></script>
+    <script src="blog/js/main.js"></script>
   </body>
 </html>

@@ -9,7 +9,7 @@
     <link href="blog/css/bootstrap.min.css" rel="stylesheet">
     <link href="blog/css/style.min.css" rel="stylesheet">
   </head>
-  <body onload="getEntries()">
+  <body onload="initIndex()">
     <svg style="display: none;">
       <symbol viewBox="0 0 512 512" id="ios-search">
         <path d="M448.3,424.7L335,311.3c20.8-26,33.3-59.1,33.3-95.1c0-84.1-68.1-152.2-152-152.2c-84,0-152,68.2-152,152.2
@@ -105,7 +105,7 @@
             <div class="sidebar-widget__subscribe">
               <p>Stay up-to-date by following for the latest entries! You may unsubscribe at any time.</p>
               <form action="/">
-                <input type="text" placeholder="Your email">
+                <input id="email" type="text" placeholder="Your email">
                 <input class="sidebar-widget__subscribe-submit" type="submit" value="Submit">
               </form>
             </div>
