@@ -42,7 +42,6 @@ function getEntries(args) {
               <h2><a href='/entry?id=${entry.id}'>${entry.title}</a></h2>
             </div>
             <div class='blog-post__info'>
-              <span>By ${entry.author.username}</span>
               <span>
                 ${new Date(entry.date_created).toLocaleDateString('en-US', { 
                   year: 'numeric', 
@@ -86,9 +85,26 @@ function getEntry() {
     document.getElementById('entry-thumbnail').src = json.data.thumbnail_url
     document.getElementById('entry-title').innerHTML = json.data.title
     document.getElementById('entry-content').innerHTML = json.data.content;
-    document.getElementById('author').innerHTML =  `Written by ${json.data.author.username}`;
   })
   .catch(error => {
     alert("Entry not available.");
   });
+}
+
+function getProfile(){
+  fetch(`api/v1/profile`, {
+    method: 'GET',
+  })
+  .then(response => {
+    if (response.ok) 
+      return response.json();
+    return Promise.reject(response); 
+  })
+  .then(json => {
+    
+  })
+  .catch(error => {
+    window.location.href = '/login';
+  });
+
 }

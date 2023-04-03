@@ -19,7 +19,6 @@ async def on_entry_create(request, authentication_session):
         summary=request.json.get("summary"),
         content=request.json.get("content"),
         thumbnail_url=request.json.get("thumbnail_url"),
-        author=authentication_session.bearer,
         published=str_to_bool(request.json.get("published")),
     )
     return json("Entry created.", entry.json)
@@ -48,11 +47,9 @@ async def on_entry_get_all_published(request):
             "summary",
             "published",
             "thumbnail_url",
-            "author_id",
         )
         .order_by("-date_created")
         .all()
-        .prefetch_related("author")
     )
     return json(
         "Entries retrieved.",
@@ -68,23 +65,19 @@ async def on_entry_get_all_published(request):
 
 @entry_bp.get("entry/published")
 async def on_entry_get_published(request):
-    entry = await Entry.get(
-        id=request.args.get("id"), deleted=False, published=True
-    ).prefetch_related("author")
+    entry = await Entry.get(id=request.args.get("id"), deleted=False, published=True)
     return json("Entry retrieved.", entry.json)
 
 
 @entry_bp.get("entry")
 @require_permissions("entry:get")
 async def on_entry_get(request, authentication_session):
-    entry = await Entry.get(id=request.args.get("id"), deleted=False).prefetch_related(
-        "author"
-    )
+    entry = await Entry.get(id=request.args.get("id"), deleted=False)
     return json("Entry retrieved.", entry.json)
 
 
 @entry_bp.get("entry/all")
 @require_permissions("entry:get")
 async def on_entry_get_all(request, authentication_session):
-    entries = await Entry.filter(deleted=False).prefetch_related("author").all()
+    entries = await Entry.filter(deleted=False).all()
     return json("Entries retrieved.", [entry.json for entry in entries])

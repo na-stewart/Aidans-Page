@@ -1,4 +1,3 @@
-from sanic_security.models import Account
 from tortoise import fields
 
 from blog.common.base_model import BaseModel
@@ -10,9 +9,6 @@ class Entry(BaseModel):
     content: str = fields.TextField()
     published: bool = fields.BooleanField(default=False)
     thumbnail_url: str = fields.CharField(max_length=255)
-    author: fields.ForeignKeyRelation["Account"] = fields.ForeignKeyField(
-        "models.Account"
-    )
 
     @property
     def json(self) -> dict:
@@ -25,5 +21,4 @@ class Entry(BaseModel):
             "content": self.content if hasattr(self, "content") else None,
             "thumbnail_url": self.thumbnail_url,
             "published": self.published,
-            "author": {"id": self.id, "username": self.author.username},
         }
