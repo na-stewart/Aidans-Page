@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="auth/css/styles.css">
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Verify</h1>
+      <form id="verify-form" onsubmit="return verify()">
+        <label>Code</label>
+        <input type="text" id="code" name="code" placeholder="" required>
+        <button type="submit">Verify</button>
+        <p id="response-msg"></p>
+      </form>  
+    </div>
+    <script src="auth/js/main.js"></script>
+  </body>
+</html>

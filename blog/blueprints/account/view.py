@@ -27,4 +27,4 @@ async def on_profile_update(request, authentication_request):
 async def on_account_delete(request, authentication_request):
     authentication_request.bearer.deleted = True
     await authentication_request.bearer.save(update_fields=["deleted"])
-    return json("Profile updated.", None)
+    return json("Profile updated.", authentication_request.bearer.json)

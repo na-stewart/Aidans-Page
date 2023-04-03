@@ -1,6 +1,6 @@
 function login() {
   const loginForm = document.getElementById('login-form');
-
+  document.getElementById("response-msg").innerHTML = "Please wait..."
   fetch('api/v1/login', {
     method: 'POST',
     headers: new Headers({
@@ -19,14 +19,18 @@ function login() {
   .catch(error => {
     error.json().then(error => {
       document.getElementById("response-msg").innerHTML = error.message;
+      if (error.data = "UnverifiedError") {
+        location.assign("/verify");
+      }
     });
   });
   
-  return false; // prevent default form submission
+  return false;
 }
 
 
 function register() {
+  document.getElementById("response-msg").innerHTML = "Please wait..."
   fetch("api/v1/register", {
     method: "POST",
     body: new FormData(document.getElementById("registration-form"))
@@ -40,12 +44,15 @@ function register() {
   })
   .catch(error => {
     error.json().then(error => {
-      document.getElementById("response-msg").innerHTML = error.message;
+      if (error.data != "ChallengeError"){
+        captcha();
+        document.getElementById("response-msg").innerHTML = error.message;
+      } else 
+        document.getElementById("response-msg").innerHTML = "Captcha incorrect."
     });
-    captcha();
   });
   
-  return false; // prevent default form submission
+  return false;
 }
 
 function captcha(){
@@ -66,9 +73,12 @@ function verify() {
   })
   .catch(error => {
     error.json().then(error => {
-      document.getElementById("response-msg").innerHTML = error.message;
+      if (error == "MaxedOutChallengeError") 
+        document.getElementById("response-msg").innerHTML = "The maximum amount of attempts has been reached. Please login and try again.";
+      else
+        document.getElementById("response-msg").innerHTML = error.message;
     });
   });
-  return false; // prevent default form submission
+  return false; 
 }
 

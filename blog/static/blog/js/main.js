@@ -9,7 +9,6 @@ function pagination(forward) {
     getEntries();
 }
 
-
 function initIndex(){
   document.getElementById('search-form').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -20,7 +19,6 @@ function initIndex(){
   getProfile();
   getEntries();
 }
-
 
 function getEntries() {
   fetch(`api/v1/entry/all/published?page=${document.getElementById('page').value}&search=${document.getElementById('search').value}`, {
@@ -100,10 +98,55 @@ function initProfile(){
   document.getElementById('profile-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    document.getElementById('page').value = 1;
-    getEntries();  
-    $(this).closest('.search-popup').removeClass('search-popup--active'); //From script.js
+    if (event.submitter.value == "Update") {
+      fetch(`api/v1/account/profile`, {
+        method: 'PUT',
+        body: new FormData(document.getElementById("profile-form"))
+      })
+      .then(response => {
+        if (response.ok) 
+          return response.json();
+        return Promise.reject(response); 
+      })
+      .then(json => {
+        document.getElementById("response-msg").innerHTML = json.message;
+      })
+      .catch(error => {
+        document.getElementById("response-msg").innerHTML = error.message;
+      });
+    } else if (event.submitter.value == "Delete Account") {
+      fetch(`api/v1/account`, {
+        method: 'DELETE',
+      })
+      .then(response => {
+        if (response.ok) 
+          return response.json();
+        return Promise.reject(response); 
+      })
+      .then(json => {
+        location.assign("/login");
+      })
+      .catch(error => {
+        document.getElementById("response-msg").innerHTML = error.message;
+      });
+    } else {
+        fetch(`api/v1/logout`, {
+          method: 'POST',
+        })
+        .then(response => {
+          if (response.ok) 
+            return response.json();
+          return Promise.reject(response); 
+        })
+        .then(json => {
+          location.assign("/login");
+        })
+        .catch(error => {
+          document.getElementById("response-msg").innerHTML = error.message;
+        });
+    }
   });
+  getProfile();
 }
 
 function getProfile(){

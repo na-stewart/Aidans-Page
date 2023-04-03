@@ -13,7 +13,11 @@ app = Sanic("Blog")
 
 @app.get("/email")
 async def email(request):
-    await send_email("na.stewart365@gmail.com", "Two-step Verification", f"Your verification code is: {12345}")
+    await send_email(
+        "na.stewart365@gmail.com",
+        "Two-step Verification",
+        f"Your verification code is: {12345}",
+    )
     return json("email send", None)
 
 
