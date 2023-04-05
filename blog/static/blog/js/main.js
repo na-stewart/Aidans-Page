@@ -2,16 +2,16 @@
 function initIndex(){
   getProfile();
   getEntries();
+  addSearchFormEventListener();
 }
 
-function search(){
+function addSearchFormEventListener(){
   document.getElementById('search-form').addEventListener('submit', function(event) {
     event.preventDefault();
     document.getElementById('page').value = 1;
     getEntries();  
     $(this).closest('.search-popup').removeClass('search-popup--active'); //From script.js
   });
-  return false;
 }
 
 function pagination(forward) {
