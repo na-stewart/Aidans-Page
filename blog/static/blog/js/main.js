@@ -1,3 +1,19 @@
+
+function initIndex(){
+  getProfile();
+  getEntries();
+}
+
+function search(){
+  document.getElementById('search-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    document.getElementById('page').value = 1;
+    getEntries();  
+    $(this).closest('.search-popup').removeClass('search-popup--active'); //From script.js
+  });
+  return false;
+}
+
 function pagination(forward) {
   const pageElement = document.getElementById('page');
   pageElement.value = forward ? parseInt(pageElement.value) + 1 : parseInt(pageElement.value) - 1;
@@ -7,17 +23,6 @@ function pagination(forward) {
     pageElement.value++;
   else
     getEntries();
-}
-
-function initIndex(){
-  document.getElementById('search-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    document.getElementById('page').value = 1;
-    getEntries();  
-    $(this).closest('.search-popup').removeClass('search-popup--active'); //From script.js
-  });
-  getProfile();
-  getEntries();
 }
 
 function getEntries() {
@@ -95,13 +100,17 @@ function getEntry() {
 }
 
 function initProfile(){
+  addProfileFormEventListener();
+  getProfile();
+}
+
+function addProfileFormEventListener(){
   document.getElementById('profile-form').addEventListener('submit', function(event) {
     event.preventDefault();
-
     if (event.submitter.value == "Update") {
       fetch(`api/v1/account/profile`, {
         method: 'PUT',
-        body: new FormData(document.getElementById("profile-form"))
+        body: new FormData(this)
       })
       .then(response => {
         if (response.ok) 
@@ -124,7 +133,7 @@ function initProfile(){
         return Promise.reject(response); 
       })
       .then(json => {
-        location.assign("/login");
+        location.assign("/");
       })
       .catch(error => {
         document.getElementById("response-msg").innerHTML = error.message;

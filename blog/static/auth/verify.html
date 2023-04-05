@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="auth/css/styles.css">
     <title>Login</title>
   </head>
-  <body>
+  <body onload="addVerifyFormEventListener()">
     <div class="container">
       <h1>Verify</h1>
-      <form id="verify-form" onsubmit="return verify()">
+      <form id="verify-form">
         <label>Code</label>
         <input type="text" id="code" name="code" placeholder="" required>
         <button type="submit">Verify</button>

@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="auth/css/styles.css">
     <title>Login</title>
   </head>
-  <body>
+  <body onload="addLoginFormEventListener()">
     <div class="container">
       <h1>Sign In</h1>
       <p>New user? <a href="/register">Create your free account.</a></p>
-      <form id="login-form" onsubmit="return login()">
+      <form id="login-form">
         <label for="email">Email address</label>
         <input type="email" id="email" name="email" placeholder="Email" required>
         <label for="password">Password</label>
