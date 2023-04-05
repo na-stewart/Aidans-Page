@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="blog/img/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="blog/css/bootstrap.min.css" rel="stylesheet">
-    <link href="blog/css/style.min.css" rel="stylesheet">
+    <link href="blog/css/style.css" rel="stylesheet">
   </head>
   <body onload="initIndex()">
     <svg style="display: none;">
@@ -89,13 +89,13 @@
         </div>
         <div class="col-md-4  col-lg-3">
           <div class="sidebar-widget">
-            <h3>About Me</h3>
+            <h3>Support Me</h3>
             <div class="sidebar-widget__about-me">
               <div class="sidebar-widget__about-me-image">
                 <img src="blog/img/me.jpg" alt="About Me">
               </div>
               <p>
-                Welcome to my page. This space serves as an outlet for my research and personal experiences. 
+                This space serves as an outlet for my research and personal experiences. 
                 My entries cover a wide range of topics, including music, politics, and technology.
               </p>
             </div>
@@ -114,7 +114,47 @@
         </div>
       </div>
     </main>
-   
+    <footer class="page-footer">
+      <div class="container  page-footer__top">
+        <div class="col-sm-5  col-md-5">
+          <div class="page-footer__top-about">
+            <h4>Aidan's Page.</h4>
+            <p><a style="color: inherit; text-decoration: underline;"href="https://github.com/na-stewart/Aidans-Page">Open Source</a> Opinion Blog</p>
+            <p>Build: v1.0.0</p>
+          </div>
+        </div>
+        <div class="col-sm-3  col-md-3">
+          <h4>Categories</h4>
+          <nav class="page-footer__nav">
+            <ul class="page-footer__nav-items">
+              <li class="page-footer__nav-item">
+                <a href="/home">Home</a>
+              </li>
+              <li class="page-footer__nav-item">
+                <a href="/contact">Contact</a>
+              </li>
+              <li class="page-footer__nav-item">
+                <a href="/profile">Profile</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-sm-4  col-md-4">
+          <h4>Support Me</h4>
+          <p>
+            You can support me <a href="https://www.buymeacoffee.com/nastewart">with a coffee</a>
+            or by sharing entries of interest with others. Thanks!</a>.
+          </p>
+        </div>
+         
+      </div>
+      <div class="container  page-footer__bottom">
+        <div class="col-sm-8  col-md-8  page-footer__bottom-copyright">
+         <a href="https://github.com/na-stewart/Aidans-Page/blob/master/LICENSE">2023 © Aidan Stewart</a>
+        </div>
+       
+      </div>
+    </footer>
     <div class="search-popup">
       <svg class="search-popup__close">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#btn-close"></use>

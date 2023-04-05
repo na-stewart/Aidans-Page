@@ -47,6 +47,16 @@ blockquote::before {
   line-height: 1;
   color: #dcdcdc;
 }
+
+a {
+  color: inherit; 
+  text-decoration: underline;
+}
+
+a:hover {
+  opacity: 0.8;
+  color: #262626;
+}
 /*------------------------------------------------------------------
 [2. Header ] 
 */
