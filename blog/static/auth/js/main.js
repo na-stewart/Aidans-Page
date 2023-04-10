@@ -29,7 +29,7 @@ function addLoginFormEventListener() {
 }
 
 
-function addRegisterFormEventListener(event) {
+function addRegisterFormEventListener() {
   document.getElementById('register-form').addEventListener('submit', function(event) {
     event.preventDefault();
     fetch("api/v1/register", {
@@ -84,11 +84,8 @@ function addVerifyFormEventListener(event) {
   });
 }
 
-function addListenerToLoginForm(){
-  
-}
-
-function initRegister(){
-  document.getElementById('register-form').addEventListener('onsubmit', register)
+function initRegister() {
+  captcha();
+  addRegisterFormEventListener();
 }
 
