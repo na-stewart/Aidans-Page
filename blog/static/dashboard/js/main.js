@@ -1,16 +1,31 @@
-$(document).ready(function () {
-  var table = $('#example').DataTable();
+function populateAccountsTable(){
+    var table = $('#table').DataTable({
+        columns: [
+          {data: 'date_created'},
+          {data: 'date_updated'},
+          {data: 'id'},
+          {data: 'email'},
+          {data: 'username'},
+          {data: 'verified'},
+          {data: 'disabled'}
+        ]
+      });
+    
+    fetch("api/v1/account/all", {
+        method: "GET",
+      }).then(response => {
+        if (response.ok) 
+          return response.json();
+        return Promise.reject(response); 
+      })
+      .then(json => {
+        table.rows.add(json.data).draw();
+      })
+      .catch(error => {
+        error.json().then(error => {
+         
+        });
+      });
 
-  $('#example tbody').on('click', 'tr', function () {
-      if ($(this).hasClass('selected')) {
-          $(this).removeClass('selected');
-      } else {
-          table.$('tr.selected').removeClass('selected');
-          $(this).addClass('selected');
-      }
-  });
-
-  $('#button').click(function () {
-      table.row('.selected').remove().draw(false);
-  });
-});
+      
+}
