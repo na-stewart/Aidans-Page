@@ -12,3 +12,11 @@
   width: 70%;
   margin-left: 20px;
 }
+
+form button {
+  padding-left: 100px;
+}
+
+.highlight {
+  background-color: yellow;
+}
