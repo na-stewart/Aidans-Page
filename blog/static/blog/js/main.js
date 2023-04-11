@@ -25,6 +25,16 @@ function pagination(forward) {
     getEntries();
 }
 
+function parseDateTime(date){
+  return new Date(date).toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric'
+  })
+}
+
 function getEntries() {
   fetch(`api/v1/entry/all/published?page=${document.getElementById('page').value}&search=${document.getElementById('search').value}`, {
     method: 'GET',
@@ -51,11 +61,7 @@ function getEntries() {
             </div>
             <div class='blog-post__info'>
               <span>
-                ${new Date(entry.date_created).toLocaleDateString('en-US', { 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
-                })}
+                ${parseDateTime(entry.date_created)}
               </span>
               <span><a href='#'>0 Comments</a></span>
             </div>
@@ -85,13 +91,9 @@ function getEntry() {
     return Promise.reject(response); 
   })
   .then(json => {
-    document.getElementById('entry-date').innerHTML = new Date(json.data.date_created).toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
-    document.getElementById('entry-thumbnail').src = json.data.thumbnail_url
-    document.getElementById('entry-title').innerHTML = json.data.title
+    document.getElementById('entry-date').innerHTML = parseDateTime(json.data.date_created);
+    document.getElementById('entry-thumbnail').src = json.data.thumbnail_url;
+    document.getElementById('entry-title').innerHTML = json.data.title;
     document.getElementById('entry-content').innerHTML = json.data.content;
   })
   .catch(error => {
