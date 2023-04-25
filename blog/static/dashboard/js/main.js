@@ -8,6 +8,24 @@ function parseDateTime(date){
   })
 }
 
+function addAccountFormEventListener(){ 
+  document.getElementById('account-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    switch( event.submitter.value) {
+      case 'Post':
+        // code to handle button 1
+        break;
+      case 'Update':
+        // code to handle button 2
+        break;
+      case 'Delete':
+        // code to handle button 2
+        break;
+    }
+
+  });
+}
+
 function populateAccountsTable(){
   var table = $('#table').DataTable({
     columns: [
@@ -39,10 +57,28 @@ function populateAccountsTable(){
         table.rows.add(json.data).draw();
       })
       .catch(error => {
-        error.json().then(error => {
-         
-        });
+        error.json().then(error => {        
       });
+    });  
+    $('#table tbody').on('click', 'tr', function () {
+      if ($(this).hasClass('selected')) {
+          $(this).removeClass('selected');
+          clearAccountFields();
+      } else {
+          table.$('tr.selected').removeClass('selected');
+          $(this).addClass('selected');
+          var selectedRowData = table.row(this).data();
+          $('#username').val(selectedRowData.username);
+          $('#email').val(selectedRowData.email);
+          $('#verified').prop('checked', selectedRowData.verified);
+          $('#disabled').prop('checked', selectedRowData.disabled);
+      }
+  });     
+}
 
-      
+function clearAccountFields() {
+  $('#username').val(null);
+  $('#email').val(null);
+  $('#verified').prop('checked', false);
+  $('#disabled').prop('checked', false);
 }
