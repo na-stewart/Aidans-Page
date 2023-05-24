@@ -18,13 +18,14 @@ async def on_account_get_all(request, authentication_session):
 
 
 @account_bp.post("account")
-@require_permissions("account:create")
+@require_permissions("account:post")
 async def on_account_create(request, authentication_session):
     account = await Account.create(
         email=request.form.get("email"),
         username=request.form.get("username"),
-        verified=str_to_bool(request.form.get("verified")),
-        disabled=str_to_bool(request.form.get("disabled"))
+        password=password_hasher.hash(request.form.get("password")),
+        verified=False,
+        disabled=True
     )
     return json("Account created.", account.json)
 
@@ -39,7 +40,7 @@ async def on_account_delete(request, authentication_session):
 
 
 @account_bp.put("account")
-@require_permissions("account:update")
+@require_permissions("account:put")
 async def on_account_update(request, authentication_session):
     account = await Account.get(id=request.args.get("id"))
     account.username = request.form.get("username")
@@ -50,7 +51,7 @@ async def on_account_update(request, authentication_session):
     return json("Profile updated.", account.json)
 
 
-# A profile is information available to a logged in account
+# A profile are resources of an account a logged-in user can access.
 
 @account_bp.delete("account/profile")
 @requires_authentication()
