@@ -12,14 +12,14 @@ password_hasher = PasswordHasher()
 
 @account_bp.get("account/all")
 @require_permissions("account:get")
-async def on_account_get_all(request, authentication_session):
+async def on_account_get_all(request):
     accounts = await Account.filter(deleted=False).all()
     return json("Accounts retrieved.", [account.json for account in accounts])
 
 
 @account_bp.post("account")
 @require_permissions("account:post")
-async def on_account_create(request, authentication_session):
+async def on_account_create(request):
     account = await Account.create(
         email=request.form.get("email"),
         username=request.form.get("username"),
@@ -32,7 +32,7 @@ async def on_account_create(request, authentication_session):
 
 @account_bp.delete("account")
 @require_permissions("account:delete")
-async def on_account_delete(request, authentication_session):
+async def on_account_delete(request):
     account = await Account.get(id=request.args.get("id"))
     account.deleted = True
     await account.save(update_fields=["deleted"])
@@ -41,7 +41,7 @@ async def on_account_delete(request, authentication_session):
 
 @account_bp.put("account")
 @require_permissions("account:put")
-async def on_account_update(request, authentication_session):
+async def on_account_update(request):
     account = await Account.get(id=request.args.get("id"))
     account.username = request.form.get("username")
     account.email = request.form.get("email")
@@ -55,23 +55,23 @@ async def on_account_update(request, authentication_session):
 
 @account_bp.delete("account/profile")
 @requires_authentication()
-async def on_profile_delete(request, authentication_request):
+async def on_profile_delete(request):
     # Endpoint for users who are logged in to delete their account.
-    authentication_request.bearer.deleted = True
-    await authentication_request.bearer.save(update_fields=["deleted"])
-    return json("Account deleted.", authentication_request.bearer.json)
+    request.ctx.authentication_request.bearer.deleted = True
+    await request.ctx.authentication_request.bearer.save(update_fields=["deleted"])
+    return json("Account deleted.", request.ctx.authentication_request.bearer.json)
 
 
 @account_bp.get("account/profile")
 @requires_authentication()
-async def on_profile_get(request, authentication_request):
-    return json("Profile retrieved.", authentication_request.bearer.json)
+async def on_profile_get(request):
+    return json("Profile retrieved.", request.ctx.authentication_request.bearer.json)
 
 
 @account_bp.put("account/profile")
 @requires_authentication()
-async def on_profile_update(request, authentication_request):
-    authentication_request.bearer.username = request.form.get("username")
-    authentication_request.bearer.email = request.form.get("email")
-    await authentication_request.bearer.save(update_fields=["username", "email"])
-    return json("Profile updated.", authentication_request.bearer.json)
+async def on_profile_update(request):
+    request.ctx.authentication_request.bearer.username = request.form.get("username")
+    request.ctx.authentication_request.bearer.email = request.form.get("email")
+    await request.ctx.authentication_request.bearer.save(update_fields=["username", "email"])
+    return json("Profile updated.", request.ctx.authentication_request.bearer.json)

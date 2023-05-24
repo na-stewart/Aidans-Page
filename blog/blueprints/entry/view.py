@@ -13,7 +13,7 @@ entry_bp = Blueprint("Entry")
 
 @entry_bp.post("entry")
 @require_permissions("entry:post")
-async def on_entry_create(request, authentication_session):
+async def on_entry_create(request):
     entry = await Entry.create(
         title=request.json.get("title"),
         summary=request.json.get("summary"),
@@ -71,13 +71,13 @@ async def on_entry_get_published(request):
 
 @entry_bp.get("entry")
 @require_permissions("entry:get")
-async def on_entry_get(request, authentication_session):
+async def on_entry_get(request):
     entry = await Entry.get(id=request.args.get("id"), deleted=False)
     return json("Entry retrieved.", entry.json)
 
 
 @entry_bp.get("entry/all")
 @require_permissions("entry:get")
-async def on_entry_get_all(request, authentication_session):
+async def on_entry_get_all(request):
     entries = await Entry.filter(deleted=False).all()
     return json("Entries retrieved.", [entry.json for entry in entries])

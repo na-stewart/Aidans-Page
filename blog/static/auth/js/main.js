@@ -51,7 +51,7 @@ function addRegisterFormEventListener() {
         } else 
           document.getElementById("response-msg").innerHTML = "Captcha incorrect."
       });
-    })
+    });
   });
 }
 

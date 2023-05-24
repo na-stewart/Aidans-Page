@@ -16,7 +16,7 @@ security_bp = Blueprint("security")
 
 @security_bp.post("register")
 @requires_captcha()
-async def on_register(request, captcha_session):
+async def on_register(request):
     account = await register(request)
     two_step_session = await request_two_step_verification(request, account)
     await send_email(
