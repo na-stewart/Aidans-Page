@@ -1,7 +1,6 @@
 from argon2 import PasswordHasher
 from sanic import Blueprint
-from sanic.utils import str_to_bool
-from sanic_security.authentication import requires_authentication
+from sanic_security.authentication import requires_authentication, validate_email, validate_username, validate_password
 from sanic_security.authorization import require_permissions
 from sanic_security.models import Account
 from sanic_security.utils import json
@@ -21,11 +20,11 @@ async def on_account_get_all(request):
 @require_permissions("account:post")
 async def on_account_create(request):
     account = await Account.create(
-        email=request.form.get("email"),
-        username=request.form.get("username"),
-        password=password_hasher.hash(request.form.get("password")),
-        verified=False,
-        disabled=True
+        email=validate_email(request.form.get("email")),
+        username=validate_username(request.form.get("username")),
+        password=password_hasher.hash(validate_password(request.form.get("password"))),
+        verified=request.form.get("verified") is not None,
+        disabled=request.form.get("disabled") is not None,
     )
     return json("Account created.", account.json)
 
@@ -43,10 +42,12 @@ async def on_account_delete(request):
 @require_permissions("account:put")
 async def on_account_update(request):
     account = await Account.get(id=request.args.get("id"))
-    account.username = request.form.get("username")
-    account.email = request.form.get("email")
+    account.username = validate_username(request.form.get("username"))
+    account.email = validate_email(request.form.get("email"))
+    account.disabled = request.form.get("disabled") is not None
+    account.verified = request.form.get("verified") is not None
     if request.form.get("password"):
-        account.password = password_hasher.hash(request.form.get("password"))
+        account.password = password_hasher.hash(validate_password(request.form.get("password")))
     await account.save(update_fields=["username", "email", "password"])
     return json("Profile updated.", account.json)
 

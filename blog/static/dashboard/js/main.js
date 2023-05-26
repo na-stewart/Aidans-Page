@@ -45,7 +45,7 @@ function addFormEventListener(form, table, writeMethodsEndpoint) {
 }
 
 function populateTable(table, getMethodEndpoint) {
-  fetch(`/api/v1/${getMethodEndpoint}`, {
+  fetch(`/api/v1/${getMethodEndpoint}/all`, {
     method: 'GET',
   }).then(response => {
     if (response.ok) 

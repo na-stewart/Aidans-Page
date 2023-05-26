@@ -1,7 +1,6 @@
 from math import ceil
 
 from sanic import Blueprint
-from sanic.utils import str_to_bool
 from sanic_security.authorization import require_permissions
 from sanic_security.utils import json
 from tortoise.expressions import Q
@@ -19,7 +18,7 @@ async def on_entry_create(request):
         summary=request.json.get("summary"),
         content=request.json.get("content"),
         thumbnail_url=request.json.get("thumbnail_url"),
-        published=str_to_bool(request.json.get("published")),
+        published=request.json.get("published"),
     )
     return json("Entry created.", entry.json)
 
