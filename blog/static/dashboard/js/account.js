@@ -20,27 +20,10 @@ const table = $('#table').DataTable({
 var selectedRow;
 
 
-function initDashboard() {
-  populateDashboardTable();
-  addDashboardFormEventListener();
-  addTableRowSelectionEventListener();
+function initAccountDashboard() {
+  initDashboard(table, 'account')
 }
 
-function addDashboardFormEventListener() { 
-  const form = document.getElementById('account-form');
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    switch(event.submitter.value) {
-      case 'post':
-        onPost(form);
-      case 'update':
-        onUpdate(form);
-        break;
-      case 'delete':
-        onDelete();
-    }
-  });
-}
 
 function addTableRowSelectionEventListener() {
   $('#table tbody').on('click', 'tr', function () {
@@ -62,7 +45,7 @@ function addTableRowSelectionEventListener() {
 }
 
 function onPost(form) {
-  fetch('api/v1/account', {
+  fetch('/api/v1/account', {
     method: 'POST',
     body: new FormData(form)
   }).then(response => {
@@ -78,7 +61,7 @@ function onPost(form) {
 }
 
 function onUpdate(form) {
-  fetch('api/v1/account?id=' + selectedRow.data().id, {
+  fetch('/api/v1/account?id=' + selectedRow.data().id, {
     method: 'PUT',
     body: new FormData(form)
   }).then(response => {
@@ -93,7 +76,7 @@ function onUpdate(form) {
 }
 
 function onDelete() {
-  fetch('api/v1/account?id=' + selectedRow.data().id, {
+  fetch('/api/v1/account?id=' + selectedRow.data().id, {
     method: 'DELETE',
   }).then(response => {
     if (response.ok) 
@@ -107,25 +90,3 @@ function onDelete() {
   .catch(error => alert(error.message));
 }
 
-function populateDashboardTable() {
-  fetch('api/v1/account/all', {
-    method: 'GET',
-  }).then(response => {
-    if (response.ok) 
-      return response.json();
-    return Promise.reject(response); 
-  })
-  .then(json => {
-    table.rows.add(json.data).draw();
-  })
-  .catch(error => {
-    error.json().then(error => alert(error.message));
-  });  
-}
-
-function clearDashboardFields() {
-  $('#username').val(null);
-  $('#email').val(null);
-  $('#verified').prop('checked', false);
-  $('#disabled').prop('checked', false);
-}

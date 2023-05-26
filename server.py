@@ -33,8 +33,6 @@ app.static("/about", "blog/static/blog/about.html", name="blog_about")
 app.static("/contact", "blog/static/blog/contact.html", name="blog_contact")
 app.static("/account", "blog/static/blog/account.html", name="blog_account")
 app.static("/profile", "blog/static/blog/profile.html", name="blog_profile")
-app.static("/dashboard", "blog/static/dashboard/index.html", name="dashboard_index")
-app.static("/dashboard/entry", "blog/static/dashboard/entry.html", name="dashboard_entry")
 app.static("/dashboard/account", "blog/static/dashboard/account.html", name="dashboard_account")
 
 
