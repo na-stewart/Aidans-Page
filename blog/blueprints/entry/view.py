@@ -27,9 +27,9 @@ async def on_entry_create(request):
 @require_permissions("entry:put")
 async def on_account_update(request):
     entry = await Entry.get(id=request.args.get("id"))
-    entry.title = request.form.get("username")
+    entry.title = request.form.get("title")
     entry.summary = request.form.get("summary")
-    entry.content = (request.form.get("content"),)
+    entry.content = request.form.get("content")
     entry.thumbnail_url = request.form.get("thumbnail-url")
     entry.published = request.form.get("published") is not None
     await entry.save(

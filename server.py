@@ -41,9 +41,9 @@ app.static(
 )
 
 
-@app.exception(SanicException)
+@app.exception(Exception)
 async def exception_parser(request, e):
-    return json(str(e), e.__class__.__name__, e.status_code)
+    return json(str(e), e.__class__.__name__, e.status_code if hasattr(e, 'status_code') else 500)
 
 
 register_tortoise(

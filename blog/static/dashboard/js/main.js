@@ -73,7 +73,9 @@ function onPost(table, form, postEndpoint) {
     table.row.add(json.data).draw();
     form.reset();
   })
-  .catch(error => alert(error.message));
+  .catch(error => {
+    error.json().then(error => alert(error.message));
+  });  
 }
 
 function onUpdate(table, form, updateEndpoint) {
@@ -89,7 +91,9 @@ function onUpdate(table, form, updateEndpoint) {
   .then(json => {
     selectedRow.data(json.data).draw();
   })
-  .catch(error => alert(error.message));
+  .catch(error => {
+    error.json().then(error => alert(error.message));
+  });  
 }
 
 function onDelete(table, form, deleteEndpoint) {
@@ -105,5 +109,7 @@ function onDelete(table, form, deleteEndpoint) {
     selectedRow.remove().draw();
     form.reset();
   })
-  .catch(error => alert(error.message));
+  .catch(error => {
+    error.json().then(error => alert(error.message));
+  });  
 }
