@@ -1,6 +1,11 @@
 from argon2 import PasswordHasher
 from sanic import Blueprint
-from sanic_security.authentication import requires_authentication, validate_email, validate_username, validate_password
+from sanic_security.authentication import (
+    requires_authentication,
+    validate_email,
+    validate_username,
+    validate_password,
+)
 from sanic_security.authorization import require_permissions
 from sanic_security.models import Account
 from sanic_security.utils import json
@@ -47,12 +52,15 @@ async def on_account_update(request):
     account.disabled = request.form.get("disabled") is not None
     account.verified = request.form.get("verified") is not None
     if request.form.get("password"):
-        account.password = password_hasher.hash(validate_password(request.form.get("password")))
+        account.password = password_hasher.hash(
+            validate_password(request.form.get("password"))
+        )
     await account.save(update_fields=["username", "email", "password"])
     return json("Profile updated.", account.json)
 
 
 # A profile are resources of an account a logged-in user can access.
+
 
 @account_bp.delete("account/profile")
 @requires_authentication()
@@ -74,5 +82,7 @@ async def on_profile_get(request):
 async def on_profile_update(request):
     request.ctx.authentication_request.bearer.username = request.form.get("username")
     request.ctx.authentication_request.bearer.email = request.form.get("email")
-    await request.ctx.authentication_request.bearer.save(update_fields=["username", "email"])
+    await request.ctx.authentication_request.bearer.save(
+        update_fields=["username", "email"]
+    )
     return json("Profile updated.", request.ctx.authentication_request.bearer.json)

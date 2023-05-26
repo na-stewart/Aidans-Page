@@ -18,9 +18,24 @@ async def on_entry_create(request):
         summary=request.json.get("summary"),
         content=request.json.get("content"),
         thumbnail_url=request.json.get("thumbnail_url"),
-        published=request.json.get("published"),
+        published=request.json.get("published") is not None,
     )
     return json("Entry created.", entry.json)
+
+
+@entry_bp.put("entry")
+@require_permissions("entry:put")
+async def on_account_update(request):
+    entry = await Entry.get(id=request.args.get("id"))
+    entry.title = request.form.get("username")
+    entry.summary = request.form.get("summary")
+    entry.content = (request.form.get("content"),)
+    entry.thumbnail_url = request.form.get("thumbnail-url")
+    entry.published = request.form.get("published") is not None
+    await entry.save(
+        update_fields=["title", "summary", "content", "thumbnail_url", "published"]
+    )
+    return json("Entry updated.", entry.json)
 
 
 @entry_bp.get("entry/all/published")
