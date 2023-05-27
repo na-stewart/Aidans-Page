@@ -28,7 +28,6 @@ function addLoginFormEventListener() {
   });
 }
 
-
 function addRegisterFormEventListener() {
   document.getElementById('register-form').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -46,17 +45,13 @@ function addRegisterFormEventListener() {
     .catch(error => {
       error.json().then(error => {
         if (error.data != "ChallengeError"){
-          captcha();
+          document.getElementById("captcha-img").src = "api/v1/captcha?t=" + new Date().getTime(); 
           document.getElementById("response-msg").innerHTML = error.message;
         } else 
           document.getElementById("response-msg").innerHTML = "Captcha incorrect."
       });
     });
   });
-}
-
-function captcha(){
-  document.getElementById("captcha-img").src = "api/v1/captcha?t=" + new Date().getTime(); 
 }
 
 function addVerifyFormEventListener(event) {
@@ -85,7 +80,7 @@ function addVerifyFormEventListener(event) {
 }
 
 function initRegister() {
-  captcha();
+  document.getElementById("captcha-img").src = "api/v1/captcha?t=" + new Date().getTime(); 
   addRegisterFormEventListener();
 }
 
