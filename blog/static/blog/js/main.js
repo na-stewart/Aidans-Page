@@ -63,7 +63,6 @@ function getEntries() {
               <span>
                 ${parseDateTime(entry.date_created)}
               </span>
-              <span><a href='#'>0 Comments</a></span>
             </div>
             <div class='blog-post__content'>
               <p>${entry.summary}</p>
@@ -123,7 +122,7 @@ function addProfileFormEventListener(){
         document.getElementById("response-msg").innerHTML = json.message;
       })
       .catch(error => {
-        document.getElementById("response-msg").innerHTML = error.message;
+        error.json().then(error => document.getElementById("response-msg").innerHTML = error.message);
       });
     } else if (event.submitter.value == "Delete Account") {
       fetch(`api/v1/account`, {
@@ -138,7 +137,7 @@ function addProfileFormEventListener(){
         location.assign("/");
       })
       .catch(error => {
-        document.getElementById("response-msg").innerHTML = error.message;
+        error.json().then(error => document.getElementById("response-msg").innerHTML = error.message);
       });
     } else {
         fetch(`api/v1/logout`, {
@@ -153,7 +152,7 @@ function addProfileFormEventListener(){
           location.assign("/login");
         })
         .catch(error => {
-          document.getElementById("response-msg").innerHTML = error.message;
+          error.json().then(error => document.getElementById("response-msg").innerHTML = error.message);
         });
     }
   });

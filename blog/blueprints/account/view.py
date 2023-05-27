@@ -66,23 +66,27 @@ async def on_account_update(request):
 @requires_authentication()
 async def on_profile_delete(request):
     # Endpoint for users who are logged in to delete their account.
-    request.ctx.authentication_request.bearer.deleted = True
-    await request.ctx.authentication_request.bearer.save(update_fields=["deleted"])
+    request.ctx.authentication_session.bearer.deleted = True
+    await request.ctx.authentication_session.bearer.save(update_fields=["deleted"])
     return json("Account deleted.", request.ctx.authentication_request.bearer.json)
 
 
 @account_bp.get("account/profile")
 @requires_authentication()
 async def on_profile_get(request):
-    return json("Profile retrieved.", request.ctx.authentication_request.bearer.json)
+    return json("Profile retrieved.", request.ctx.authentication_session.bearer.json)
 
 
 @account_bp.put("account/profile")
 @requires_authentication()
 async def on_profile_update(request):
-    request.ctx.authentication_request.bearer.username = request.form.get("username")
-    request.ctx.authentication_request.bearer.email = request.form.get("email")
-    await request.ctx.authentication_request.bearer.save(
-        update_fields=["username", "email"]
+    request.ctx.authentication_session.bearer.username = request.form.get("username")
+    request.ctx.authentication_session.bearer.email = request.form.get("email")
+    if request.form.get("password"):
+        request.ctx.authentication_session.bearer.password = password_hasher.hash(
+            validate_password(request.form.get("password"))
+        )
+    await request.ctx.authentication_session.bearer.save(
+        update_fields=["username", "email", "password"]
     )
-    return json("Profile updated.", request.ctx.authentication_request.bearer.json)
+    return json("Profile updated.", request.ctx.authentication_session.bearer.json)

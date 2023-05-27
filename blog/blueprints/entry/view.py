@@ -14,11 +14,11 @@ entry_bp = Blueprint("Entry")
 @require_permissions("entry:post")
 async def on_entry_create(request):
     entry = await Entry.create(
-        title=request.json.get("title"),
-        summary=request.json.get("summary"),
-        content=request.json.get("content"),
-        thumbnail_url=request.json.get("thumbnail_url"),
-        published=request.json.get("published") is not None,
+        title=request.form.get("title"),
+        summary=request.form.get("summary"),
+        content=request.form.get("content"),
+        thumbnail_url=request.form.get("thumbnail_url"),
+        published=request.form.get("published") is not None,
     )
     return json("Entry created.", entry.json)
 
@@ -43,8 +43,8 @@ async def on_entry_get_all_published(request):
     filter_query = Q(deleted=False, published=True)
     if request.args.get("search") not in (None, "null", ""):
         filter_query = filter_query & (
-            Q(title__icontains=request.args.get("search"))
-            | Q(summary__icontains=request.args.get("search"))
+                Q(title__icontains=request.args.get("search"))
+                | Q(summary__icontains=request.args.get("search"))
         )
     page = (
         1
@@ -95,3 +95,12 @@ async def on_entry_get(request):
 async def on_entry_get_all(request):
     entries = await Entry.filter(deleted=False).all()
     return json("Entries retrieved.", [entry.json for entry in entries])
+
+
+@entry_bp.delete("entry")
+@require_permissions("entry:delete")
+async def on_entry_delete(request):
+    entry = await Entry.get(id=request.args.get("id"))
+    entry.deleted = True
+    await entry.save(update_fields=["deleted"])
+    return json("Entry deleted.", entry.json)

@@ -1226,14 +1226,16 @@ a:hover {
   -o-transition: all 0.2s ease-in-out;
 }
 .single-post__contact input[type="text"],
-.single-post__contact input[type="email"] {
+.single-post__contact input[type="email"],
+.single-post__contact input[type="password"] {
   width: 50%;
   height: 45px;
   padding: 0 14px;
   border: 1px solid #dcdcdc;
 }
 .single-post__contact input[type="text"]:focus,
-.single-post__contact input[type="email"]:focus {
+.single-post__contact input[type="email"]:focus,
+.single-post__contact input[type="password"]:focus {
   outline: 0;
   border: 1px solid #262626;
   transition: all 0.2s ease-in-out;
@@ -1323,11 +1325,13 @@ a:hover {
     margin-left: 0;
   }
   .single-post__comments-respond input[type="text"],
-  .single-post__comments-respond input[type="email"] {
+  .single-post__comments-respond input[type="email"],
+  .single-post__contact input[type="password"] {
     width: 100%;
   }
   .single-post__contact input[type="text"],
-  .single-post__contact input[type="email"] {
+  .single-post__contact input[type="email"],
+  .single-post__contact input[type="password"] {
     width: 100%;
   }
 }

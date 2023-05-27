@@ -1,6 +1,6 @@
+import traceback
+
 from sanic import Sanic
-from sanic.exceptions import SanicException
-from sanic_security.authentication import create_initial_admin_account
 from sanic_security.utils import json
 from tortoise.contrib.sanic import register_tortoise
 
@@ -43,7 +43,12 @@ app.static(
 
 @app.exception(Exception)
 async def exception_parser(request, e):
-    return json(str(e), e.__class__.__name__, e.status_code if hasattr(e, 'status_code') else 500)
+    traceback.print_exc()
+    return json(
+        str(e),
+        e.__class__.__name__,
+        e.status_code if hasattr(e, "status_code") else 500,
+    )
 
 
 register_tortoise(
@@ -52,6 +57,5 @@ register_tortoise(
     modules={"models": ["sanic_security.models"] + bp_models},
     generate_schemas=False,
 )
-create_initial_admin_account(app)
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8000, workers=1, debug=True)
