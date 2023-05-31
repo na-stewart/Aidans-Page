@@ -9,7 +9,7 @@
     <link href="blog/css/bootstrap.min.css" rel="stylesheet">
     <link href="blog/css/style.css" rel="stylesheet">
   </head>
-  <body onload="initProfile()">
+  <body onload="init()">
     <svg style="display: none;">
       <symbol viewBox="0 0 512 512" id="toggle">
         <g>
@@ -67,6 +67,10 @@
                 <p class="single-post__contact-">
                   <label>Password</label>
                   <input id="password" type="password" name="password" size="30" aria-required="true">
+                </p>
+                <p class="single-post__contact-">
+                  <label>Subscribed</label>
+                  <input id="subscribed" type="checkbox" name="subscribed" size="30" aria-required="true">
                 </p>
                 <p class="single-post__contact-submit">
                   <input id="update" type="submit" name="update" size="30" value="Update">
@@ -126,5 +130,6 @@
     <script src="blog/js/jquery-3.1.1.min.js"></script>
     <script src="blog/js/script.js"></script>
     <script src="blog/js/main.js"></script>
+    <script src="blog/js/profile.js"></script>
   </body>
 </html>

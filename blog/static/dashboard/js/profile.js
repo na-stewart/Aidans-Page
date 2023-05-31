@@ -3,10 +3,8 @@ const table = $('#table').DataTable({
     {data: 'date_created'},
     {data: 'date_updated'},
     {data: 'id'},
-    {data: 'email'},
-    {data: 'username'},
-    {data: 'verified'},
-    {data: 'disabled'}
+    {data: 'parent'},
+    {data: 'subscribed'}
   ],
   columnDefs: [
     {
@@ -20,12 +18,10 @@ const table = $('#table').DataTable({
 var selectedRow;
 
 function init() {
-  initDashboard(table, 'account')
+  initDashboard(table, 'profile')
 }
 
 function fillFields(selectedRowData) {
-  $('#username').val(selectedRowData.username);
-  $('#email').val(selectedRowData.email);
-  $('#verified').prop('checked', selectedRowData.verified);
-  $('#disabled').prop('checked', selectedRowData.disabled);
+  $('#parent').val(selectedRowData.parent);
+  $('#subscribed').prop('checked', selectedRowData.subscribed);
 }

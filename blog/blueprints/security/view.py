@@ -9,9 +9,14 @@ from sanic_security.verification import (
     verify_account,
 )
 
+from blog.blueprints.account.model import Profile
 from blog.common.util import send_email
 
 security_bp = Blueprint("security")
+
+security_bp.static("/login", "blog/static/auth/index.html", name="auth_index")
+security_bp.static("/register", "blog/static/auth/register.html", name="auth_register")
+security_bp.static("/verify", "blog/static/auth/verify.html", name="auth_verify")
 
 
 @security_bp.post("register")
@@ -35,6 +40,7 @@ async def on_register(request):
 @security_bp.post("verify-email")
 async def on_verify(request):
     two_step_session = await verify_account(request)
+    await Profile.create(parent=two_step_session.bearer)
     return json(
         "You have verified your email and may login!", two_step_session.bearer.json
     )

@@ -17,7 +17,7 @@ const table = $('#table').DataTable({
 });
 var selectedRow;
 
-function initInquiryDashboard() {
+function init() {
   initDashboard(table, 'inquiry')
 }
 

@@ -7,12 +7,19 @@ from blog.blueprints.inquiry.model import Inquiry
 
 inquiry_bp = Blueprint("Inquiry")
 
+inquiry_bp.static(
+    "/dashboard/inquiry", "blog/static/dashboard/inquiry.html", name="dashboard_inquiry"
+)
+
 
 @inquiry_bp.post("inquiry")
 @requires_captcha()
 async def on_inquiry_create(request):
-    inquiry = await Inquiry.create(email=request.form.get("email"), username=request.form.get("username"),
-                                   content=request.form.get("content"))
+    inquiry = await Inquiry.create(
+        email=request.form.get("email"),
+        username=request.form.get("username"),
+        content=request.form.get("content"),
+    )
     return json("Inquiry created.", inquiry.json)
 
 

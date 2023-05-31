@@ -25,23 +25,11 @@ app.blueprint(api)
 
 app.static("/", "blog/static", name="blog_static")
 app.static("/", "blog/static/blog/index.html", name="blog_index")
-app.static("/login", "blog/static/auth/index.html", name="auth_index")
-app.static("/register", "blog/static/auth/register.html", name="auth_register")
-app.static("/verify", "blog/static/auth/verify.html", name="auth_verify")
 app.static("/entry", "blog/static/blog/entry.html", name="blog_entry")
 app.static("/about", "blog/static/blog/about.html", name="blog_about")
 app.static("/contact", "blog/static/blog/contact.html", name="blog_contact")
 app.static("/account", "blog/static/blog/account.html", name="blog_account")
 app.static("/profile", "blog/static/blog/profile.html", name="blog_profile")
-app.static(
-    "/dashboard/account", "blog/static/dashboard/account.html", name="dashboard_account"
-)
-app.static(
-    "/dashboard/entry", "blog/static/dashboard/entry.html", name="dashboard_entry"
-)
-app.static(
-    "/dashboard/inquiry", "blog/static/dashboard/inquiry.html", name="dashboard_inquiry"
-)
 
 
 @app.exception(Exception)

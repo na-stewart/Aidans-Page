@@ -9,6 +9,10 @@ from blog.blueprints.entry.model import Entry
 
 entry_bp = Blueprint("Entry")
 
+entry_bp.static(
+    "/dashboard/entry", "blog/static/dashboard/entry.html", name="dashboard_entry"
+)
+
 
 @entry_bp.post("entry")
 @require_permissions("entry:post")
@@ -25,7 +29,7 @@ async def on_entry_create(request):
 
 @entry_bp.put("entry")
 @require_permissions("entry:put")
-async def on_account_update(request):
+async def on_entry_update(request):
     entry = await Entry.get(id=request.args.get("id"))
     entry.title = request.form.get("title")
     entry.summary = request.form.get("summary")
@@ -43,8 +47,8 @@ async def on_entry_get_all_published(request):
     filter_query = Q(deleted=False, published=True)
     if request.args.get("search") not in (None, "null", ""):
         filter_query = filter_query & (
-                Q(title__icontains=request.args.get("search"))
-                | Q(summary__icontains=request.args.get("search"))
+            Q(title__icontains=request.args.get("search"))
+            | Q(summary__icontains=request.args.get("search"))
         )
     page = (
         1

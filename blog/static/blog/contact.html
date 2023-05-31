@@ -9,7 +9,7 @@
     <link href="blog/css/bootstrap.min.css" rel="stylesheet">
     <link href="blog/css/style.css" rel="stylesheet">
   </head>
-  <body onload="initContact();">
+  <body onload="init();">
     <svg style="display: none;">
       <symbol viewBox="0 0 512 512" id="toggle">
         <g>
@@ -75,9 +75,9 @@
                   <label>Captcha</label>
                   <input id="captcha" type="text" name="captcha" aria-required="true" required>
                 </p>
-                <p class="single-post__contact-submit">          
-                  <input id="submit" type="submit" name="submit" value="Send">
-                  <br><br><img id="captcha-img">
+                <p class="single-post__contact-submit">    
+                  <img id="captcha-img"><br><br>
+                  <input id="submit" type="submit" name="submit" value="Send">             
                   <p id="response-msg"></p>              
                 </p>
                 <br>
@@ -132,5 +132,6 @@
     <script src="blog/js/jquery-3.1.1.min.js"></script>
     <script src="blog/js/script.js"></script>
     <script src="blog/js/main.js"></script>
+    <script src="blog/js/contact.js"></script>
   </body>
 </html>

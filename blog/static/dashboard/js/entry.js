@@ -17,7 +17,7 @@ const table = $('#table').DataTable({
 });
 var selectedRow;
 
-function initEntryDashboard() {
+function init() {
   tinymce.init({
     selector: '#content',
     plugins: 'fullscreen anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',

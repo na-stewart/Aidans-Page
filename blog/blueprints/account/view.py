@@ -9,9 +9,25 @@ from sanic_security.authentication import (
 from sanic_security.authorization import require_permissions
 from sanic_security.models import Account
 from sanic_security.utils import json
+from tortoise.exceptions import DoesNotExist
+
+from blog.blueprints.account.model import Profile
 
 account_bp = Blueprint("account")
 password_hasher = PasswordHasher()
+
+account_bp.static(
+    "/dashboard/account", "blog/static/dashboard/account.html", name="dashboard_account"
+)
+account_bp.static(
+    "/dashboard/profile", "blog/static/dashboard/profile.html", name="dashboard_profile"
+)
+
+
+@account_bp.get("account")
+@requires_authentication()
+async def on_account_get(request):
+    return json("Account retrieved.", request.ctx.authentication_session.bearer.json)
 
 
 @account_bp.get("account/all")
@@ -31,6 +47,7 @@ async def on_account_create(request):
         verified=request.form.get("verified") is not None,
         disabled=request.form.get("disabled") is not None,
     )
+    await Profile.create(parent=account)
     return json("Account created.", account.json)
 
 
@@ -38,7 +55,10 @@ async def on_account_create(request):
 @require_permissions("account:delete")
 async def on_account_delete(request):
     account = await Account.get(id=request.args.get("id"))
+    profile = await Profile.get(parent=account)
+    profile.deleted = True
     account.deleted = True
+    await profile.save(update_fields=["deleted"])
     await account.save(update_fields=["deleted"])
     return json("Account deleted.", account.json)
 
@@ -59,33 +79,63 @@ async def on_account_update(request):
     return json("Profile updated.", account.json)
 
 
-# A profile are resources of an account a logged-in user can access.
+@account_bp.get("profile/all")
+@require_permissions("profile:get")
+async def on_profile_get_all(request):
+    profiles = await Profile.filter(deleted=False).prefetch_related("parent").all()
+    return json("Profiles retrieved.", [profile.json for profile in profiles])
 
 
-@account_bp.delete("account/profile")
-@requires_authentication()
-async def on_profile_delete(request):
-    # Endpoint for users who are logged in to delete their account.
-    request.ctx.authentication_session.bearer.deleted = True
-    await request.ctx.authentication_session.bearer.save(update_fields=["deleted"])
-    return json("Account deleted.", request.ctx.authentication_request.bearer.json)
+@account_bp.put("profile")
+@require_permissions("profile:put")
+async def on_profile_update(request):
+    profile = await Profile.get(id=request.args.get("id")).prefetch_related("parent")
+    profile.subscribed = request.form.get("subscribed") is not None
+    await profile.save(update_fields=["subscribed"])
+    return json("Profile updated.", profile.json)
 
 
 @account_bp.get("account/profile")
 @requires_authentication()
-async def on_profile_get(request):
-    return json("Profile retrieved.", request.ctx.authentication_session.bearer.json)
+async def on_account_profile_get(request):
+    profile = await Profile.get_or_none(
+        parent=request.ctx.authentication_session.bearer
+    )
+    return json(
+        "Profile retrieved.",
+        {
+            "account": request.ctx.authentication_session.bearer.json,
+            "profile": profile.json if profile else None,
+        },
+    )
+
+
+@account_bp.delete("account/profile")
+@requires_authentication()
+async def on_account_profile_delete(request):
+    profile = await Profile.get(parent=request.ctx.authentication_session.bearer)
+    profile.deleted = True
+    request.ctx.authentication_session.bearer.deleted = True
+    await request.ctx.authentication_session.bearer.save(update_fields=["deleted"])
+    await profile.save(update_fields=["deleted"])
+    return json("Account deleted.", request.ctx.authentication_request.bearer.json)
 
 
 @account_bp.put("account/profile")
 @requires_authentication()
-async def on_profile_update(request):
+async def on_account_profile_update(request):
+    try:
+        profile = await Profile.get(parent=request.ctx.authentication_session.bearer)
+    except DoesNotExist:
+        profile = await Profile.create(parent=request.ctx.authentication_session.bearer)
+    profile.subscribed = request.form.get("subscribed") is not None
     request.ctx.authentication_session.bearer.username = request.form.get("username")
     request.ctx.authentication_session.bearer.email = request.form.get("email")
     if request.form.get("password"):
         request.ctx.authentication_session.bearer.password = password_hasher.hash(
             validate_password(request.form.get("password"))
         )
+    await profile.save(update_fields=["subscribed"])
     await request.ctx.authentication_session.bearer.save(
         update_fields=["username", "email", "password"]
     )
