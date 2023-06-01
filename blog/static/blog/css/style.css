@@ -142,7 +142,6 @@ a:hover {
 }
 .main-nav__item::after {
   content: "/";
-  margin-left: 5px;
 }
 .main-nav__item:last-child::after {
   content: "";
