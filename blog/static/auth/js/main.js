@@ -1,3 +1,5 @@
+const urlParams = new URLSearchParams(window.location.search);
+
 function addLoginFormEventListener() {
   document.getElementById('login-form').addEventListener('submit', function(event){
     event.preventDefault();
@@ -31,7 +33,7 @@ function addLoginFormEventListener() {
 function addRegisterFormEventListener() {
   document.getElementById('register-form').addEventListener('submit', function(event) {
     event.preventDefault();
-    fetch("api/v1/register", {
+    fetch('api/v1/register', {
       method: "POST",
       body: new FormData(this)
     }).then(response => {
@@ -79,8 +81,11 @@ function addVerifyFormEventListener(event) {
   });
 }
 
+
+
 function initRegister() {
   document.getElementById("captcha-img").src = "api/v1/captcha?t=" + new Date().getTime(); 
+  document.getElementById("email").value = urlParams.get("email")
   addRegisterFormEventListener();
 }
 

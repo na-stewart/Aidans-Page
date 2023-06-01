@@ -3,7 +3,7 @@ const table = $('#table').DataTable({
     {data: 'date_created'},
     {data: 'date_updated'},
     {data: 'id'},
-    {data: 'parent'},
+    {data: 'account'},
     {data: 'subscribed'}
   ],
   columnDefs: [
@@ -22,6 +22,6 @@ function init() {
 }
 
 function fillFields(selectedRowData) {
-  $('#parent').val(selectedRowData.parent);
+  $('#account').val(selectedRowData.account);
   $('#subscribed').prop('checked', selectedRowData.subscribed);
 }

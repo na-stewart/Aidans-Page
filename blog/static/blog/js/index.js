@@ -1,7 +1,7 @@
 function init(){
-  getAccount();
   getEntries();
   addSearchFormEventListener();
+  addSubscribeFormEventListener();
 }
 
 function addSearchFormEventListener(){
@@ -68,3 +68,10 @@ function getEntries() {
   });
 }
 
+function addSubscribeFormEventListener(){
+  document.getElementById('subscribe-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    window.location.href = `/register?email=${document.getElementById("email").value}`
+  });
+
+}

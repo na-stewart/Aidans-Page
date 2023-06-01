@@ -9,7 +9,6 @@ from sanic_security.authentication import (
 from sanic_security.authorization import require_permissions
 from sanic_security.models import Account
 from sanic_security.utils import json
-from tortoise.exceptions import DoesNotExist
 
 from blog.blueprints.account.model import Profile
 
@@ -47,7 +46,7 @@ async def on_account_create(request):
         verified=request.form.get("verified") is not None,
         disabled=request.form.get("disabled") is not None,
     )
-    await Profile.create(parent=account)
+    await Profile.create(account=account)
     return json("Account created.", account.json)
 
 
@@ -55,7 +54,7 @@ async def on_account_create(request):
 @require_permissions("account:delete")
 async def on_account_delete(request):
     account = await Account.get(id=request.args.get("id"))
-    profile = await Profile.get(parent=account)
+    profile = await Profile.get(account=account)
     profile.deleted = True
     account.deleted = True
     await profile.save(update_fields=["deleted"])
@@ -82,14 +81,14 @@ async def on_account_update(request):
 @account_bp.get("profile/all")
 @require_permissions("profile:get")
 async def on_profile_get_all(request):
-    profiles = await Profile.filter(deleted=False).prefetch_related("parent").all()
+    profiles = await Profile.filter(deleted=False).prefetch_related("account").all()
     return json("Profiles retrieved.", [profile.json for profile in profiles])
 
 
 @account_bp.put("profile")
 @require_permissions("profile:put")
 async def on_profile_update(request):
-    profile = await Profile.get(id=request.args.get("id")).prefetch_related("parent")
+    profile = await Profile.get(id=request.args.get("id")).prefetch_related("account")
     profile.subscribed = request.form.get("subscribed") is not None
     await profile.save(update_fields=["subscribed"])
     return json("Profile updated.", profile.json)
@@ -99,7 +98,7 @@ async def on_profile_update(request):
 @requires_authentication()
 async def on_account_profile_get(request):
     profile = await Profile.get_or_none(
-        parent=request.ctx.authentication_session.bearer
+        account=request.ctx.authentication_session.bearer
     )
     return json(
         "Profile retrieved.",
@@ -113,7 +112,7 @@ async def on_account_profile_get(request):
 @account_bp.delete("account/profile")
 @requires_authentication()
 async def on_account_profile_delete(request):
-    profile = await Profile.get(parent=request.ctx.authentication_session.bearer)
+    profile = await Profile.get(account=request.ctx.authentication_session.bearer)
     profile.deleted = True
     request.ctx.authentication_session.bearer.deleted = True
     await request.ctx.authentication_session.bearer.save(update_fields=["deleted"])
@@ -124,10 +123,7 @@ async def on_account_profile_delete(request):
 @account_bp.put("account/profile")
 @requires_authentication()
 async def on_account_profile_update(request):
-    try:
-        profile = await Profile.get(parent=request.ctx.authentication_session.bearer)
-    except DoesNotExist:
-        profile = await Profile.create(parent=request.ctx.authentication_session.bearer)
+    profile = await Profile.get(account=request.ctx.authentication_session.bearer)
     profile.subscribed = request.form.get("subscribed") is not None
     request.ctx.authentication_session.bearer.username = request.form.get("username")
     request.ctx.authentication_session.bearer.email = request.form.get("email")
