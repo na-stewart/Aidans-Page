@@ -19,6 +19,7 @@ function getProfile(){
     document.getElementById("subscribed").checked = json.data.profile.subscribed;
   })
   .catch(error => {
+    
     location.assign("/login");
   });
 }

@@ -35,11 +35,13 @@ function addFormEventListener(form, table, writeMethodsEndpoint) {
     switch(event.submitter.value) {
       case 'post':
         onPost(table, form, writeMethodsEndpoint);
+        break;
       case 'update':
         onUpdate(table, form, writeMethodsEndpoint);
         break;
       case 'delete':
         onDelete(table, form, writeMethodsEndpoint);
+        break;
     }
   });
 }

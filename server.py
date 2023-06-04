@@ -1,6 +1,7 @@
 import traceback
 
 from sanic import Sanic
+from sanic_security.authentication import create_initial_admin_account
 from sanic_security.utils import json
 from tortoise.contrib.sanic import register_tortoise
 
@@ -30,6 +31,7 @@ app.static("/about", "blog/static/blog/about.html", name="blog_about")
 app.static("/contact", "blog/static/blog/contact.html", name="blog_contact")
 app.static("/account", "blog/static/blog/account.html", name="blog_account")
 app.static("/profile", "blog/static/blog/profile.html", name="blog_profile")
+app.static("/email-template", "blog/static/blog/email-template.html", name="blog_email_template")
 
 
 @app.exception(Exception)
@@ -46,7 +48,8 @@ register_tortoise(
     app,
     db_url=config.DATABASE_URL,
     modules={"models": ["sanic_security.models"] + bp_models},
-    generate_schemas=True,
+    generate_schemas=False,
 )
+create_initial_admin_account(app)
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8000, workers=1, debug=True)

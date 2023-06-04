@@ -21,7 +21,7 @@ async def on_entry_create(request):
         title=request.form.get("title"),
         summary=request.form.get("summary"),
         content=request.form.get("content"),
-        thumbnail_url=request.form.get("thumbnail_url"),
+        thumbnail_url=request.form.get("thumbnail-url"),
         published=request.form.get("published") is not None,
     )
     return json("Entry created.", entry.json)
