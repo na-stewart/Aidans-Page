@@ -24,7 +24,7 @@ security_bp.static("/verify", "blog/static/auth/verify.html", name="auth_verify"
 @requires_captcha()
 async def on_register(request):
     account = await register(request)
-    await Profile.create(account=account, subscribed=str_to_bool(request.args.get("subscribed")))
+    await Profile.create(account=account)
     two_step_session = await request_two_step_verification(request, account)
     await send_email(
         account.email,

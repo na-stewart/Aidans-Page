@@ -1,1 +1,1 @@
-sanic --debug server
+web: sanic server
