@@ -2,9 +2,12 @@ import traceback
 
 from sanic import Sanic
 from sanic_security.authentication import create_initial_admin_account
+from sanic_security.configuration import config as security_config
+from sanic_security.models import Account
 from sanic_security.utils import json
 from tortoise.contrib.sanic import register_tortoise
 
+from blog.blueprints.account.model import Profile
 from blog.blueprints.view import api, bp_models
 from blog.common.config import config
 
