@@ -84,7 +84,7 @@ function addVerifyFormEventListener(event) {
 
 
 function initRegister() {
-  document.getElementById("captcha-img").src = "api/v1/captcha?t=" + new Date().getTime(); 
+  document.getElementById("captcha-img").src = `api/v1/captcha?t=${new Date().getTime()}`
   if (urlParams.get("email") != null) {
     document.getElementById("email").value = urlParams.get("email");
     document.getElementById("username").value = urlParams.get("email").substring(0, urlParams.get("email").indexOf("@"));

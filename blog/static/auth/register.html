@@ -15,12 +15,13 @@
         <label for="email">Email address</label>
         <input type="email" id="email" name="email" placeholder="Email" required>
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Password" required>
-        <img id="captcha-img" src="auth/img/capt-placeholder.png">
-        <label for="password">Captcha</label>
+        <input type="password" id="password" name="password" placeholder="Password" required> 
+        <label for="captcha">Captcha</label>
         <input type="text" id="captcha" name="captcha" placeholder="Captcha" required>
-        
-      
+        <span>
+          <img id="captcha-img" src="auth/img/capt-placeholder.png">
+          <img class="reload" src="auth/img/reload.png" onclick="document.getElementById('captcha-img').src = `api/v1/captcha?t=${ new Date().getTime()}`">
+        </span>
         <button type="submit">Register</button>
         <p id="response-msg"></p>
       </form>

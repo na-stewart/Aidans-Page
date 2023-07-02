@@ -72,11 +72,14 @@
                   <textarea id="content" name="content" cols="45" aria-required="true" required></textarea>
                 </p>
                 <p class="single-post__contact-">
-                  <label>Captcha</label>
+                  <label>Captcha</label> 
                   <input id="captcha" type="text" name="captcha" aria-required="true" required>
                 </p>
-                <p class="single-post__contact-submit">    
-                  <img id="captcha-img"><br><br>
+                <p class="single-post__contact-submit">   
+                  <img id="captcha-img">
+                  <img src="blog/img/reload.png" style="padding-top: 60px; cursor: pointer;" 
+                  onclick="document.getElementById('captcha-img').src = `api/v1/captcha?t=${ new Date().getTime()}`">
+                  <br><br>        
                   <input id="submit" type="submit" name="submit" value="Send">             
                   <p id="response-msg"></p>              
                 </p>

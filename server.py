@@ -14,6 +14,7 @@ app.blueprint(api)
 
 app.static("/", "blog/static", name="blog_static")
 app.static("/", "blog/static/blog/index.html", name="blog_index")
+app.static("/favicon", "blog/static/favicon.PNG", name="favicon")
 app.static("/entry", "blog/static/blog/entry.html", name="blog_entry")
 app.static("/about", "blog/static/blog/about.html", name="blog_about")
 app.static("/contact", "blog/static/blog/contact.html", name="blog_contact")

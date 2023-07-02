@@ -1,6 +1,6 @@
 function init() {
   getAccount();
-  document.getElementById("captcha-img").src = "api/v1/captcha?t=" + new Date().getTime(); 
+  document.getElementById("captcha-img").src = `api/v1/captcha?t=${new Date().getTime()}`
   addContractFormEventListener();
 }
 
@@ -23,7 +23,7 @@ function addContractFormEventListener(){
     .catch(error => {
       error.json().then(error => {
         if (error.data != "ChallengeError"){
-          document.getElementById("captcha-img").src = "api/v1/captcha?t=" + new Date().getTime(); 
+          document.getElementById("captcha-img").src = `api/v1/captcha?t=${new Date().getTime()}`
           document.getElementById("response-msg").innerHTML = error.message;
         } else 
           document.getElementById("response-msg").innerHTML = "Captcha incorrect."
