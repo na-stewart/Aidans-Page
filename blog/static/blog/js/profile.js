@@ -16,8 +16,7 @@ function getProfile(){
   .then(json => {
     document.getElementById("email").value = json.data.account.email;
     document.getElementById("username").value = json.data.account.username;
-    if (json.profile != null)
-      document.getElementById("subscribed").checked = json.data.profile.subscribed;
+    document.getElementById("subscribed").checked = json.data.profile.subscribed;
   })
   .catch(error => {
     location.assign("/login");
