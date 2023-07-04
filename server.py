@@ -32,11 +32,25 @@ async def exception_parser(request, e):
     )
 
 
+@app.route("/fwd")
+async def forwarded(request):
+    return json("fwds",
+        {
+            "remote_addr": request.remote_addr,
+            "scheme": request.scheme,
+            "server_name": request.server_name,
+            "server_port": request.server_port,
+            "forwarded": request.forwarded,
+        }
+    )
+
+
 register_tortoise(
     app,
     db_url=config.DATABASE_URL,
     modules={"models": ["sanic_security.models"] + bp_models},
     generate_schemas=False,
 )
+create_initial_admin_account(app)
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8000, workers=1, debug=True)
