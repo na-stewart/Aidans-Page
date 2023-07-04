@@ -32,11 +32,7 @@ async def exception_parser(request, e):
     )
 
 
-@app.route("/fwd")
-async def forwarded(request):
-    return json("fwds", request.headers)
-
-
+app.config.PROXIES_COUNT = 1
 register_tortoise(
     app,
     db_url=config.DATABASE_URL,
