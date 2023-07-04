@@ -117,7 +117,7 @@ async def on_account_profile_delete(request):
     request.ctx.authentication_session.bearer.deleted = True
     await request.ctx.authentication_session.bearer.save(update_fields=["deleted"])
     await profile.save(update_fields=["deleted"])
-    return json("Account deleted.", request.ctx.authentication_request.bearer.json)
+    return json("Account deleted.", request.ctx.authentication_session.bearer.json)
 
 
 @account_bp.put("account/profile")
