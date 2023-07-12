@@ -6,6 +6,7 @@ from sanic_security.utils import json
 from tortoise.expressions import Q
 
 from blog.blueprints.entry.model import Entry
+from blog.common.util import get_page_from_args
 
 entry_bp = Blueprint("Entry")
 
@@ -50,18 +51,14 @@ async def on_entry_get_all_published(request):
             Q(title__icontains=request.args.get("search"))
             | Q(summary__icontains=request.args.get("search"))
         )
-    page = (
-        1
-        if request.args.get("page") in (None, "null")
-        else int(request.args.get("page"))
-    )
+    page = get_page_from_args(request)
     entries_query = (
         Entry.filter(filter_query)
         .only(
             "date_created",
             "date_updated",
             "id",
-            "title",
+            "title",  # TODO Prefetch author variable
             "summary",
             "published",
             "thumbnail_url",
