@@ -37,7 +37,7 @@ register_tortoise(
     app,
     db_url=config.DATABASE_URL,
     modules={"models": ["sanic_security.models"] + bp_models},
-    generate_schemas=True,
+    generate_schemas=False,
 )
 create_initial_admin_account(app)
 if __name__ == "__main__":

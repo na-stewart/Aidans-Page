@@ -1,4 +1,5 @@
 from sanic import Blueprint
+from sanic.utils import str_to_bool
 from sanic_security.authentication import register, login, logout
 from sanic_security.exceptions import UnverifiedError
 from sanic_security.utils import json
@@ -20,7 +21,7 @@ security_bp.static("/verify", "blog/static/auth/verify.html", name="auth_verify"
 
 
 @security_bp.post("register")
-@requires_captcha
+@requires_captcha()
 async def on_register(request):
     account = await register(request)
     await Profile.create(account=account)
@@ -32,7 +33,7 @@ async def on_register(request):
     )
     response = json(
         "Registration successful! Verification required.",
-        two_step_session.json,
+        two_step_session.bearer.json,
     )
     two_step_session.encode(response)
     return response
@@ -42,7 +43,7 @@ async def on_register(request):
 async def on_verify(request):
     two_step_session = await verify_account(request)
     return json(
-        "You have verified your email and may login!", two_step_session.json
+        "You have verified your email and may login!", two_step_session.bearer.json
     )
 
 
@@ -58,7 +59,7 @@ async def on_captcha_img_request(request):
 async def on_login(request):
     try:
         authentication_session = await login(request)
-        response = json("Login successful.", authentication_session.json)
+        response = json("Login successful.", authentication_session.bearer.json)
         authentication_session.encode(response)
     except UnverifiedError as e:
         two_step_session = await request_two_step_verification(request)

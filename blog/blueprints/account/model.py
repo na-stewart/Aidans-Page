@@ -2,7 +2,6 @@ from sanic_security.models import Account
 from tortoise import fields
 
 from blog.common.base_model import BaseModel
-from blog.common.util import model_prefetched_or_none
 
 
 class Profile(BaseModel):
@@ -17,6 +16,8 @@ class Profile(BaseModel):
             "id": self.id,
             "date_created": str(self.date_created),
             "date_updated": str(self.date_updated),
-            "account": model_prefetched_or_none(self.account).email,
+            "account": self.account.email
+            if isinstance(self.account, Account)
+            else None,
             "subscribed": self.subscribed,
         }
