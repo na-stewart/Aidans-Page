@@ -21,7 +21,7 @@ security_bp.static("/verify", "blog/static/auth/verify.html", name="auth_verify"
 
 
 @security_bp.post("register")
-@requires_captcha()
+@requires_captcha
 async def on_register(request):
     account = await register(request)
     await Profile.create(account=account)

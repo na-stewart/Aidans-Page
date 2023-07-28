@@ -24,7 +24,7 @@ account_bp.static(
 
 
 @account_bp.get("account")
-@requires_authentication()
+@requires_authentication
 async def on_account_get(request):
     return json("Account retrieved.", request.ctx.authentication_session.bearer.json)
 
@@ -95,7 +95,7 @@ async def on_profile_update(request):
 
 
 @account_bp.get("account/profile")
-@requires_authentication()
+@requires_authentication
 async def on_account_profile_get(request):
     profile = await Profile.get_or_none(
         account=request.ctx.authentication_session.bearer
@@ -110,7 +110,7 @@ async def on_account_profile_get(request):
 
 
 @account_bp.delete("account/profile")
-@requires_authentication()
+@requires_authentication
 async def on_account_profile_delete(request):
     profile = await Profile.get(account=request.ctx.authentication_session.bearer)
     profile.deleted = True
@@ -121,7 +121,7 @@ async def on_account_profile_delete(request):
 
 
 @account_bp.put("account/profile")
-@requires_authentication()
+@requires_authentication
 async def on_account_profile_update(request):
     profile = await Profile.get(account=request.ctx.authentication_session.bearer)
     profile.subscribed = request.form.get("subscribed") is not None

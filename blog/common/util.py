@@ -2,7 +2,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 from aiosmtplib import SMTP
-from sanic_security.models import Account
 
 from blog.common.base_model import BaseModel
 from blog.common.config import config
@@ -24,4 +23,8 @@ def model_prefetched_or_none(model):
 
 
 def get_page_from_args(request):
-    return 1 if request.args.get("page") in (None, "null") else int(request.args.get("page"))
+    return (
+        1
+        if request.args.get("page") in (None, "null")
+        else int(request.args.get("page"))
+    )

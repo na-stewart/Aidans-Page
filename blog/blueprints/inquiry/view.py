@@ -13,7 +13,7 @@ inquiry_bp.static(
 
 
 @inquiry_bp.post("inquiry")
-@requires_captcha()
+@requires_captcha
 async def on_inquiry_create(request):
     inquiry = await Inquiry.create(
         email=request.form.get("email"),

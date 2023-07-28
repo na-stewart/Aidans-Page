@@ -14,41 +14,31 @@ comment_bp = Blueprint("Comment")
 
 
 @comment_bp.post("comment")
-@require_permissions("comment:create")
+@requires_authentication
 async def on_comment_create(request):
-    account = await Entry.get(id=request.form.get("account-id"))
     comment = await Comment.create(
         content=request.form.get("content"),
-        account=account.id,
+        account=request.ctx.authentication_session.bearer,
     )
     return json("Comment created.", comment.json)
 
 
-@comment_bp.post("comment/entry")
-@requires_authentication()
-async def on_entry_comment_create(request):
-    comment = await Comment.create(
-        content=request.form.get("content"),
-        account=request.ctx.authentication_session.bearer
-    )
-    return json("Comment created.", comment.json)
-
-
-@comment_bp.get("comment/entry")
+@comment_bp.get("comment/entry/all")
 async def on_entry_comment_get(request):
     page = get_page_from_args(request)
+    entry = await Entry.get(id=request.args.get("id"))
     comments_query = (
-        Comment.filter(deleted=False)
+        Comment.filter(deleted=False, approved=True, entry=entry)
         .order_by("-date_created")
         .all()
     )
     return json(
-        "Entries retrieved.",
+        "Comments retrieved.",
         {
             "total_pages": ceil(await comments_query.count() / 10),
-            "entries": [
-                entry.json
-                for entry in await comments_query.offset((page - 1) * 10).limit(10)
+            "comments": [
+                comment.json
+                for comment in await comments_query.offset((page - 1) * 10).limit(10)
             ],
         },
     )
@@ -57,8 +47,8 @@ async def on_entry_comment_get(request):
 @comment_bp.get("comment/all")
 @require_permissions("comment:get")
 async def on_comment_get_all(request):
-    inquiries = await Inquiry.filter(deleted=False).all()
-    return json("Inquiries retrieved.", [inquiry.json for inquiry in inquiries])
+    comments = await Comment.filter(deleted=False).all()
+    return json("comments retrieved.", [comment.json for comment in comments])
 
 
 @comment_bp.delete("comment")

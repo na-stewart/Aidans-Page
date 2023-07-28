@@ -8,13 +8,11 @@ from blog.common.util import model_prefetched_or_none
 
 class Comment(BaseModel):
     content: str = fields.CharField(max_length=255)
-    entry: fields.ForeignKeyRelation["Entry"] = fields.ForeignKeyField(
-        "models.Entry"
-    )
+    entry: fields.ForeignKeyRelation["Entry"] = fields.ForeignKeyField("models.Entry")
     account: fields.ForeignKeyRelation["Account"] = fields.ForeignKeyField(
         "models.Account"
     )
-
+    approved: bool = fields.BooleanField(default=False)
 
     @property
     def json(self) -> dict:
@@ -24,5 +22,5 @@ class Comment(BaseModel):
             "date_updated": str(self.date_updated),
             "content": self.content,
             "account": model_prefetched_or_none(self.account).email,
-            "entry": model_prefetched_or_none(self.entry).id
+            "entry": model_prefetched_or_none(self.entry).id,
         }
