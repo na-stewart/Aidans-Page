@@ -7,7 +7,6 @@ from sanic_security.utils import json
 
 from blog.blueprints.comments.model import Comment
 from blog.blueprints.entry.model import Entry
-from blog.blueprints.inquiry.model import Inquiry
 from blog.common.util import get_page_from_args
 
 comment_bp = Blueprint("Comment")
