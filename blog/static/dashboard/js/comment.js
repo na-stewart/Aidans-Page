@@ -3,8 +3,10 @@ const table = $('#table').DataTable({
     {data: 'date_created'},
     {data: 'date_updated'},
     {data: 'id'},
-    {data: 'title'},
-    {data: 'published'},
+    {data: 'content'},
+    {data: 'account'},
+    {data: 'entry'},
+    {data: 'approved'},
   ],
   columnDefs: [
     {
@@ -18,13 +20,7 @@ const table = $('#table').DataTable({
 var selectedRow;
 
 function init() {
-  tinymce.init({
-    selector: '#content',
-    plugins: 'fullscreen anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcountfootnotes',
-    toolbar: 'fullscreen | undo redo | bold italic underline | link image | numlist bullist',
-    tinycomments_mode: 'embedded',
-  });
-  initDashboard(table, 'entry')
+  initDashboard(table, 'comment')
 }
 
 function fillFields(selectedRowData) {

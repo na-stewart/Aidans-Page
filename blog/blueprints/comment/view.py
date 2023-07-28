@@ -5,11 +5,15 @@ from sanic_security.authentication import requires_authentication
 from sanic_security.authorization import require_permissions
 from sanic_security.utils import json
 
-from blog.blueprints.comments.model import Comment
+from blog.blueprints.comment.model import Comment
 from blog.blueprints.entry.model import Entry
 from blog.common.util import get_page_from_args
 
 comment_bp = Blueprint("Comment")
+
+comment_bp.static(
+    "/dashboard/comment", "blog/static/dashboard/comment.html", name="dashboard_comment/"
+)
 
 
 @comment_bp.post("comment")
@@ -35,7 +39,7 @@ async def on_entry_comment_get(request):
         "Comments retrieved.",
         {
             "total_pages": ceil(await comments_query.count() / 10),
-            "comments": [
+            "comment": [
                 comment.json
                 for comment in await comments_query.offset((page - 1) * 10).limit(10)
             ],
@@ -47,7 +51,7 @@ async def on_entry_comment_get(request):
 @require_permissions("comment:get")
 async def on_comment_get_all(request):
     comments = await Comment.filter(deleted=False).all()
-    return json("comments retrieved.", [comment.json for comment in comments])
+    return json("comment retrieved.", [comment.json for comment in comments])
 
 
 @comment_bp.delete("comment")
