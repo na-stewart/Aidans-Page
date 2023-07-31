@@ -70,7 +70,7 @@
           <nav class="blog-pagination">
             <ul class="blog-pagination__items">
               <li class="blog-pagination__item">
-                <p onclick="pagination(false)" style="cursor: pointer;"><</p>
+                <p onclick="pagination(false, getEntries)" style="cursor: pointer;"><</p>
               </li>
               <li class="blog-pagination__item">
                 <input style="width: 30px; text-align: center;" type="text" id="page" value="1" onchange="getEntries(`page=${this.value}`)">
@@ -82,10 +82,11 @@
                 <p id="total-pages">0</p>
               </li>
               <li class="blog-pagination__item">
-                <p onclick="pagination(true)" style="cursor: pointer;">></p>
+                <p onclick="pagination(true, getEntries)" style="cursor: pointer;">></p>
               </li>
             </ul>
           </nav>
+          <br><br>
         </div>
         <div class="col-md-4  col-lg-3">
           <div class="sidebar-widget">

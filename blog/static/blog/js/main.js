@@ -8,7 +8,18 @@ function parseDateTime(date){
   })
 }
 
-function getAccount(){
+function pagination(forward, func) {
+  const pageElement = document.getElementById('page');
+  pageElement.value = forward ? parseInt(pageElement.value) + 1 : parseInt(pageElement.value) - 1;
+  if (pageElement.value > document.getElementById('total-pages').innerHTML)
+    pageElement.value--;
+  else if (pageElement.value < 1)
+    pageElement.value++;
+  else
+    func();
+}
+
+function getAccountInfo(){
   fetch(`api/v1/account`, {
     method: 'GET',
   })

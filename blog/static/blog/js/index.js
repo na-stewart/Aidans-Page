@@ -1,3 +1,5 @@
+//index.js contains functions that are only specific to the index page.
+
 function init(){
   getEntries();
   addSearchFormEventListener();
@@ -13,16 +15,7 @@ function addSearchFormEventListener(){
   });
 }
 
-function pagination(forward) {
-  const pageElement = document.getElementById('page');
-  pageElement.value = forward ? parseInt(pageElement.value) + 1 : parseInt(pageElement.value) - 1;
-  if (pageElement.value > document.getElementById('total-pages').innerHTML)
-    pageElement.value--;
-  else if (pageElement.value < 1)
-    pageElement.value++;
-  else
-    getEntries();
-}
+
 
 function getEntries() {
   fetch(`api/v1/entry/all/published?page=${document.getElementById('page').value}&search=${document.getElementById('search').value}`, {

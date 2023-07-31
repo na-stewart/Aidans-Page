@@ -1052,11 +1052,11 @@ iframe {
   color: #777777;
 }
 .single-post__comments {
-  padding: 50px 0px;
+  padding: 20px 0px;
 }
 .single-post__comments h5 {
-  margin-top: 0;
-  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-bottom: 5px;
   font-size: 16px;
   font-weight: bold;
 }
@@ -1147,7 +1147,7 @@ iframe {
   margin-left: 35px;
 }
 .single-post__comments-respond {
-  padding-top: 50px;
+  padding-top: 10px;
 }
 .single-post__comments-respond p {
   margin-bottom: 20px;
@@ -1568,7 +1568,7 @@ iframe {
   padding: 0;
   list-style: none;
   padding-top: 30px;
-  padding-bottom: 60px;
+
 }
 .blog-pagination__item {
   display: inline-block;

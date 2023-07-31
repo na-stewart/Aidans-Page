@@ -45,7 +45,7 @@ async def on_comment_get_all_approved(request):
         "Comments retrieved.",
         {
             "total_pages": ceil(await comments_query.count() / 10),
-            "comment": [
+            "comments": [
                 comment.json
                 for comment in await comments_query.offset((page - 1) * 10).limit(10)
             ],
