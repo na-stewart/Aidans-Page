@@ -23,6 +23,7 @@ async def on_entry_create(request):
         content=request.form.get("content"),
         thumbnail_url=request.form.get("thumbnail-url"),
         published=request.form.get("published") is not None,
+        author=request.ctx.authentication_session.bearer,
     )
     return json("Entry created.", entry.json)
 
@@ -59,14 +60,15 @@ async def on_entry_get_all_published(request):
         Entry.filter(filter_query)
         .only(
             "date_created",
-            "date_updated",
             "id",
             "title",
             "summary",
             "published",
             "thumbnail_url",
+            "author_id",
         )
         .order_by("-date_created")
+        .prefetch_related("author")
         .all()
     )
     return json(

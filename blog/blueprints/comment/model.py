@@ -6,7 +6,7 @@ from blog.common.base_model import BaseModel
 
 
 class Comment(BaseModel):
-    content: str = fields.CharField(max_length=255)
+    content: str = fields.TextField()
     entry: fields.ForeignKeyRelation["Entry"] = fields.ForeignKeyField("models.Entry")
     author: fields.ForeignKeyRelation["Account"] = fields.ForeignKeyField(
         "models.Account"

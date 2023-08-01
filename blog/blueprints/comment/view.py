@@ -16,9 +16,22 @@ comment_bp.static(
 
 
 @comment_bp.post("comment")
-@requires_authentication
+@require_permissions("comment:post")
 async def on_comment_create(request):
     entry = await Entry.get(id=request.form.get("entry"))
+    comment = await Comment.create(
+        content=request.form.get("content"),
+        author=request.ctx.authentication_session.bearer,
+        entry=entry,
+        approved=request.form.get("approved") is not None
+    )
+    return json("Comment created.", comment.json)
+
+
+@comment_bp.post("comment/publish")
+@requires_authentication
+async def on_comment_publish(request):
+    entry = await Entry.get(id=request.args.get("entry"))
     comment = await Comment.create(
         content=request.form.get("content"),
         author=request.ctx.authentication_session.bearer,
@@ -34,17 +47,18 @@ async def on_comment_get_all_approved(request):
         if request.args.get("page") in (None, "null")
         else int(request.args.get("page"))
     )
-    entry = await Entry.get(id=request.args.get("id"))
     comments_query = (
-        Comment.filter(deleted=False, approved=True, entry=entry)
+        Comment.filter(deleted=False, approved=True, entry_id=request.args.get("entry"))
         .order_by("-date_created")
         .prefetch_related("author")
         .all()
     )
+    total_comments = await comments_query.count()
     return json(
         "Comments retrieved.",
         {
-            "total_pages": ceil(await comments_query.count() / 10),
+            "total_pages": ceil(total_comments / 10),
+            "total_comments": total_comments,
             "comments": [
                 comment.json
                 for comment in await comments_query.offset((page - 1) * 10).limit(10)
@@ -58,6 +72,17 @@ async def on_comment_get_all_approved(request):
 async def on_comment_get_all(request):
     comments = await Comment.filter(deleted=False).prefetch_related("author", "entry").all()
     return json("comment retrieved.", [comment.json for comment in comments])
+
+
+@comment_bp.put("comment")
+@require_permissions("comment:put")
+async def on_comment_update(request):
+    comment = await Comment.get(id=request.args.get("id")).prefetch_related("entry", "author")
+    comment.approved = request.form.get("approved") is not None
+    comment.content = request.form.get("content")
+    comment.entry_id = request.form.get("entry")
+    await comment.save(update_fields=["approved", "content", "entry_id"])
+    return json("Entry updated.", comment.json)
 
 
 @comment_bp.delete("comment")
