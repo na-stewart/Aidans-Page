@@ -11,7 +11,9 @@ from blog.blueprints.entry.model import Entry
 comment_bp = Blueprint("Comment")
 
 comment_bp.static(
-    "/dashboard/comment", "blog/static/dashboard/comment.html", name="dashboard_comment/"
+    "/dashboard/comment",
+    "blog/static/dashboard/comment.html",
+    name="dashboard_comment/",
 )
 
 
@@ -23,7 +25,7 @@ async def on_comment_create(request):
         content=request.form.get("content"),
         author=request.ctx.authentication_session.bearer,
         entry=entry,
-        approved=request.form.get("approved") is not None
+        approved=request.form.get("approved") is not None,
     )
     return json("Comment created.", comment.json)
 
@@ -70,14 +72,18 @@ async def on_comment_get_all_approved(request):
 @comment_bp.get("comment/all")
 @require_permissions("comment:get")
 async def on_comment_get_all(request):
-    comments = await Comment.filter(deleted=False).prefetch_related("author", "entry").all()
+    comments = (
+        await Comment.filter(deleted=False).prefetch_related("author", "entry").all()
+    )
     return json("comment retrieved.", [comment.json for comment in comments])
 
 
 @comment_bp.put("comment")
 @require_permissions("comment:put")
 async def on_comment_update(request):
-    comment = await Comment.get(id=request.args.get("id")).prefetch_related("entry", "author")
+    comment = await Comment.get(id=request.args.get("id")).prefetch_related(
+        "entry", "author"
+    )
     comment.approved = request.form.get("approved") is not None
     comment.content = request.form.get("content")
     comment.entry_id = request.form.get("entry")

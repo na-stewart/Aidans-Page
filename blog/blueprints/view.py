@@ -13,5 +13,11 @@ bp_models = [
     "blog.blueprints.comment.model",
 ]
 api = Blueprint.group(
-    security_bp, entry_bp, account_bp, inquiry_bp, comment_bp, version=1, version_prefix="/api/v"
+    security_bp,
+    entry_bp,
+    account_bp,
+    inquiry_bp,
+    comment_bp,
+    version=1,
+    version_prefix="/api/v",
 )
