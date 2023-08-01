@@ -12,6 +12,7 @@ entry_bp = Blueprint("Entry")
 entry_bp.static(
     "/dashboard/entry", "blog/static/dashboard/entry.html", name="dashboard_entry"
 )
+entry_bp.static("/entry", "blog/static/blog/entry.html", name="blog_entry")
 
 
 @entry_bp.post("entry")

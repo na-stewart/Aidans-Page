@@ -1,6 +1,6 @@
 import traceback
 
-from sanic import Sanic
+from sanic import Sanic, text
 from sanic_security.authentication import create_initial_admin_account
 from sanic_security.utils import json
 from tortoise.contrib.sanic import register_tortoise
@@ -15,11 +15,14 @@ app.blueprint(api)
 app.static("/", "blog/static", name="blog_static")
 app.static("/", "blog/static/blog/index.html", name="blog_index")
 app.static("/favicon", "blog/static/favicon.PNG", name="favicon")
-app.static("/entry", "blog/static/blog/entry.html", name="blog_entry")
 app.static("/about", "blog/static/blog/about.html", name="blog_about")
 app.static("/contact", "blog/static/blog/contact.html", name="blog_contact")
-app.static("/account", "blog/static/blog/account.html", name="blog_account")
 app.static("/profile", "blog/static/blog/profile.html", name="blog_profile")
+
+
+@app.get("/build")
+async def get_build(request):
+    return text(config.APP_VERSION)
 
 
 @app.exception(Exception)

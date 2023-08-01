@@ -37,3 +37,15 @@ function getAccountInfo(){
       window.location.href = '/login';
   });
 }
+
+fetch(`/build`, {
+  method: 'GET',
+})
+.then(response => {
+  if (response.ok) 
+    return response.text();
+  return Promise.reject(response); 
+})
+.then(version => {
+  document.getElementById('build').innerHTML = `Build: v${version}`;
+})

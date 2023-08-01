@@ -4,7 +4,7 @@ from sanic.utils import str_to_bool
 
 DEFAULT_CONFIG = {
     "DATABASE_URL": "sqlite://:memory:",
-    "APP_VERSION": "1.0.0",
+    "APP_VERSION": "1.1.0",
 }
 
 
