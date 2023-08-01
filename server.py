@@ -22,7 +22,7 @@ app.static("/profile", "blog/static/blog/profile.html", name="blog_profile")
 
 @app.get("/build")
 async def get_build(request):
-    return text(config.APP_VERSION)
+    return text(config.APP_BUILD)
 
 
 @app.exception(Exception)

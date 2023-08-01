@@ -4,7 +4,7 @@ from sanic.utils import str_to_bool
 
 DEFAULT_CONFIG = {
     "DATABASE_URL": "sqlite://:memory:",
-    "APP_VERSION": "1.1.0",
+    "APP_BUILD": "1.1.0",
 }
 
 
@@ -12,7 +12,7 @@ class Config(dict):
     DATABASE_URL: str
     SMTP_USERNAME: str
     SMTP_PASSWORD: str
-    APP_VERSION: str
+    APP_BUILD: str
 
     def load_environment_variables(self, load_env="BLOG_") -> None:
         """
