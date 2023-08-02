@@ -38,6 +38,10 @@ function getAccountInfo(){
   });
 }
 
+function isAuthTokenInvalid(error) {
+  return error.data == "JWTDecodeError" || error.data == "ExpiredError" || error.data == "DeactivatedError"
+}
+
 fetch(`/test`, {
   method: 'GET',
 })

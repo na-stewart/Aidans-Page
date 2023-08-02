@@ -17,7 +17,7 @@ function addLoginFormEventListener() {
       return Promise.reject(response); 
     })
     .then(json => {
-      location.assign("/");
+      location.assign("/profile");
     })
     .catch(error => {
       error.json().then(error => {

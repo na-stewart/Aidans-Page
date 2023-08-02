@@ -19,7 +19,10 @@ function getProfile(){
     document.getElementById("subscribed").checked = json.data.profile.subscribed;
   })
   .catch(error => {
-    location.assign("/login");
+    error.json().then(error => {
+      if (isAuthTokenInvalid(error))
+        window.location.href = '/login';
+    });
   });
 }
 

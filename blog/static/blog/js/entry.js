@@ -64,7 +64,7 @@ function getComments() {
       return Promise.reject(response); 
     })
     .then(json => {
-      document.getElementById('total-comments').innerHTML = `${json.data.total_comments} Comments`
+      document.getElementById('total-comments').innerHTML = `${json.data.total_comments} Comment(s)`
       document.getElementById('total-pages').innerHTML = json.data.total_pages == 0 ? 1 : json.data.total_pages;
       if (json.data.comments.length > 0) {
         document.getElementById('comments-container').innerHTML = '';
@@ -94,10 +94,10 @@ function addCommentFormEventListener(){
       this.reset();
     })
     .catch(error => {
-      alert(error);
       error.json().then(error => {
-        document.getElementById("response-msg").innerHTML = error.message;
-      })
+        if (isAuthTokenInvalid(error))
+          window.location.href = '/login';
+      });
     });
   });
 }
