@@ -20,8 +20,8 @@ var selectedRow;
 function init() {
   tinymce.init({
     selector: '#content',
-    plugins: 'code fullscreen anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcountfootnotes',
-    toolbar: 'code fullscreen | undo redo | bold italic underline | link image | numlist bullist',
+    plugins: 'code fullscreen anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks',
+    toolbar: 'code fullscreen | undo redo | bold italic underline align | link image | numlist bullist',
     tinycomments_mode: 'embedded',
   });
   initDashboard(table, 'entry')
