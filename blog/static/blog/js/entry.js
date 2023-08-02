@@ -97,6 +97,8 @@ function addCommentFormEventListener(){
       error.json().then(error => {
         if (isAuthTokenInvalid(error))
           window.location.href = '/login';
+        else
+          document.getElementById('response-msg').innerHTML = error.message;
       });
     });
   });
