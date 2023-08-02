@@ -3,12 +3,14 @@ from os import environ
 from sanic.utils import str_to_bool
 
 DEFAULT_CONFIG = {
+    "ADMIN_EMAIL": "na.stewart365@gmail.com",
     "DATABASE_URL": "sqlite://:memory:",
     "APP_BUILD": "1.1.0",
 }
 
 
 class Config(dict):
+    ADMIN_EMAIL: str
     DATABASE_URL: str
     SMTP_USERNAME: str
     SMTP_PASSWORD: str

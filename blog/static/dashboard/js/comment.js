@@ -6,7 +6,6 @@ const table = $('#table').DataTable({
     {data: 'entry'},
     {data: 'author'},
     {data: 'approved'},
-    {data: 'content'},
   ],
   columnDefs: [
     {

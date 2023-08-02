@@ -7,6 +7,8 @@ from sanic_security.utils import json
 
 from blog.blueprints.comment.model import Comment
 from blog.blueprints.entry.model import Entry
+from blog.common.config import config
+from blog.common.util import send_email
 
 comment_bp = Blueprint("Comment")
 
@@ -39,6 +41,7 @@ async def on_comment_publish(request):
         author=request.ctx.authentication_session.bearer,
         entry=entry,
     )
+    await send_email(config.ADMIN_EMAIL, "New Comment", comment.json)
     return json("Comment created.", comment.json)
 
 

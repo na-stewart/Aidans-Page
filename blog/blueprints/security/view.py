@@ -1,5 +1,4 @@
 from sanic import Blueprint
-from sanic.utils import str_to_bool
 from sanic_security.authentication import register, login, logout
 from sanic_security.exceptions import UnverifiedError
 from sanic_security.utils import json

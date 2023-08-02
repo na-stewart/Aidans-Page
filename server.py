@@ -20,7 +20,7 @@ app.static("/contact", "blog/static/blog/contact.html", name="blog_contact")
 app.static("/profile", "blog/static/blog/profile.html", name="blog_profile")
 
 
-@app.get("/build")
+@app.get("/test")
 async def get_build(request):
     return text(config.APP_BUILD)
 

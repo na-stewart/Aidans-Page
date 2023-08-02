@@ -4,6 +4,8 @@ from sanic_security.utils import json
 from sanic_security.verification import requires_captcha
 
 from blog.blueprints.inquiry.model import Inquiry
+from blog.common.config import config
+from blog.common.util import send_email
 
 inquiry_bp = Blueprint("Inquiry")
 
@@ -20,6 +22,7 @@ async def on_inquiry_create(request):
         username=request.form.get("username"),
         content=request.form.get("content"),
     )
+    await send_email(config.ADMIN_EMAIL, "New Inquiry", inquiry.json)
     return json("Inquiry created.", inquiry.json)
 
 

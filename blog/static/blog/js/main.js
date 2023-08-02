@@ -38,7 +38,7 @@ function getAccountInfo(){
   });
 }
 
-fetch(`/build`, {
+fetch(`/test`, {
   method: 'GET',
 })
 .then(response => {

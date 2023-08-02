@@ -24,5 +24,6 @@ class Comment(BaseModel):
             if isinstance(self.author, Account)
             else None,
             "entry": self.entry.id if isinstance(self.entry, Entry) else None,
+            "entry_title": self.entry.title if isinstance(self.entry, Entry) else None,
             "approved": self.approved,
         }
