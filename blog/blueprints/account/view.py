@@ -74,7 +74,7 @@ async def on_account_update(request):
         account.password = password_hasher.hash(
             validate_password(request.form.get("password"))
         )
-    await account.save(update_fields=["username", "email", "password"])
+    await account.save(update_fields=["username", "email", "password", "disabled", "verified"])
     return json("Profile updated.", account.json)
 
 
