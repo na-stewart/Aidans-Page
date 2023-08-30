@@ -1,7 +1,7 @@
 from sanic_security.models import Account
 from tortoise import fields
 
-from blog.common.base_model import BaseModel
+from aidans_page.common.base_model import BaseModel
 
 
 class Profile(BaseModel):

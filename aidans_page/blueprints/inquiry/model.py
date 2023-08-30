@@ -1,6 +1,6 @@
 from tortoise import fields
 
-from blog.common.base_model import BaseModel
+from aidans_page.common.base_model import BaseModel
 
 
 class Inquiry(BaseModel):

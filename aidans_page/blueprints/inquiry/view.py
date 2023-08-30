@@ -3,14 +3,14 @@ from sanic_security.authorization import require_permissions
 from sanic_security.utils import json
 from sanic_security.verification import requires_captcha
 
-from blog.blueprints.inquiry.model import Inquiry
-from blog.common.config import config
-from blog.common.util import send_email
+from aidans_page.blueprints.inquiry.model import Inquiry
+from aidans_page.common.config import config
+from aidans_page.common.util import send_email
 
 inquiry_bp = Blueprint("Inquiry")
 
 inquiry_bp.static(
-    "/dashboard/inquiry", "blog/static/dashboard/inquiry.html", name="dashboard_inquiry"
+    "/dashboard/inquiry", "aidans_page/static/dashboard/inquiry.html", name="dashboard_inquiry"
 )
 
 

@@ -10,16 +10,16 @@ from sanic_security.authorization import require_permissions
 from sanic_security.models import Account
 from sanic_security.utils import json
 
-from blog.blueprints.account.model import Profile
+from aidans_page.blueprints.account.model import Profile
 
 account_bp = Blueprint("account")
 password_hasher = PasswordHasher()
 
 account_bp.static(
-    "/dashboard/account", "blog/static/dashboard/account.html", name="dashboard_account"
+    "/dashboard/account", "aidans_page/static/dashboard/account.html", name="dashboard_account"
 )
 account_bp.static(
-    "/dashboard/profile", "blog/static/dashboard/profile.html", name="dashboard_profile"
+    "/dashboard/profile", "aidans_page/static/dashboard/profile.html", name="dashboard_profile"
 )
 
 

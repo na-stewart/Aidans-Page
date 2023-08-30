@@ -5,19 +5,19 @@ from sanic_security.authentication import create_initial_admin_account
 from sanic_security.utils import json
 from tortoise.contrib.sanic import register_tortoise
 
-from blog.blueprints.view import api, bp_models
-from blog.common.config import config
+from aidans_page.blueprints.view import api, bp_models
+from aidans_page.common.config import config
 
 app = Sanic("Blog")
 
 app.blueprint(api)
 
-app.static("/", "blog/static", name="blog_static")
-app.static("/", "blog/static/blog/index.html", name="blog_index")
-app.static("/favicon", "blog/static/favicon.PNG", name="favicon")
-app.static("/about", "blog/static/blog/about.html", name="blog_about")
-app.static("/contact", "blog/static/blog/contact.html", name="blog_contact")
-app.static("/profile", "blog/static/blog/profile.html", name="blog_profile")
+app.static("/", "aidans_page/static", name="blog_static")
+app.static("/", "aidans_page/static/aidans_page/index.html", name="blog_index")
+app.static("/favicon", "aidans_page/static/favicon.PNG", name="favicon")
+app.static("/about", "aidans_page/static/aidans_page/about.html", name="blog_about")
+app.static("/contact", "aidans_page/static/aidans_page/contact.html", name="blog_contact")
+app.static("/profile", "aidans_page/static/aidans_page/profile.html", name="blog_profile")
 
 
 @app.get("/test")

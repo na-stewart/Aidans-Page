@@ -9,14 +9,14 @@ from sanic_security.verification import (
     verify_account,
 )
 
-from blog.blueprints.account.model import Profile
-from blog.common.util import send_email
+from aidans_page.blueprints.account.model import Profile
+from aidans_page.common.util import send_email
 
 security_bp = Blueprint("security")
 
-security_bp.static("/login", "blog/static/auth/index.html", name="auth_index")
-security_bp.static("/register", "blog/static/auth/register.html", name="auth_register")
-security_bp.static("/verify", "blog/static/auth/verify.html", name="auth_verify")
+security_bp.static("/login", "aidans_page/static/auth/index.html", name="auth_index")
+security_bp.static("/register", "aidans_page/static/auth/register.html", name="auth_register")
+security_bp.static("/verify", "aidans_page/static/auth/verify.html", name="auth_verify")
 
 
 @security_bp.post("register")

@@ -1,8 +1,8 @@
 from sanic_security.models import Account
 from tortoise import fields
 
-from blog.blueprints.entry.model import Entry
-from blog.common.base_model import BaseModel
+from aidans_page.blueprints.entry.model import Entry
+from aidans_page.common.base_model import BaseModel
 
 
 class Comment(BaseModel):
