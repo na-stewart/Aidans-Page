@@ -47,7 +47,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This space serves as an outlet for my research and personal experiences.
+This space serves as an outlet for my projects, research, and personal experiences.
 
 <!-- GETTING STARTED -->
 ## Getting Started
