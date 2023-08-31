@@ -1,0 +1,619 @@
+[
+  {
+    "name": "The Altman Building",
+    "summary": "The Altman Building is proud to celebrate over 22 years as a premiere New York City landmark & historic event venue.",
+    "reception": 700,
+    "seated": 350,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/010_BI6B5248.jpg",
+    "coordinates": [
+      40.74088748109781,
+      -73.99628190121352
+    ],
+    "url": "https://thomaspreti.com/venue/altman-building/",
+    "capacity": "200-500",
+    "event-type": ["Wedding", "Corporate", "Non-Profit", "Social"]
+  },
+  {
+    "name": "The Museum of the City of New York",
+    "summary": "The Museum of the City of New York\u2019s beautifully renovated landmark building on Fifth Avenue\u2019s iconic Museum Mile is the perfect place for special events\u2013weddings, bar/bat mitzvahs, corporate dinners, birthday, graduation, and holiday parties, and more.",
+    "seated": 220,
+    "reception": 350,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/1-1.jpg",
+    "coordinates": [
+      40.79364316793195,
+      -73.95221028230951
+    ],
+    "url": "https://thomaspreti.com/venue/museum-of-the-city-of-new-york/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "Glasshouses",
+    "summary": "Opened in 2021, The Glasshouse is a 75,000 square foot glass enclosed space thatti features sweeping 360-degree views of New York City, waterfront facing outdoor terraces, pre-function spaces, a VIP Lounge, and several Green Rooms.",
+    "seated": 1100,
+    "reception": 1850,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/Facade-1.jpg",
+    "coordinates": [
+      40.768917949403765,
+      -73.99738101754843
+    ],
+    "url": "https://thomaspreti.com/venue/glasshouses/",
+    "capacity": "500+"
+  },
+  {
+    "name": "The New York Public Library",
+    "summary": "The Library\u2019s Stephen A. Schwarzman Building is the quintessential landmark building in the heart of New York City \u2013 perfect for weddings, corporate, and nonprofit events. ",
+    "seated": 425,
+    "reception": 750,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/NYPL-FEATURED-1.jpg",
+    "coordinates": [
+      40.81697408535962,
+      -73.93953119706106
+    ],
+    "url": "https://thomaspreti.com/venue/the-new-york-public-library/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "Javits Center",
+    "summary": "Celebrate in the new heart of New York City with an elegant experience unlike any other. Featuring stunning views of the Hudson River and soaring ceiling heights, our glass-enclosed River Pavilion serves as the perfect backdrop for high-impact events, corporate galas and unforgettable celebrations.",
+    "seated": 1200,
+    "reception": 3100,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/blue.jpg",
+    "coordinates": [
+      40.75765564229688,
+      -74.00243993657799
+    ],
+    "url": "https://thomaspreti.com/venue/javits-center/",
+    "capacity": "500+"
+  },
+  {
+    "name": "Central Park Zoo",
+    "summary": "This tranquil oasis in the heart of Manhattan is one of the most idyllic locations in New York City.",
+    "seated": 700,
+    "reception": 2000,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/ifMT-xYQ.jpeg",
+    "coordinates": [
+      40.76794048353001,
+      -73.97197297791622
+    ],
+    "url": "https://thomaspreti.com/venue/wildlife-conservation-society/",
+    "capacity": "500+"
+  },
+  {
+    "name": "The Prospect Park Zoo",
+    "summary": "Have dinner under the grand architecture of the rotunda just steps away from the Hamadryas Baboons. Enjoy cocktails and hors \u2018d oeuvres under the stars.",
+    "seated": 900,
+    "reception": 1200,
+    "borough": "Brooklyn",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/Julie-Larsen-Maher_3525_SIP-for-the-Sea_CPZ_09-28-17.jpg",
+    "coordinates": [
+      40.66447844236731,
+      -73.96511380306262
+    ],
+    "url": "https://thomaspreti.com/venue/wildlife-conservation-society/",
+    "capacity": "500+"
+  },
+  {
+    "name": "The Prince George Ballroom",
+    "summary": "This historic New York landmark building is located in the vibrant neighborhood near Madison Square Park.",
+    "seated": 250,
+    "reception": 350,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/16947819213_ea1ef80a55_k.jpg",
+    "coordinates": [
+      40.74392211359305,
+      -73.98667398771892
+    ],
+    "url": "https://thomaspreti.com/venue/the-prince-george-ballroom/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "The Hammerstein Ballroom",
+    "summary": "The Hammerstein combines a magnificent, century-old former opera house with fully integrated 21st century media and entertainment production technology.",
+    "seated": 1000,
+    "reception": 2500,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/manhattan-center-2.jpg",
+    "coordinates": [
+      40.75302873767793,
+      -73.99405745888336
+    ],
+    "url": "https://thomaspreti.com/venue/manhattan-center/",
+    "capacity": "500+"
+  },
+  {
+    "name": "IAC Building",
+    "summary": "Designed by world-renowned architect Frank Gehry, the Ground Floor Lobby of IAC HQ is among the most unique event venues in NYC. It is a great setting for conferences, product launches, press events, dinners, and cocktail receptions.",
+    "seated": 350,
+    "reception": 1000,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/bascom-iac-event-photographer.jpg",
+    "coordinates": [
+      40.7457613377605,
+      -74.00775791840032
+    ],
+    "url": "https://thomaspreti.com/venue/iac-building/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "Spring Studios",
+    "summary": "Spring Studios New York delivers exclusive events and experiences to creative industries and individuals with spaces that range from intimate to grand, all unified by impactful architecture and design.",
+    "seated": 500,
+    "reception": 2500,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/50Varick-1A.jpg",
+    "coordinates": [
+      40.721117311434874,
+      -74.00599337422535
+    ],
+    "url": "https://thomaspreti.com/venue/spring-studios/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "Hudson Mercantile",
+    "summary": "Hudson Mercantile is a collection of three industrial spaces centrally located near the Hudson Yards district of Manhattan. Each space offers in house state-of-the-art production capabilities.",
+    "seated": 250,
+    "reception": 100,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/Roof.jpg",
+    "coordinates": [
+      40.75601442319264,
+      -73.99853911286097
+    ],
+    "url": "https://thomaspreti.com/venue/hudson-mercantile/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "Angel Orensanz",
+    "summary": "The Angel Orensanz Foundation is home to a wide array of corporate and private events. This converted synagogue dates to 1849 and features Gothic arches and a 55-foot vaulted ceiling, which is a replica of the sister Sistine Chapel in Rome.",
+    "seated": 220,
+    "reception": 350,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/orensanz_events_space3-2.jpg",
+    "coordinates": [
+      40.721393147794444,
+      -73.98581616257724
+    ],
+    "url": "https://thomaspreti.com/venue/angel-orensanz/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "Hall Des Lumieres",
+    "summary": "Hall des Lumi\u00e8res is the most monumental permanent immersive exhibition in NYC, featuring fully integrated 360-degree projection mapping, lighting, and sound built in on both floors.",
+    "seated": 350,
+    "reception": 1500,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/62c7fa9d86538261d6b7e137_47983-min-p-2000.jpeg",
+    "coordinates": [
+      40.71423960788906,
+      -74.00509080306077
+    ],
+    "url": "https://thomaspreti.com/venue/hall-des-lumieres/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "The Herald Square Jewel",
+    "summary": "The Herald Square Jewel \u2013 a true hidden gem tucked away in Herald Square. This versatile space offers both indoor and outdoor spaces for enjoyment.",
+    "seated": 55,
+    "reception": 200,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/49449681683_4a01144863_k.jpg",
+    "coordinates": [
+      40.74964353472174,
+      -73.98740630305947
+    ],
+    "url": "https://thomaspreti.com/venue/the-herald-square-jewel/",
+    "capacity": "200"
+  },
+  {
+    "name": "Lavan 541",
+    "summary": "Bringing innovation to the event space industry with cutting edge amenities and production capabilities, Lavan 541 features 5000 square feet of open space with 20 foot ceilings and is designed to host inspirational event experiences.",
+    "seated": 90,
+    "reception": 300,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/JPU123.jpg",
+    "coordinates": [
+      40.74998404996661,
+      -74.00494762024658
+    ],
+    "url": "https://thomaspreti.com/venue/lavan-541/",
+    "capacity": "200"
+  },
+  {
+    "name": "The Chelsea Factory",
+    "summary": "Chelsea Factory is a reimagined cultural space created to respond to the needs of New York City\u2019s artists, cultural organizations, and community groups. Located in the heart of Manhattan, Chelsea Factory occupies an industrial, landmarked building with a vibrant history\u2014previously housing the first taxi fleets and the former studio and home of renowned photographer Annie Leibovitz.",
+    "seated": 250,
+    "reception": 500,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/49122661657_381805d271_o.jpg",
+    "coordinates": [
+      40.75065929218216,
+      -74.00428927422428
+    ],
+    "url": "https://thomaspreti.com/venue/the-caldwell-factory/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "Iron32",
+    "summary": "Iron23 offers 17,000 sq-ft of newly renovated, street-level, open event space in the heart of the Flatiron District at 29 West 23rd Street between 5th & 6th Avenues.",
+    "seated": 300,
+    "reception": 750,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/Iron23-Dinner-Rendering-Still.png",
+    "coordinates": [
+      40.76823905084449,
+      -73.9835752131428
+    ],
+    "url": "https://thomaspreti.com/venue/iron23/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "Terminal5",
+    "summary": "The swanky multilevel music venue has five distinct room environments, 40-foot ceilings, high-tech sound and lighting, unobstructed sightlines, breakout areas, green rooms, ample bathrooms, kitchen, nearby parking, and an easy load-in/out.",
+    "seated": 900,
+    "reception": 3000,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/98152_D0028-1.jpg",
+    "coordinates": [
+      40.77034661162008,
+      -73.99282589006167
+    ],
+    "url": "https://thomaspreti.com/venue/terminal5/",
+    "capacity": "500+"
+  },
+  {
+    "name": "The Astor House",
+    "summary": "Built by the prominent Astor family, the historic landmarked home boasts both traditional details and modern amenities.",
+    "seated": 70,
+    "reception": 200,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/dior-lunch-set-up.jpg",
+    "coordinates": [
+      40.77588521497122,
+      -73.95910063425605
+    ],
+    "url": "https://thomaspreti.com/venue/astorhouse/",
+    "capacity": "200"
+  },
+  {
+    "name": "Harold Pratt House",
+    "summary": "Based in New York City, the Harold Pratt House is a vintage and historic mansion that features a classic ballroom and six spaces for hosting any wedding or special event.",
+    "seated": 200,
+    "reception": 130,
+    "borough": "Manhattan",
+    "image_url": "https://images.squarespace-cdn.com/content/v1/5e56c99c58c24342275c971c/1585335010954-43V79CQ3F3KXZCLT6HSY/rockdinner.gif?format=1000w",
+    "coordinates": [
+      40.76876873671053,
+      -73.96617001655318
+    ],
+    "url": "https://thomaspreti.com/venue/harold-pratt-house/",
+    "capacity": "200"
+  },
+  {
+    "name": "Midtown Loft & Terrace",
+    "summary": "Midtown Loft & Terrace is a private wedding venue in New York, New York. Located on the prestigious Fifth Avenue, this upscale building provides class and sophistication for your special day.",
+    "seated": 160,
+    "reception": 300,
+    "borough": "Manhattan",
+    "image_url": "https://images.zola.com/6310cb2c-1f83-4d42-a43e-9e9003fd9fa1?w=1200&h=675&fit=crop&q=60",
+    "coordinates": [
+      40.74546906683949,
+      -73.98642483189471
+    ],
+    "url": "https://thomaspreti.com/venue/midtown-loft-terrace/",
+    "capacity": "200"
+  },
+  {
+    "name": "Manhattan Manor",
+    "summary": "Home to two luxurious event spaces in one prime midtown Manhattan location. 6,000 square feet of open space with gorgeous French doors, skylights, exposed brick, mahogany floors, and spectacular views from Central Park to Times Square.",
+    "seated": 200,
+    "reception": 275,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/Facade-1.jpg",
+    "coordinates": [
+      40.76276144369711,
+      -73.98255688771826
+    ],
+    "url": "https://thomaspreti.com/venue/manhattanmanor/",
+    "capacity": "200"
+  },
+  {
+    "name": "Penthouse 45",
+    "summary": "Penthouse 45 is Manhattan\u2019s premier corporate event space with gorgeous panoramic views of the NYC skyline and Hudson River.",
+    "seated": 70,
+    "reception": 125,
+    "borough": "Manhattan",
+    "image_url": "https://image8.photobiz.com/2724/21_20100309114429_196160_large.jpg",
+    "coordinates": [
+      40.76108770028836,
+      -73.99284948956458
+    ],
+    "url": "https://thomaspreti.com/venue/penthouse45/",
+    "capacity": "200"
+  },
+  {
+    "name": "Location05",
+    "summary": "Located in Hudson Yards, Location05 is the ideal space for corporate events, private parties, meeting venues, and more in their several event spaces. Clients have the flexibility to rent an individual room, or multiple New York loft rentals to suit their requirements.",
+    "seated": 150,
+    "reception": 300,
+    "borough": "Manhattan",
+    "image_url": "https://images.squarespace-cdn.com/content/v1/5c5db868bfba3e1a39024389/1550088122261-22JFQ4V949RLILESMJ32/Location05S1+%281%29.jpeg?format=2500w",
+    "coordinates": [
+      40.752247174124676,
+      -74.00016104908173
+    ],
+    "url": "https://thomaspreti.com/venue/location05/",
+    "capacity": "200"
+  },
+  {
+    "name": "501 Union",
+    "summary": "Enjoy three distinct spaces within the charming venue: an open-air courtyard, an elegant cocktail lounge, and a light-filled reception hall.",
+    "seated": 140,
+    "reception": 250,
+    "borough": "Brooklyn",
+    "image_url": "https://images.zola.com/ffac3ae5-523b-458c-a653-cce97f66b035?w=1200&h=675&fit=crop&q=60",
+    "coordinates": [
+      40.680075378974315,
+      -73.98897796127058
+    ],
+    "url": "https://thomaspreti.com/venue/501-union/",
+    "capacity": "200"
+  },
+  {
+    "name": "The Mezzanine",
+    "summary": "Located in the Financial District, The Mezzanine is a one-of-a-kind space, perfect for any type of event.",
+    "seated": 180,
+    "reception": 300,
+    "borough": "Manhattan",
+    "image_url": "https://s3.amazonaws.com/uploads.thevendry.co/196/1591133969088_Techsy-Talk---MR-Hospitality---The-Mezzanine-124.jpg",
+    "coordinates": [
+      40.707142897373615,
+      -74.01331464539071
+    ],
+    "url": "https://thomaspreti.com/venue/the-mezzanine/",
+    "capacity": "200"
+  },
+  {
+    "name": "Palladium Times Square",
+    "summary": "This David Rockwell-designed 45,000 square foot, state-of-the-art venue comes with unique turnkey capabilities. It features two mezzanine lounges, dressing rooms, and a greenroom. An 85-foot-long LED high-definition marquee displays live and digital video.",
+    "seated": 450,
+    "reception": 1500,
+    "borough": "Manhattan",
+    "image_url": "https://eventective-media.azureedge.net/3066276_lg.jpg",
+    "coordinates": [
+      40.758027041929886,
+      -73.9861694895647
+    ],
+    "url": "https://thomaspreti.com/venue/palladium-times-square/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "Ramscale",
+    "summary": "West Village penthouse loft with breathtaking views sweeping from the Empire State Building down to One World Trade, the New York Harbor, and Statue of Liberty, with a Terrace overlooking the Hudson River.",
+    "seated": 80,
+    "reception": 150,
+    "borough": "Manhattan",
+    "image_url": "https://images.squarespace-cdn.com/content/v1/538df9cfe4b098d28f8f81d9/1566931966127-82QMSJTYORAKIGCK2JJN/img-5.jpg",
+    "coordinates": [
+      40.73694380635576,
+      -74.00954055703764
+    ],
+    "url": "https://thomaspreti.com/venue/ramscale/",
+    "capacity": "200"
+  },
+  {
+    "name": "Metropolitan Pavilion",
+    "summary": "Metropolitan Pavilion offers four event spaces in one prime location. A range of concierge and event production services are also available.",
+    "seated": 1000,
+    "reception": 1500,
+    "borough": "Manhattan",
+    "image_url": "https://www.metropolitanevents.com/wp-content/uploads/2016/12/Nh_MP_20110511_467-960x540.jpg",
+    "coordinates": [
+      40.740607008278545,
+      -73.99603703189491
+    ],
+    "url": "https://thomaspreti.com/venue/metropolitan-pavilion/",
+    "capacity": "500+"
+  },
+  {
+    "name": "The Times Center",
+    "summary": "The Times Center is a versatile combination of virtual event production services and a state-of-the-art venue located in the heart of Manhattan.",
+    "seated": 390,
+    "reception": 390,
+    "borough": "Manhattan",
+    "image_url": "https://media.timeout.com/images/100442167/750/422/image.jpg",
+    "coordinates": [
+      40.75592343215486,
+      -73.98958435767037
+    ],
+    "url": "https://thomaspreti.com/venue/the-times-center/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "620 Loft & Garden",
+    "summary": "Serenity, magic and romance have an intimate home above the famous Fifth Avenue at 620 Loft & Garden. Located on the corner of Fifth Avenue and 50th Street, 620 Loft & Garden is the 7th floor Penthouse of the building.",
+    "seated": 120,
+    "reception": 165,
+    "borough": "Manhattan",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/35912788471_e8b2892e40_k.jpg",
+    "coordinates": [
+      40.75877502573532,
+      -73.97780211839985
+    ],
+    "url": "https://thomaspreti.com/venue/620-loft-garden/",
+    "capacity": "200"
+  },
+  {
+    "name": "Center 415",
+    "summary": "30,000 square feet of open event space in the heart of Midtown Manhattan on Fifth Avenue. Divided over two floors, the venue features high ceilings up to 18-feet and can accommodate multiple cars on the ground floor.",
+    "seated": 600,
+    "reception": 1440,
+    "borough": "Manhattan",
+    "image_url": "https://www.aesnyc.com/wp-content/uploads/2019/12/img-feat_google-cloud-conference.jpg",
+    "coordinates": [
+      40.75069478115248,
+      -73.98264008771869
+    ],
+    "url": "https://thomaspreti.com/venue/center-415/",
+    "capacity": "500+"
+  },
+  {
+    "name": "Hellen Mills Theatre",
+    "summary": "Chelsea venue featuring a spectacular 4,000 square foot, loft-like, street-level venue. It offers state-of-the-art sound and digital video projection systems, as well as high-speed, wireless Internet to satisfy all of your tech needs.",
+    "seated": 140,
+    "reception": 300,
+    "borough": "Manhattan",
+    "image_url": "https://images.squarespace-cdn.com/content/v1/5424db81e4b0d9410165ff00/1551810123678-IB2SXGYWPRLQNAZFCCKL/Economist2.jpg",
+    "coordinates": [
+      40.74576930772293,
+      -73.99276806072996
+    ],
+    "url": "https://thomaspreti.com/venue/helen-mills-theater/",
+    "capacity": "200"
+  },
+  {
+    "name": "Bohemian National Hall",
+    "summary": "Three spaces are available for events: The Grand Ballroom, a Multifunctional Room, and the Roof Terrace, which is equipped with a wet bar, sun shades, and a beautiful view of the Upper East Side.",
+    "seated": 200,
+    "reception": 300,
+    "borough": "Manhattan",
+    "image_url": "https://taste-food.com/wp-content/uploads/2014/11/Bohemian-National-Hall-3.jpg",
+    "coordinates": [
+      40.76927850753648,
+      -73.95652371839951
+    ],
+    "url": "https://thomaspreti.com/venue/bohemian-national-hall/",
+    "capacity": "200"
+  },
+  {
+    "name": "The Bordone LIC",
+    "summary": "The Bordone LIC is a premier venue located in Long Island City, with panoramic views of the iconic Manhattan skyline. The venue offers indoor and outdoor space for a unique and customized event experience.",
+    "seated": 200,
+    "reception": 300,
+    "borough": "Queens",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/20210912-_TUE2411.jpg",
+    "coordinates": [
+      40.75256765861502,
+      -73.95014173374094
+    ],
+    "url": "https://thomaspreti.com/venue/the-bordone-lic/",
+    "capacity": "200"
+  },
+  {
+    "name": "Weylin",
+    "summary": "This masterfully restored landmark venue in the heart of Williamsburg was made for couples in search of something classic yet unexpected.",
+    "seated": 300,
+    "reception": 700,
+    "borough": "Brooklyn",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/FORFRANCESCA-008.jpg",
+    "coordinates": [
+      40.710299322406236,
+      -73.9623794472369
+    ],
+    "url": "https://thomaspreti.com/venue/weylin/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "Duggal Greenhouse",
+    "summary": "Located in the Brooklyn Navy Yard, Duggal Greenhouse has become a popular spot for large scale events. With spectacular Manhattan views.",
+    "seated": 1000,
+    "reception": 3000,
+    "borough": "Brooklyn",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/VFW.jpg",
+    "coordinates": [
+      40.70277907636785,
+      -73.97741795888525
+    ],
+    "url": "https://thomaspreti.com/venue/duggal-greenhouse/",
+    "capacity": "500+"
+  },
+  {
+    "name": "Industria",
+    "summary": "Industria 33 Grand Street, an intimate 2,000-square-foot historical store-front space, is an architectural gem brimming with character, complete with a private yard and a 1,000-square-foot basement.",
+    "seated": 200,
+    "reception": 500,
+    "borough": "Brooklyn",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/Image-2.jpg",
+    "coordinates": [
+      40.716365344347196,
+      -73.9658070207775
+    ],
+    "url": "https://thomaspreti.com/venue/industria-studios/",
+    "capacity": "200"
+  },
+  {
+    "name": "74Wythe",
+    "summary": "74Wythe is 15,000 square feet of hospitality spanning 3 stories across 4 interconnected spaces, offering virtually unlimited configurations. Each space delivers a unique design, while carrying common themes throughout and preserving the building\u2019s 1929 origins.",
+    "seated": 400,
+    "reception": 150,
+    "borough": "Brooklyn",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/Roof-Main-Deck-Ceremony.jpg",
+    "coordinates": [
+      40.7224896258089,
+      -73.9578744472364
+    ],
+    "url": "https://thomaspreti.com/venue/74wythe/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "Museum Of the Moving Image",
+    "summary": " The Museum\u2019s 262-seat Sumner M. Redstone Theater serves as a dramatic setting for wedding ceremonies, conferences, panel discussions and screenings. Throughout your event, Museum galleries can remain open for your guests to enjoy our many interactive experiences.",
+    "seated": 250,
+    "reception": 260,
+    "borough": "Queens",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/Museum-Of-The-Moving-Image-1.jpg",
+    "coordinates": [
+      40.75649978449168,
+      -73.92390668771839
+    ],
+    "url": "https://thomaspreti.com/venue/museum-of-the-moving-image/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "The Foundry",
+    "summary": "The Foundry L.I.C. is a uniquely renovated 19th-Century industrial space, featuring an exclusive ivy-covered courtyard and stunning views of the 59th Street Bridge.",
+    "seated": 165,
+    "reception": 185,
+    "borough": "Queens",
+    "image_url": "https://images.squarespace-cdn.com/content/v1/534ee0fee4b0245ee2fd2a6f/1504143238521-4BAL7FKT75WSI0P2AAJR/Foundry+Main+Space.jpg?format=2500w",
+    "coordinates": [
+      40.75311249048611,
+      -73.94946225572419
+    ],
+    "url": "https://thomaspreti.com/venue/thefoundry/",
+    "capacity": "200"
+  },
+  {
+    "name": "The Knockdown Center",
+    "summary": "Built in 1903, Knockdown Center is a 75,000 sq. ft. restored glass factory uniquely situated on a gated three acre lot. A labyrinthine arrangement of brick, steel and heavy timber with ceiling heights reaching over 40 feet and adjoining rooms ranging from intimate to epic scales.",
+    "seated": 500,
+    "reception": 4000,
+    "borough": "Queens",
+    "image_url": "https://thomaspreti.com/wp-content/uploads/image-4.jpg",
+    "coordinates": [
+      40.715538447579874,
+      -73.91405727422553
+    ],
+    "url": "https://thomaspreti.com/venue/the-knockdown-center/",
+    "capacity": "200-500"
+  },
+  {
+    "name": "The Queens Zoo",
+    "summary": "Nestled in Flushing Meadows Park, amongst prominent locales such as the Tennis Center and Citifield, is an 11-acre zoo that opened in 1968. Home to animals native to the Americas, you will feel transported to majestic areas such as the Great Plains, the rocky California coast, or a Northeastern forest.",
+    "seated": 800,
+    "reception": 1500,
+    "borough": "Queens",
+    "image_url": "https://cdn.wedding-spot.com/images/venues/1816/Queens-Zoo%20-New-York-City-NY-2.jpg",
+    "coordinates": [
+      40.744154727266526,
+      -73.84931017595265
+    ],
+    "url": "https://thomaspreti.com/venue/wildlife-conservation-society/",
+    "capacity": "500+"
+  }
+]

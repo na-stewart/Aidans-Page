@@ -1,0 +1,84 @@
+html, body, #map { 
+  height: 100%; 
+  width: 100%; 
+  margin: 0; 
+  margin: 0; 
+  font-family: "Didact Gothic", sans-serif;
+}
+
+#map-overlay {
+  background-color: white;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  right: 20px;
+  width: 345px;
+  z-index: 999;
+  text-align: center;
+  overflow: auto; 
+}
+
+
+#map-overlay img {
+  max-width: 80%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 4px;
+  display: block;
+  margin: 0 auto;
+}
+
+#map-overlay-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#filters-container {
+  margin-top: 15px;
+}
+
+.venue-container {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 1px solid gray;
+}
+
+.venue-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.venue-container:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+}
+
+.venue-container p {
+  margin-left: 10px;
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 12.7px;
+  color: gray;
+  text-align: left;
+}
+
+.venue-container p a {
+  color: gray;
+}
+
+.venue-container .title {
+  font-size: 19px;
+  font-weight: bold;
+  color: black;
+}
+
+.venue-container img {
+  height: 110px;
+  width: 110px;
+  float: right;
+  padding-right: 8px;
+  padding-left: 8px;
+}
