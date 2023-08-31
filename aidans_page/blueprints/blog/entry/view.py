@@ -5,14 +5,14 @@ from sanic_security.authorization import require_permissions
 from sanic_security.utils import json
 from tortoise.expressions import Q
 
-from aidans_page.blueprints.entry.model import Entry
+from aidans_page.blueprints.blog.entry.model import Entry
 
 entry_bp = Blueprint("Entry")
 
 entry_bp.static(
     "/dashboard/entry", "aidans_page/static/dashboard/entry.html", name="dashboard_entry"
 )
-entry_bp.static("/entry", "aidans_page/static/aidans_page/entry.html", name="blog_entry")
+entry_bp.static("/blog/entry", "aidans_page/static/blog/entry.html", name="blog_entry")
 
 
 @entry_bp.post("entry")

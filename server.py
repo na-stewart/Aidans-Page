@@ -12,12 +12,9 @@ app = Sanic("Blog")
 
 app.blueprint(api)
 
-app.static("/", "aidans_page/static", name="blog_static")
-app.static("/", "aidans_page/static/aidans_page/index.html", name="blog_index")
-app.static("/favicon", "aidans_page/static/favicon.PNG", name="favicon")
-app.static("/about", "aidans_page/static/aidans_page/about.html", name="blog_about")
-app.static("/contact", "aidans_page/static/aidans_page/contact.html", name="blog_contact")
-app.static("/profile", "aidans_page/static/aidans_page/profile.html", name="blog_profile")
+# Update once general index is created.
+app.static("/", "aidans_page/static/blog/index.html", name="blog_index")
+app.static("/", "aidans_page/static", name="aidans_page_static")
 
 
 @app.get("/test")

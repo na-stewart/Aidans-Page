@@ -10,16 +10,11 @@ from sanic_security.authorization import require_permissions
 from sanic_security.models import Account
 from sanic_security.utils import json
 
-from aidans_page.blueprints.account.model import Profile
-
 account_bp = Blueprint("account")
 password_hasher = PasswordHasher()
 
 account_bp.static(
     "/dashboard/account", "aidans_page/static/dashboard/account.html", name="dashboard_account"
-)
-account_bp.static(
-    "/dashboard/profile", "aidans_page/static/dashboard/profile.html", name="dashboard_profile"
 )
 
 
@@ -46,7 +41,6 @@ async def on_account_create(request):
         verified=request.form.get("verified") is not None,
         disabled=request.form.get("disabled") is not None,
     )
-    await Profile.create(account=account)
     return json("Account created.", account.json)
 
 
@@ -54,10 +48,7 @@ async def on_account_create(request):
 @require_permissions("account:delete")
 async def on_account_delete(request):
     account = await Account.get(id=request.args.get("id"))
-    profile = await Profile.get(account=account)
-    profile.deleted = True
     account.deleted = True
-    await profile.save(update_fields=["deleted"])
     await account.save(update_fields=["deleted"])
     return json("Account deleted.", account.json)
 
@@ -75,64 +66,27 @@ async def on_account_update(request):
             validate_password(request.form.get("password"))
         )
     await account.save(update_fields=["username", "email", "password", "disabled", "verified"])
-    return json("Profile updated.", account.json)
+    return json("Account updated.", account.json)
 
 
-@account_bp.get("profile/all")
-@require_permissions("profile:get")
-async def on_profile_get_all(request):
-    profiles = await Profile.filter(deleted=False).prefetch_related("account").all()
-    return json("Profiles retrieved.", [profile.json for profile in profiles])
-
-
-@account_bp.put("profile")
-@require_permissions("profile:put")
-async def on_profile_update(request):
-    profile = await Profile.get(id=request.args.get("id")).prefetch_related("account")
-    profile.subscribed = request.form.get("subscribed") is not None
-    await profile.save(update_fields=["subscribed"])
-    return json("Profile updated.", profile.json)
-
-
-@account_bp.get("account/profile")
+@account_bp.delete("account/my")
 @requires_authentication
-async def on_account_profile_get(request):
-    profile = await Profile.get_or_none(
-        account=request.ctx.authentication_session.bearer
-    )
-    return json(
-        "Profile retrieved.",
-        {
-            "account": request.ctx.authentication_session.bearer.json,
-            "profile": profile.json if profile else None,
-        },
-    )
-
-
-@account_bp.delete("account/profile")
-@requires_authentication
-async def on_account_profile_delete(request):
-    profile = await Profile.get(account=request.ctx.authentication_session.bearer)
-    profile.deleted = True
+async def on_my_account_delete(request):
     request.ctx.authentication_session.bearer.deleted = True
     await request.ctx.authentication_session.bearer.save(update_fields=["deleted"])
-    await profile.save(update_fields=["deleted"])
     return json("Account deleted.", request.ctx.authentication_session.bearer.json)
 
 
-@account_bp.put("account/profile")
+@account_bp.put("account/my")
 @requires_authentication
-async def on_account_profile_update(request):
-    profile = await Profile.get(account=request.ctx.authentication_session.bearer)
-    profile.subscribed = request.form.get("subscribed") is not None
+async def on_my_account_update(request):
     request.ctx.authentication_session.bearer.username = request.form.get("username")
     request.ctx.authentication_session.bearer.email = request.form.get("email")
     if request.form.get("password"):
         request.ctx.authentication_session.bearer.password = password_hasher.hash(
             validate_password(request.form.get("password"))
         )
-    await profile.save(update_fields=["subscribed"])
     await request.ctx.authentication_session.bearer.save(
         update_fields=["username", "email", "password"]
     )
-    return json("Profile updated.", request.ctx.authentication_session.bearer.json)
+    return json("Account updated.", request.ctx.authentication_session.bearer.json)

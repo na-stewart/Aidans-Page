@@ -18,7 +18,7 @@ function addSearchFormEventListener(){
 
 
 function getEntries() {
-  fetch(`api/v1/entry/all/published?page=${document.getElementById('page').value}&search=${document.getElementById('search').value}`, {
+  fetch(`/api/v1/entry/all/published?page=${document.getElementById('page').value}&search=${document.getElementById('search').value}`, {
     method: 'GET',
   })
   .then(response => {
@@ -36,10 +36,10 @@ function getEntries() {
         document.getElementById('entries-container').innerHTML +=
           `<div class='blog-post'>
             <div class='blog-post__image'>
-              <a href='/entry?id=${entry.id}'><img src='${entry.thumbnail_url}' alt='Thumbnail'></a>
+              <a href='/blog/entry?id=${entry.id}'><img src='${entry.thumbnail_url}' alt='Thumbnail'></a>
             </div>
             <div class='blog-post__title'>
-              <h2><a href='/entry?id=${entry.id}'>${entry.title}</a></h2>
+              <h2><a href='/blog/entry?id=${entry.id}'>${entry.title}</a></h2>
             </div>
             <div class='blog-post__info'>
               <span>
@@ -50,7 +50,7 @@ function getEntries() {
               <p>${entry.summary}</p>
             </div>
             <div class='blog-post__footer'>
-              <a class='blog-post__footer-link' href='/entry?id=${entry.id}'>Read more</a>
+              <a class='blog-post__footer-link' href='/blog/entry?id=${entry.id}'>Read more</a>
             </div>
           </div>`;
       });

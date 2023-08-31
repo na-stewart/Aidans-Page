@@ -9,7 +9,6 @@ from sanic_security.verification import (
     verify_account,
 )
 
-from aidans_page.blueprints.account.model import Profile
 from aidans_page.common.util import send_email
 
 security_bp = Blueprint("security")
@@ -19,11 +18,10 @@ security_bp.static("/register", "aidans_page/static/auth/register.html", name="a
 security_bp.static("/verify", "aidans_page/static/auth/verify.html", name="auth_verify")
 
 
-@security_bp.post("register")
+@security_bp.post("/register")
 @requires_captcha()
 async def on_register(request):
     account = await register(request)
-    await Profile.create(account=account)
     two_step_session = await request_two_step_verification(request, account)
     await send_email(
         account.email,
@@ -38,7 +36,7 @@ async def on_register(request):
     return response
 
 
-@security_bp.post("verify-email")
+@security_bp.post("/verify-email")
 async def on_verify(request):
     two_step_session = await verify_account(request)
     return json(

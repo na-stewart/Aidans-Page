@@ -1,13 +1,13 @@
 function init() {
   getAccountInfo();
-  document.getElementById("captcha-img").src = `api/v1/captcha?t=${new Date().getTime()}`
+  document.getElementById("captcha-img").src = `/api/v1/captcha?t=${new Date().getTime()}`
   addContractFormEventListener();
 }
 
 function addContractFormEventListener(){
   document.getElementById("contact-form").addEventListener('submit', function(event) {
     event.preventDefault();
-    fetch('api/v1/inquiry', {
+    fetch('/api/v1/inquiry', {
       method: 'POST',
       body: new FormData(this)
     })

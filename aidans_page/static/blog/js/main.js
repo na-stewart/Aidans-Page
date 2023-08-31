@@ -20,7 +20,7 @@ function pagination(forward, func) {
 }
 
 function getAccountInfo(){
-  fetch(`api/v1/account`, {
+  fetch(`/api/v1/account`, {
     method: 'GET',
   })
   .then(response => {

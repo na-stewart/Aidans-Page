@@ -5,7 +5,7 @@ function init(){
 }
 
 function getProfile(){
-  fetch(`api/v1/account/profile`, {
+  fetch(`/api/v1/account`, {
     method: 'GET',
   })
   .then(response => {
@@ -14,9 +14,8 @@ function getProfile(){
     return Promise.reject(response); 
   })
   .then(json => {
-    document.getElementById("email").value = json.data.account.email;
-    document.getElementById("username").value = json.data.account.username;
-    document.getElementById("subscribed").checked = json.data.profile.subscribed;
+    document.getElementById("email").value = json.data.email;
+    document.getElementById("username").value = json.data.username;
   })
   .catch(error => {
     error.json().then(error => {
@@ -31,7 +30,7 @@ function addProfileFormEventListener(){
     event.preventDefault();
     switch(event.submitter.value) {
       case 'Update':
-        fetch('api/v1/account/profile', {
+        fetch('/api/v1/account/my', {
           method: 'PUT',
           body: new FormData(this)
         })
@@ -48,7 +47,7 @@ function addProfileFormEventListener(){
         });
       break;
       case 'Delete Account':
-        fetch(`api/v1/account/profile`, {
+        fetch(`/api/v1/account/my`, {
           method: 'DELETE',
         })
         .then(response => {
@@ -64,7 +63,7 @@ function addProfileFormEventListener(){
         });
       break;
       default:
-        fetch(`api/v1/logout`, {
+        fetch(`/api/v1/logout`, {
           method: 'POST',
         })
         .then(response => {

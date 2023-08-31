@@ -6,8 +6,8 @@
     <title>Aidan's Page - Contact</title>
     <link rel="shortcut icon" href="/favicon">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    <link href="blog/css/bootstrap.min.css" rel="stylesheet">
-    <link href="blog/css/style.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
   </head>
   <body onload="init();">
     <svg style="display: none;">
@@ -31,13 +31,13 @@
       <nav class="main-nav">
         <ul class="main-nav__items">
           <li class="main-nav__item">
-            <a href="/">Home</a>
+            <a href="/blog">Home</a>
           </li>
           <li class="main-nav__item  main-nav__item--active">
-            <a href="/contact">Contact</a>
+            <a href="/blog/contact">Contact</a>
           </li>
           <li class="main-nav__item">
-            <a href="/profile">Profile</a>
+            <a href="/blog/profile">Profile</a>
           </li>
         </ul>
       </nav>
@@ -77,8 +77,7 @@
                 </p>
                 <p class="single-post__contact-submit">   
                   <img id="captcha-img">
-                  <img src="blog/img/reload.png" style="padding-top: 60px; cursor: pointer;" 
-                  onclick="document.getElementById('captcha-img').src = `api/v1/captcha?t=${ new Date().getTime()}`">
+                  <img src="img/reload.png" style="padding-top: 60px; cursor: pointer;" onclick="document.getElementById('captcha-img').src = `/api/v1/captcha?t=${ new Date().getTime()}`">
                   <br><br>        
                   <input id="submit" type="submit" name="submit" value="Send">             
                   <p id="response-msg"></p>              
@@ -104,13 +103,13 @@
           <nav class="page-footer__nav">
             <ul class="page-footer__nav-items">
               <li class="page-footer__nav-item">
-                <a href="/">Home</a>
+                <a href="/blog">Home</a>
               </li>
               <li class="page-footer__nav-item">
-                <a href="/contact">Contact</a>
+                <a href="/blog/contact">Contact</a>
               </li>
               <li class="page-footer__nav-item">
-                <a href="/profile">Profile</a>
+                <a href="/blog/profile">Profile</a>
               </li>
             </ul>
           </nav>
@@ -132,9 +131,9 @@
       </div>
     </footer>
     <div class="content-overlay"></div>
-    <script src="blog/js/jquery-3.1.1.min.js"></script>
-    <script src="blog/js/script.js"></script>
-    <script src="blog/js/main.js"></script>
-    <script src="blog/js/contact.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
   </body>
 </html>

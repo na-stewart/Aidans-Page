@@ -6,7 +6,7 @@ function init() {
 
 function getEntry() {
   const urlParams = new URLSearchParams(window.location.search);
-  fetch(`api/v1/entry/published?id=${urlParams.get('id')}`, {
+  fetch(`/api/v1/entry/published?id=${urlParams.get('id')}`, {
     method: 'GET',
   })
   .then(response => {
@@ -55,7 +55,7 @@ function appendCommentElement(comment) {
 
 function getComments() {
     const urlParams = new URLSearchParams(window.location.search);
-    fetch(`api/v1/comment/all/approved?entry=${urlParams.get('id')}&page=${document.getElementById('page').value}`, {
+    fetch(`/api/v1/comment/all/approved?entry=${urlParams.get('id')}&page=${document.getElementById('page').value}`, {
       method: 'GET',
     })
     .then(response => {
@@ -80,7 +80,7 @@ function addCommentFormEventListener(){
   const urlParams = new URLSearchParams(window.location.search);
   document.getElementById("comment-form").addEventListener('submit', function(event) {
     event.preventDefault();
-    fetch(`api/v1/comment/publish?entry=${urlParams.get("id")}`, {
+    fetch(`/api/v1/comment/publish?entry=${urlParams.get("id")}`, {
       method: 'POST',
       body: new FormData(this),
     })

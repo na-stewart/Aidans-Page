@@ -25,7 +25,7 @@
   <h3 align="center">Aidan's Page</h3>
 
   <p align="center">
-   Open Source Personal Blog
+   Open Source Personal Website
     <br />
     <a href="https://github.com/na-stewart/Aidans-Page/issues">Report Bug</a>
     ·
