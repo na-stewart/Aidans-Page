@@ -40,10 +40,10 @@ async def on_entry_update(request):
     venue.coordinates = request.form.get("coordinates")
     venue.thumbnail_url = request.form.get("thumbnail_url")
     venue.redirect_url = request.form.get("redirect_url")
-    venue.visible = request.form.get("visible") is not None
+    venue.available = request.form.get("available") is not None
     await venue.save(
         update_fields=["name", "summary", "reception", "seated", "neighborhood", "type", "coordinates", "thumbnail_url",
-                       "redirect_url", "visible"]
+                       "redirect_url", "available"]
     )
     return json("Venue updated.", venue.json)
 
