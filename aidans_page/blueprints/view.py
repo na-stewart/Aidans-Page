@@ -2,10 +2,11 @@ from sanic import Blueprint
 
 from aidans_page.blueprints.blog.comment.view import comment_bp
 from aidans_page.blueprints.blog.entry.view import entry_bp
-from aidans_page.blueprints.account.view import account_bp
+from aidans_page.blueprints.security.account import account_bp
 from aidans_page.blueprints.blog.view import blog_bp
 from aidans_page.blueprints.inquiry.view import inquiry_bp
 from aidans_page.blueprints.security.view import security_bp
+from aidans_page.blueprints.tpc_map.view import tpc_map_bp
 
 bp_models = [
     "aidans_page.blueprints.blog.entry.model",
@@ -15,6 +16,7 @@ bp_models = [
 api = Blueprint.group(
     security_bp,
     blog_bp,
+    tpc_map_bp,
     entry_bp,
     account_bp,
     inquiry_bp,

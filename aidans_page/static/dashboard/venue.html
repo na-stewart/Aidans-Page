@@ -106,17 +106,47 @@
                         <form id="dashboard-form">
                             <div class="row">                   
                                 <div class="form-group">
-                                    <label>Username</label>
-                                    <input id="username"  name="username" type="text" class="form-control" placeholder="Username" disabled>
+                                  <label>Name</label>
+                                  <input id="name" name="name" type="text" class="form-control" placeholder="Name">
                                 </div>             
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input id="email" name="email" type="email" class="form-control" placeholder="Email" disabled>
+                                  <label>Summary</label>
+                                  <textarea id="summary"name="Summary" type="text" class="form-control" placeholder="Summary"></textarea>
                                 </div>
                                 <div class="form-group">
-                                  <label>Content</label>
-                                  <textarea id="content" name="content" type="text" class="form-control" placeholder="Content"></textarea>
-                                </div>
+                                  <label>Reception</label>
+                                  <input id="reception" name="Reception" type="text" class="form-control" placeholder="Reception">
+                                </div>  
+                                <div class="form-group">
+                                  <label>Seated</label>
+                                  <input id="seated" name="seated" type="text" class="form-control" placeholder="Seated">
+                                </div>  
+                                <div class="form-group">
+                                  <label>Neighborhood</label>
+                                  <input id="neighborhood" name="neighborhood" type="text" class="form-control" placeholder="Neighborhood">
+                                </div>  
+                                <div class="form-group">
+                                  <label>Type</label>
+                                  <input id="name" name="name" type="text" class="form-control" placeholder="Name">
+                                </div>  
+                                <div class="form-group">
+                                  <label>Coordinates</label>
+                                  <input id="coordinates" name="coordinates" type="text" class="form-control" placeholder="Name">
+                                </div>  
+                                <div class="form-group">
+                                  <label>Thumbnail URL</label>
+                                  <input id="thumbnail-url" name="thumbnail-url" type="text" class="form-control" placeholder="Name">
+                                </div>  
+                                <div class="form-group">
+                                  <label>Redirect URL</label>
+                                  <input id="redirect-url"  name="redirect-url" type="text" class="form-control" placeholder="Name">
+                                </div>  
+                                <div class="form-group">
+                                  <input type="checkbox" id="available" name="available">
+                                  <label>Available<label>  
+                                </div>  
+                                <button value="post" type="submit" class="btn btn-info btn-fill pull-right">Post</button>
+                                <button value="update" type="submit" class="btn btn-info btn-fill pull-right" style="margin-right: 10px;">Update</button>
                                 <button value="delete" type="submit" class="btn btn-info btn-fill pull-right" style="margin-right: 10px;">Delete</button>
                             </div>
                         </form>
@@ -128,8 +158,12 @@
                                 <th>Date Created</th>
                                 <th>Date Updated</th>
                                 <th>Id</th>
-                                <th>Email</th>
-                                <th>Username</th>
+                                <th>Name</th>
+                                <th>Reception</th> 
+                                <th>Seated</th> 
+                                <th>Neighborhood</th>
+                                <th>Type</th>
+                                <th>Visible</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -139,8 +173,12 @@
                                 <th>Date Created</th>
                                 <th>Date Updated</th>
                                 <th>Id</th>
-                                <th>Email</th>
-                                <th>Username</th>                 
+                                <th>Name</th>
+                                <th>Reception</th> 
+                                <th>Seated</th> 
+                                <th>Neighborhood</th>
+                                <th>Type</th>
+                                <th>Visible</th>                
                               </tr>
                             </tfoot>
                         </table>
