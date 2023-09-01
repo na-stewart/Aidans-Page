@@ -27,6 +27,7 @@ async def on_venue_create(request):
         coordinates=request.form.get("coordinates"),
         thumbnail_url=request.form.get("thumbnail-url"),
         redirect_url=request.form.get("redirect-url"),
+        published=request.form.get("published") is not None,
     )
     return json("Venue created.", venue.json)
 
@@ -45,6 +46,7 @@ async def on_entry_update(request):
     venue.coordinates = request.form.get("coordinates")
     venue.thumbnail_url = request.form.get("thumbnail-url")
     venue.redirect_url = request.form.get("redirect-url")
+    venue.published = request.form.get("published") is not None
     await venue.save(
         update_fields=[
             "name",
@@ -57,14 +59,15 @@ async def on_entry_update(request):
             "coordinates",
             "thumbnail_url",
             "redirect_url",
+            "published"
         ]
     )
     return json("Venue updated.", venue.json)
 
 
-@venue_bp.get("venue/all/visible")
-async def on_venue_get_all_available(request):
-    venues = await Venue.filter(deleted=False, visible=True).all()
+@venue_bp.get("venue/all/published")
+async def on_venue_get_published(request):
+    venues = await Venue.filter(deleted=False, published=True).all()
     return json("Venues retrieved.", [inquiry.json for inquiry in venues])
 
 

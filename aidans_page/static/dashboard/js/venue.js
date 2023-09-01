@@ -10,6 +10,7 @@ const table = $('#table').DataTable({
     {data: 'capacity'},
     {data: 'neighborhood'},
     {data: 'type'},
+    {data: 'published'},
   ],
   columnDefs: [
     {
@@ -38,4 +39,5 @@ function fillFields(selectedRowData) {
   $('#coordinates').val(selectedRowData.coordinates);
   $('#thumbnail-url').val(selectedRowData.thumbnail_url);
   $('#redirect-url').val(selectedRowData.redirect_url);
+  $('#published').prop('checked', selectedRowData.published);
 }

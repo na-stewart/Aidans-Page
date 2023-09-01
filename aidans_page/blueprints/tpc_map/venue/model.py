@@ -14,6 +14,7 @@ class Venue(BaseModel):
     coordinates: str = fields.CharField(max_length=255)
     thumbnail_url: str = fields.CharField(max_length=255)
     redirect_url: str = fields.CharField(max_length=255)
+    published: bool = fields.BooleanField(default=False)
 
     @property
     def json(self) -> dict:
@@ -31,4 +32,5 @@ class Venue(BaseModel):
             "coordinates": self.coordinates,
             "thumbnail_url": self.thumbnail_url,
             "redirect_url": self.redirect_url,
+            "published": self.published,
         }
