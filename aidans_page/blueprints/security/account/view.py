@@ -14,7 +14,9 @@ account_bp = Blueprint("account")
 password_hasher = PasswordHasher()
 
 account_bp.static(
-    "/dashboard/account", "aidans_page/static/dashboard/account.html", name="dashboard_account"
+    "/dashboard/account",
+    "aidans_page/static/dashboard/account.html",
+    name="dashboard_account",
 )
 
 
@@ -65,7 +67,9 @@ async def on_account_update(request):
         account.password = password_hasher.hash(
             validate_password(request.form.get("password"))
         )
-    await account.save(update_fields=["username", "email", "password", "disabled", "verified"])
+    await account.save(
+        update_fields=["username", "email", "password", "disabled", "verified"]
+    )
     return json("Account updated.", account.json)
 
 

@@ -4,7 +4,7 @@ function addLoginFormEventListener() {
   document.getElementById('login-form').addEventListener('submit', function(event){
     event.preventDefault();
     document.getElementById("response-msg").innerHTML = "Please wait..."
-    fetch('/api/v1/login', {
+    fetch('api/v1/login', {
       method: 'POST',
       headers: new Headers({
         'Authorization': 'Basic '+ btoa(this.email.value + ':' + this.password.value), 
@@ -33,7 +33,7 @@ function addLoginFormEventListener() {
 function addRegisterFormEventListener() {
   document.getElementById('register-form').addEventListener('submit', function(event) {
     event.preventDefault();
-    fetch('/api/v1/register', {
+    fetch('api/v1/register', {
       method: "POST",
       body: new FormData(this)
     }).then(response => {

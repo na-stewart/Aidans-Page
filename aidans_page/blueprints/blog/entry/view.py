@@ -10,7 +10,9 @@ from aidans_page.blueprints.blog.entry.model import Entry
 entry_bp = Blueprint("Entry")
 
 entry_bp.static(
-    "/dashboard/entry", "aidans_page/static/dashboard/entry.html", name="dashboard_entry"
+    "/dashboard/entry",
+    "aidans_page/static/dashboard/entry.html",
+    name="dashboard_entry",
 )
 entry_bp.static("/blog/entry", "aidans_page/static/blog/entry.html", name="blog_entry")
 

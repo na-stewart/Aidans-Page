@@ -15,7 +15,7 @@ comment_bp = Blueprint("Comment")
 comment_bp.static(
     "/dashboard/comment",
     "aidans_page/static/dashboard/comment.html",
-    name="dashboard_comment/",
+    name="dashboard_comment",
 )
 
 

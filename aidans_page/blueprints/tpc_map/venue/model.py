@@ -8,12 +8,12 @@ class Venue(BaseModel):
     summary: str = fields.CharField(max_length=255)
     reception: int = fields.IntField()
     seated: int = fields.IntField()
+    capacity: int = fields.CharField(max_length=255)
     neighborhood: str = fields.CharField(max_length=255)
     type: str = fields.CharField(max_length=255)
     coordinates: str = fields.CharField(max_length=255)
     thumbnail_url: str = fields.CharField(max_length=255)
     redirect_url: str = fields.CharField(max_length=255)
-    available: bool = fields.BooleanField(default=True)
 
     @property
     def json(self) -> dict:
@@ -24,6 +24,7 @@ class Venue(BaseModel):
             "name": self.name,
             "summary": self.summary,
             "reception": self.reception,
+            "capacity": self.capacity,
             "seated": self.seated,
             "neighborhood": self.neighborhood,
             "type": self.type,

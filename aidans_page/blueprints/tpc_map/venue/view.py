@@ -2,12 +2,16 @@ from sanic import Blueprint
 from sanic_security.authorization import require_permissions
 from sanic_security.utils import json
 
-from model import Venue
+from aidans_page.blueprints.tpc_map.venue.model import Venue
 
 venue_bp = Blueprint("Venue")
 
+venue_bp.static(
+    "/dashboard/venue",
+    "aidans_page/static/dashboard/venue.html",
+    name="dashboard_venue",
+)
 
-# TODO: Field validation.
 
 @venue_bp.post("venue")
 @require_permissions("venue:create")
@@ -17,12 +21,12 @@ async def on_venue_create(request):
         summary=request.form.get("summary"),
         reception=request.form.get("reception"),
         seated=request.form.get("seated"),
+        capacity=request.form.get("capacity"),
         neighborhood=request.form.get("neighborhood"),
         type=request.form.get("type"),
         coordinates=request.form.get("coordinates"),
-        thumbnail_url=request.form.get("thumbnail_url"),
-        redirect_url=request.form.get("redirect_url"),
-        available=request.form.get("available") is not None,
+        thumbnail_url=request.form.get("thumbnail-url"),
+        redirect_url=request.form.get("redirect-url"),
     )
     return json("Venue created.", venue.json)
 
@@ -35,15 +39,25 @@ async def on_entry_update(request):
     venue.summary = request.form.get("summary")
     venue.reception = request.form.get("reception")
     venue.seated = request.form.get("seated")
+    venue.capacity = request.form.get("capacity")
     venue.neighborhood = request.form.get("neighborhood")
     venue.type = request.form.get("type")
     venue.coordinates = request.form.get("coordinates")
-    venue.thumbnail_url = request.form.get("thumbnail_url")
-    venue.redirect_url = request.form.get("redirect_url")
-    venue.available = request.form.get("available") is not None
+    venue.thumbnail_url = request.form.get("thumbnail-url")
+    venue.redirect_url = request.form.get("redirect-url")
     await venue.save(
-        update_fields=["name", "summary", "reception", "seated", "neighborhood", "type", "coordinates", "thumbnail_url",
-                       "redirect_url", "available"]
+        update_fields=[
+            "name",
+            "summary",
+            "reception",
+            "seated",
+            "capacity",
+            "neighborhood",
+            "type",
+            "coordinates",
+            "thumbnail_url",
+            "redirect_url",
+        ]
     )
     return json("Venue updated.", venue.json)
 

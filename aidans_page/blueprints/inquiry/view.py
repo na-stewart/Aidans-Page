@@ -10,7 +10,9 @@ from aidans_page.common.util import send_email
 inquiry_bp = Blueprint("Inquiry")
 
 inquiry_bp.static(
-    "/dashboard/inquiry", "aidans_page/static/dashboard/inquiry.html", name="dashboard_inquiry"
+    "/dashboard/inquiry",
+    "aidans_page/static/dashboard/inquiry.html",
+    name="dashboard_inquiry",
 )
 
 

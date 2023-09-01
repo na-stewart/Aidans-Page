@@ -1,6 +1,5 @@
 .container {
   display: flex;
-
 }
 
 .left-div {
@@ -21,7 +20,10 @@ form textarea {
   min-height: 280px;
 }
 
-
 .highlight {
   background-color: yellow;
+}
+
+table {
+  width: 100%;
 }

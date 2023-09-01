@@ -14,7 +14,9 @@ from aidans_page.common.util import send_email
 security_bp = Blueprint("security")
 
 security_bp.static("/login", "aidans_page/static/auth/index.html", name="auth_index")
-security_bp.static("/register", "aidans_page/static/auth/register.html", name="auth_register")
+security_bp.static(
+    "/register", "aidans_page/static/auth/register.html", name="auth_register"
+)
 security_bp.static("/verify", "aidans_page/static/auth/verify.html", name="auth_verify")
 
 

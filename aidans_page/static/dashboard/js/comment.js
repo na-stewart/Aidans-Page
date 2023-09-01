@@ -14,7 +14,8 @@ const table = $('#table').DataTable({
         return parseDateTime(data)
       }
     }
-  ]
+  ],
+  scrollX: true,
 });
 var selectedRow;
 
