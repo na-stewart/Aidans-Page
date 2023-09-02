@@ -5,7 +5,7 @@ from sanic_security.authentication import create_initial_admin_account
 from sanic_security.utils import json
 from tortoise.contrib.sanic import register_tortoise
 
-from aidans_page.blueprints.view import api, bp_models
+from aidans_page.blueprints.view import api, api_models
 from aidans_page.common.config import config
 
 app = Sanic("Blog")
@@ -39,7 +39,7 @@ app.config.PROXIES_COUNT = 1
 register_tortoise(
     app,
     db_url=config.DATABASE_URL,
-    modules={"models": bp_models},
+    modules={"models": api_models},
     generate_schemas=True,
 )
 create_initial_admin_account(app)

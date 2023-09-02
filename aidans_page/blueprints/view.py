@@ -7,7 +7,7 @@ from aidans_page.blueprints.inquiry.view import inquiry_bp
 from aidans_page.blueprints.security.account.view import account_bp
 from aidans_page.blueprints.security.view import security_bp
 
-bp_models = [
+api_models = [
     "sanic_security.models",
     "aidans_page.blueprints.entry.model",
     "aidans_page.blueprints.inquiry.model",
