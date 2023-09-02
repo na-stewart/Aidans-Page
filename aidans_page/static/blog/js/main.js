@@ -19,7 +19,7 @@ function pagination(forward, func) {
     func();
 }
 
-function getAccountInfo(){
+function fillAccountInfo(){
   fetch(`/api/v1/account`, {
     method: 'GET',
   })
@@ -33,8 +33,10 @@ function getAccountInfo(){
     document.getElementById("username").value = json.data.username;
   })
   .catch(error => {
-    if (window.location.pathname == '/profile')
-      window.location.href = '/login';
+    error.json().then(error => {
+      if (isAuthTokenInvalid(error) && window.location.pathname == '/profile')
+        location.assign("/login?redirect=" + window.location.pathname);
+    });
   });
 }
 

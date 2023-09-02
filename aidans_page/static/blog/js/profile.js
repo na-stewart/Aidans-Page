@@ -1,28 +1,7 @@
 
 function init(){
   addProfileFormEventListener();
-  getProfile();
-}
-
-function getProfile(){
-  fetch(`/api/v1/account`, {
-    method: 'GET',
-  })
-  .then(response => {
-    if (response.ok) 
-      return response.json();
-    return Promise.reject(response); 
-  })
-  .then(json => {
-    document.getElementById("email").value = json.data.email;
-    document.getElementById("username").value = json.data.username;
-  })
-  .catch(error => {
-    error.json().then(error => {
-      if (isAuthTokenInvalid(error))
-        window.location.href = '/login';
-    });
-  });
+  fillAccountInfo();
 }
 
 function addProfileFormEventListener(){
@@ -72,7 +51,7 @@ function addProfileFormEventListener(){
           return Promise.reject(response); 
         })
         .then(json => {
-          location.assign("/login");
+          location.assign("/login?redirect=" + window.location.pathname);
         })
         .catch(error => {
           error.json().then(error => document.getElementById("response-msg").innerHTML = error.message);

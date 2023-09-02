@@ -1,7 +1,7 @@
 from sanic_security.models import Account
 from tortoise import fields
 
-from aidans_page.blueprints.blog.entry.model import Entry
+from aidans_page.blueprints.entry.model import Entry
 from aidans_page.common.base_model import BaseModel
 
 

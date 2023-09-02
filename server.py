@@ -12,15 +12,12 @@ app = Sanic("Blog")
 
 app.blueprint(api)
 
-app.static("/", "aidans_page/static/blog/index.html", name="aidans_page_index")
-app.static("/", "aidans_page/static", name="aidans_page_static")
 
-app.static("/blog", "aidans_page/static/blog/index.html", name="blog_index")
-app.static("/blog/about", "aidans_page/static/blog/about.html", name="blog_about")
-app.static("/blog/contact", "aidans_page/static/blog/contact.html", name="blog_contact")
-app.static("/blog/profile", "aidans_page/static/blog/profile.html", name="blog_profile")
-
-app.static("/tpc-map", "aidans_page/static/tpc-map/index.html", name="tpc_map_index")
+app.static("/", "aidans_page/static", name="blog_static")
+app.static("/", "aidans_page/static/blog/index.html", name="blog_index")
+app.static("/about", "aidans_page/static/blog/about.html", name="blog_about")
+app.static("/contact", "aidans_page/static/blog/contact.html", name="blog_contact")
+app.static("/profile", "aidans_page/static/blog/profile.html", name="blog_profile")
 
 
 @app.get("/test")
@@ -42,7 +39,7 @@ app.config.PROXIES_COUNT = 1
 register_tortoise(
     app,
     db_url=config.DATABASE_URL,
-    modules={"models": ["sanic_security.models"] + bp_models},
+    modules={"models": bp_models},
     generate_schemas=True,
 )
 create_initial_admin_account(app)

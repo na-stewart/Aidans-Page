@@ -5,8 +5,8 @@ from sanic_security.authentication import requires_authentication
 from sanic_security.authorization import require_permissions
 from sanic_security.utils import json
 
-from aidans_page.blueprints.blog.comment.model import Comment
-from aidans_page.blueprints.blog.entry.model import Entry
+from aidans_page.blueprints.comment.model import Comment
+from aidans_page.blueprints.entry.model import Entry
 from aidans_page.common.config import config
 from aidans_page.common.util import send_email
 

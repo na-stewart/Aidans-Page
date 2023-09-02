@@ -8,6 +8,10 @@ function parseDateTime(date){
   })
 }
 
+function isAuthTokenInvalid(error) {
+  return error.data == "JWTDecodeError" || error.data == "ExpiredError" || error.data == "DeactivatedError"
+}
+
 function initDashboard(table, fetchEndpoint) {
   const form = document.getElementById('dashboard-form');
   addTableRowSelectionEventListener(table, form)
@@ -58,7 +62,12 @@ function populateTable(table, getMethodEndpoint) {
     table.rows.add(json.data).draw();
   })
   .catch(error => {
-    error.json().then(error => alert(error.message));
+    error.json().then(error => {
+      if (isAuthTokenInvalid(error)) 
+        location.assign("/login?redirect=" + window.location.pathname);
+      else
+        alert(error.message);
+    });
   });  
 }
 

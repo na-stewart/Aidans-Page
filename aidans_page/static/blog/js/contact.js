@@ -1,5 +1,5 @@
 function init() {
-  getAccountInfo();
+  fillAccountInfo();
   document.getElementById("captcha-img").src = `/api/v1/captcha?t=${new Date().getTime()}`
   addContractFormEventListener();
 }

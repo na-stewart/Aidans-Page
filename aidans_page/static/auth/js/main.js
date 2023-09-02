@@ -17,7 +17,7 @@ function addLoginFormEventListener() {
       return Promise.reject(response); 
     })
     .then(json => {
-      location.assign("/profile");
+      location.assign(urlParams.get("redirect"));
     })
     .catch(error => {
       error.json().then(error => {
@@ -42,7 +42,7 @@ function addRegisterFormEventListener() {
       return Promise.reject(response); 
     })
     .then(json => {
-      location.assign("/verify");
+      location.assign("/verify?redirect=" + urlParams.get("redirect"));
     })
     .catch(error => {
       error.json().then(error => {
@@ -68,7 +68,7 @@ function addVerifyFormEventListener(event) {
       return Promise.reject(response); 
     })
     .then(json => {
-      location.assign("/login");
+      location.assign("/login?redirect=" + urlParams.get("redirect"));
     })
     .catch(error => {
       error.json().then(error => {
