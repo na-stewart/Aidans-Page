@@ -14,7 +14,7 @@ entry_bp.static(
     "aidans_page/static/dashboard/entry.html",
     name="dashboard_entry",
 )
-entry_bp.static("/blog/entry", "aidans_page/static/blog/entry.html", name="blog_entry")
+entry_bp.static("/entry", "aidans_page/static/blog/entry.html", name="blog_entry")
 
 
 @entry_bp.post("entry")
