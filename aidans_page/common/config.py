@@ -5,7 +5,7 @@ from sanic.utils import str_to_bool
 DEFAULT_CONFIG = {
     "ADMIN_EMAIL": "na.stewart365@gmail.com",
     "DATABASE_URL": "sqlite://:memory:",
-    "APP_BUILD": "1.1.0",
+    "APP_BUILD": "1.1.1",
 }
 
 
