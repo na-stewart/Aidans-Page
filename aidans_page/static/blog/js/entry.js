@@ -65,7 +65,8 @@ function getComments() {
     })
     .then(json => {
       document.getElementById('total-comments').innerHTML = `${json.data.total_comments} Comment(s)`
-      document.getElementById('total-pages').innerHTML = json.data.total_pages == 0 ? 1 : json.data.total_pages;
+      if (json.data.total_pages < 0)
+        document.getElementById('total-pages').innerHTML = json.data.total_pages;
       if (json.data.comments.length > 0) {
         document.getElementById('comments-container').innerHTML = '';
         json.data.comments.forEach(comment => {
