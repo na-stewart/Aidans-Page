@@ -7,7 +7,7 @@ from sanic_security.authentication import (
     validate_password,
 )
 from sanic_security.authorization import require_permissions
-from sanic_security.models import Account
+from sanic_security.models import Account, Role
 from sanic_security.utils import json
 
 account_bp = Blueprint("account")
@@ -53,6 +53,33 @@ async def on_account_delete(request):
     account.deleted = True
     await account.save(update_fields=["deleted"])
     return json("Account deleted.", account.json)
+
+
+@account_bp.post("account/roles")
+@require_permissions("account:role")
+async def on_account_role_get(request):
+    role = await Role.get(id=request.args.get("role-id"))
+    account = await Account.get(id=request.args.get("id"))
+    await account.roles.add(role)
+    return json("Account roles retrives.", account.json)
+
+
+@account_bp.post("account/role-assign")
+@require_permissions("account:role")
+async def on_account_role_assign(request):
+    role = await Role.get(id=request.args.get("role-id"))
+    account = await Account.get(id=request.args.get("id"))
+    await account.roles.add(role)
+    return json("Account role assigned.", account.json)
+
+
+@account_bp.delete("account/role-remove")
+@require_permissions("account:role")
+async def on_account_role_remove(request):
+    role = await Role.get(id=request.args.get("role-id"))
+    account = await Account.get(id=request.args.get("id"))
+    await account.roles.remove(role)
+    return json("Account role removed.", account.json)
 
 
 @account_bp.put("account")

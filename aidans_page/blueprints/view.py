@@ -4,6 +4,7 @@ from aidans_page.blueprints.comment.view import comment_bp
 from aidans_page.blueprints.entry.view import entry_bp
 
 from aidans_page.blueprints.inquiry.view import inquiry_bp
+from aidans_page.blueprints.roles.view import roles_bp
 from aidans_page.blueprints.security.account.view import account_bp
 from aidans_page.blueprints.security.view import security_bp
 
@@ -19,6 +20,7 @@ api = Blueprint.group(
     account_bp,
     inquiry_bp,
     comment_bp,
+    roles_bp,
     version=1,
     version_prefix="/api/v",
 )

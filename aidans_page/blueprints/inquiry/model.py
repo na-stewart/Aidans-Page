@@ -1,4 +1,5 @@
 from tortoise import fields
+from tortoise import fields
 
 from aidans_page.common.base_model import BaseModel
 
