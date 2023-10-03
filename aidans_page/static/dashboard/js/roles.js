@@ -4,7 +4,6 @@ const table = $('#table').DataTable({
     {data: 'date_updated'},
     {data: 'id'},
     {data: 'name'},
-    {data: 'description'},
     {data: 'permissions'},
   ],
   columnDefs: [
@@ -20,11 +19,11 @@ const table = $('#table').DataTable({
 var selectedRow;
 
 function init() {
-  initDashboard(table, 'account')
+  initDashboard(table, 'role')
 }
 
 function fillFields(selectedRowData) {
   $('#name').val(selectedRowData.name);
   $('#description').val(selectedRowData.description);
-  $('permissions').val(selectedRowData.permissions);
+  $('#permissions').val(selectedRowData.permissions);
 }

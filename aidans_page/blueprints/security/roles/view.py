@@ -6,8 +6,8 @@ from sanic_security.utils import json
 roles_bp = Blueprint("Role")
 
 roles_bp.static(
-    "/dashboard/role",
-    "aidans_page/static/dashboard/role.html",
+    "/dashboard/roles",
+    "aidans_page/static/dashboard/roles.html",
     name="dashboard_role",
 )
 
