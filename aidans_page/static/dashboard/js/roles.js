@@ -23,6 +23,24 @@ function init() {
   initDashboard(table, 'role')
 }
 
+function assign(){
+  openPopup();
+}
+
+function openPopup() {
+  var popup = document.getElementById("popup");
+  var overlay = document.getElementById("overlay");
+  popup.style.display = "block";
+  overlay.style.display = "block";
+}
+
+function closePopup() {
+  var popup = document.getElementById("popup");
+  var overlay = document.getElementById("overlay");
+  popup.style.display = "none";
+  overlay.style.display = "none";
+}
+
 function fillFields(selectedRowData) {
   $('#name').val(selectedRowData.name);
   $('#description').val(selectedRowData.description);

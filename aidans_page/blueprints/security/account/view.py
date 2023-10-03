@@ -6,7 +6,7 @@ from sanic_security.authentication import (
     validate_username,
     validate_password,
 )
-from sanic_security.authorization import require_permissions
+from sanic_security.authorization import require_permissions, assign_role
 from sanic_security.models import Account, Role
 from sanic_security.utils import json
 
@@ -67,16 +67,15 @@ async def on_account_role_get(request):
 @account_bp.post("account/role-assign")
 @require_permissions("account:role")
 async def on_account_role_assign(request):
-    role = await Role.get(id=request.args.get("role-id"))
     account = await Account.get(id=request.args.get("id"))
-    await account.roles.add(role)
+    await assign_role(request.form.get("role"), account)
     return json("Account role assigned.", account.json)
 
 
 @account_bp.delete("account/role-remove")
 @require_permissions("account:role")
 async def on_account_role_remove(request):
-    role = await Role.get(id=request.args.get("role-id"))
+    role = await Role.get(name=request.args.get("role"))
     account = await Account.get(id=request.args.get("id"))
     await account.roles.remove(role)
     return json("Account role removed.", account.json)
