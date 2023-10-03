@@ -4,8 +4,8 @@ from aidans_page.blueprints.comment.view import comment_bp
 from aidans_page.blueprints.entry.view import entry_bp
 
 from aidans_page.blueprints.inquiry.view import inquiry_bp
-from aidans_page.blueprints.roles.view import roles_bp
 from aidans_page.blueprints.security.account.view import account_bp
+from aidans_page.blueprints.security.roles.view import roles_bp
 from aidans_page.blueprints.security.view import security_bp
 
 api_models = [
