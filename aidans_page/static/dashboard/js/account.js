@@ -26,11 +26,12 @@ const rolesTable = $('#roles-table').DataTable({
   ],
   scrollX: true,
 });
-var selectedRole;
 
 function init() {
   initDashboard(table, 'account')
-  addTableRowSelectionEventListenerForRolePopulation();
+  $(table.table().body()).on('click', 'tr', function () {
+    populateRolesTable();
+  });    
   addRolesTableRowSelectionEventListener();
 }
 
@@ -52,11 +53,6 @@ function populateRolesTable() {
   });  
 }
 
-function addTableRowSelectionEventListenerForRolePopulation() {
-  $(table.table().body()).on('click', 'tr', function () {
-    populateRolesTable();
-  });    
-}
 
 //CREATE MAIN METHOD THAT HANDLES/SEPERATES FUNCTIONALITY SELECTION HIGLIGHTING - FIELD FILLING FOR INDIVIDUAL TABLES.
 function addRolesTableRowSelectionEventListener() {
