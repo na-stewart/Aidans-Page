@@ -55,13 +55,11 @@ async def on_account_delete(request):
     return json("Account deleted.", account.json)
 
 
-@account_bp.post("account/roles")
+@account_bp.get("account/roles")
 @require_permissions("account:role")
 async def on_account_role_get(request):
-    role = await Role.get(id=request.args.get("role-id"))
-    account = await Account.get(id=request.args.get("id"))
-    await account.roles.add(role)
-    return json("Account roles retrives.", account.json)
+    account = await Account.get(id=request.args.get("id")).prefetch_related("roles")
+    return json("Account roles retrieved.", [role.json for role in account.roles])
 
 
 @account_bp.post("account/role-assign")
