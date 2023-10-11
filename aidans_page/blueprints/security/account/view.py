@@ -18,6 +18,14 @@ account_bp.static(
     "aidans_page/static/dashboard/account.html",
     name="dashboard_account",
 )
+account_bp.static(
+    "/dashboard/profile",
+    "aidans_page/static/dashboard/profile.html",
+    name="dashboard_profile",
+)
+account_bp.static(
+    "/profile", "aidans_page/static/blog/profile.html", name="blog_profile"
+)
 
 
 @account_bp.get("account")

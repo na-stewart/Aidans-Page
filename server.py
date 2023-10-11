@@ -17,7 +17,6 @@ app.static("/", "aidans_page/static", name="blog_static")
 app.static("/", "aidans_page/static/blog/index.html", name="blog_index")
 app.static("/about", "aidans_page/static/blog/about.html", name="blog_about")
 app.static("/contact", "aidans_page/static/blog/contact.html", name="blog_contact")
-app.static("/profile", "aidans_page/static/blog/profile.html", name="blog_profile")
 
 
 @app.get("/test")
