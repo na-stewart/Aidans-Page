@@ -471,16 +471,16 @@
 .pe-7s-help1:before {
 	content: "\e64a";
 }
-.pe-7s-graph3:before {
+.pe-7s-users3:before {
 	content: "\e64b";
 }
-.pe-7s-graph2:before {
+.pe-7s-users2:before {
 	content: "\e64c";
 }
-.pe-7s-graph1:before {
+.pe-7s-users1:before {
 	content: "\e64d";
 }
-.pe-7s-graph:before {
+.pe-7s-users:before {
 	content: "\e64e";
 }
 .pe-7s-global:before {
