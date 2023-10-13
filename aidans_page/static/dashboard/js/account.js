@@ -69,8 +69,7 @@ function addRolesTableRowSelectionEventListener() {
 
 function removeAccountRole() {
   var selectedRow = table.row(table.row('.selected').nodes().to$());
-  var selectedRoleRow = rolesTable.row(table.row('.selected').nodes().to$());
-  console.log(selectedRoleRow);
+  var selectedRoleRow = rolesTable.row(rolesTable.row('.selected').nodes().to$());
   fetch(`/api/v1/account/role-remove?role=${selectedRoleRow.data().name}&id=${selectedRow.data().id}`, {
     method: 'DELETE',
   }).then(response => {
@@ -79,7 +78,7 @@ function removeAccountRole() {
     return Promise.reject(response); 
   })
   .then(json => {
-    selectedRow.remove().draw();
+    selectedRoleRow.remove().draw();
   })
   .catch(error => {
     error.json().then(error => alert(error.message));
