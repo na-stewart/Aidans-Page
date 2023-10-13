@@ -36,6 +36,7 @@ function init() {
 function populateRolesTable() {
   var selectedRow = table.row(table.row('.selected').nodes().to$());
   if (selectedRow.length != 0 ) {
+    rolesTable.clear().draw();
     fetch(`/api/v1/account/roles?id=${selectedRow.data().id}`, {
       method: 'GET',
     }).then(response => {
@@ -49,8 +50,7 @@ function populateRolesTable() {
     .catch(error => {
       error.json().then(error => alert(error.message));
     });  
-  } else
-    rolesTable.clear().draw();
+  }
 }
 
 
