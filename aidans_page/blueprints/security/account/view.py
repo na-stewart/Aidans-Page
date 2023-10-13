@@ -74,7 +74,7 @@ async def on_account_role_get(request):
 @require_permissions("account:role")
 async def on_account_role_assign(request):
     account = await Account.get(id=request.args.get("id"))
-    await assign_role(request.form.get("role"), account)
+    await assign_role(request.args.get("role"), account)
     return json("Account role assigned.", account.json)
 
 
