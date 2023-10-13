@@ -18,7 +18,6 @@ const table = $('#table').DataTable({
   order: [[0, "desc"]],
   scrollX: true,
 });
-var selectedRow;
 
 function init() {
   initDashboard(table, 'comment')
