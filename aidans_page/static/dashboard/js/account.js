@@ -29,15 +29,13 @@ const rolesTable = $('#roles-table').DataTable({
 
 function init() {
   initDashboard(table, 'account')
-  $(table.table().body()).on('click', 'tr', function () {
-    populateRolesTable();
-  });    
+  $(table.table().body()).on('click', 'tr',  () => populateRolesTable());
   addRolesTableRowSelectionEventListener();
 }
 
 function populateRolesTable() {
   var selectedRow = table.row(table.row('.selected').nodes().to$());
-  if (selectedRow.length != 0) {
+  if (selectedRow.length != 0 ) {
     fetch(`/api/v1/account/roles?id=${selectedRow.data().id}`, {
       method: 'GET',
     }).then(response => {
@@ -51,7 +49,8 @@ function populateRolesTable() {
     .catch(error => {
       error.json().then(error => alert(error.message));
     });  
-  }
+  } else
+    rolesTable.clear().draw();
 }
 
 
@@ -70,7 +69,7 @@ function addRolesTableRowSelectionEventListener() {
 
 function removeAccountRole() {
   var selectedRow = table.row(table.row('.selected').nodes().to$());
-  var selectedRoleRow = rolesTable.row(rolesTable.row('.selected').nodes().to$());
+  var selectedRoleRow = rolesTable.row(table.row('.selected').nodes().to$());
   console.log(selectedRoleRow);
   fetch(`/api/v1/account/role-remove?role=${selectedRoleRow.data().name}&id=${selectedRow.data().id}`, {
     method: 'DELETE',
@@ -80,7 +79,7 @@ function removeAccountRole() {
     return Promise.reject(response); 
   })
   .then(json => {
-    selectedRoleRow.remove().draw();
+    selectedRow.remove().draw();
   })
   .catch(error => {
     error.json().then(error => alert(error.message));
