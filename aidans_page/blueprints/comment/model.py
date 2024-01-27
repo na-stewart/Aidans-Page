@@ -27,3 +27,4 @@ class Comment(BaseModel):
             "entry_title": self.entry.title if isinstance(self.entry, Entry) else None,
             "approved": self.approved,
         }
+
