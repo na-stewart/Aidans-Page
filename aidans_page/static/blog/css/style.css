@@ -143,6 +143,7 @@ img {
   display: inline-block;
   position: relative;
   padding-bottom: 10px;
+  
 }
 .main-nav__item--active {
   font-weight: bold;
@@ -186,8 +187,8 @@ img {
   cursor: pointer;
 }
 .main-nav__search svg {
-  width: 24px;
-  height: 24px;
+  width: 55px;
+  height: 30px;
 }
 .main-nav__search:hover svg {
   opacity: 0.8;
@@ -288,6 +289,7 @@ img {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
+  padding-right: 100px;
 }
 .search-popup__close {
   position: absolute;
