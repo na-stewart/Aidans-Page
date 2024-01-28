@@ -2,6 +2,7 @@ import traceback
 
 from sanic import Sanic, text
 from sanic_security.authentication import create_initial_admin_account
+from sanic_security.configuration import config as security_config
 from sanic_security.utils import json
 from tortoise.contrib.sanic import register_tortoise
 
@@ -32,7 +33,6 @@ async def exception_parser(request, e):
         e.__class__.__name__,
         e.status_code if hasattr(e, "status_code") else 500,
     )
-
 
 app.config.PROXIES_COUNT = 1
 register_tortoise(
