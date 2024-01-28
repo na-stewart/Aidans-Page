@@ -2,7 +2,6 @@ import traceback
 
 from sanic import Sanic, text
 from sanic_security.authentication import create_initial_admin_account
-from sanic_security.configuration import config as security_config
 from sanic_security.utils import json
 from tortoise.contrib.sanic import register_tortoise
 
