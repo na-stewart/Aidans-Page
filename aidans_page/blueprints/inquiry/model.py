@@ -1,7 +1,5 @@
+from sanic_security.models import BaseModel
 from tortoise import fields
-from tortoise import fields
-
-from aidans_page.common.base_model import BaseModel
 
 
 class Inquiry(BaseModel):

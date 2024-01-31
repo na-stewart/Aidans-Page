@@ -1,8 +1,7 @@
-from sanic_security.models import Account
+from sanic_security.models import Account, BaseModel
 from tortoise import fields
 
 from aidans_page.blueprints.entry.model import Entry
-from aidans_page.common.base_model import BaseModel
 
 
 class Comment(BaseModel):
@@ -27,4 +26,3 @@ class Comment(BaseModel):
             "entry_title": self.entry.title if isinstance(self.entry, Entry) else None,
             "approved": self.approved,
         }
-
