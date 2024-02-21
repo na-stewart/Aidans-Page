@@ -3,7 +3,7 @@ from sanic_security.authorization import require_permissions
 from sanic_security.utils import json
 from sanic_security.verification import requires_captcha
 
-from aidans_page.blueprints.inquiry.model import Inquiry
+from aidans_page.blueprints.inquiry.models import Inquiry
 from aidans_page.common.config import config
 from aidans_page.common.util import send_email
 

@@ -5,7 +5,7 @@ from sanic_security.authorization import require_permissions
 from sanic_security.utils import json
 from tortoise.expressions import Q
 
-from aidans_page.blueprints.entry.model import Entry
+from aidans_page.blueprints.entry.models import Entry
 
 entry_bp = Blueprint("Entry")
 

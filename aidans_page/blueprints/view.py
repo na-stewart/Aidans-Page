@@ -10,9 +10,9 @@ from aidans_page.blueprints.security.view import security_bp
 
 api_models = [
     "sanic_security.models",
-    "aidans_page.blueprints.entry.model",
-    "aidans_page.blueprints.inquiry.model",
-    "aidans_page.blueprints.comment.model",
+    "aidans_page.blueprints.entry.models",
+    "aidans_page.blueprints.inquiry.models",
+    "aidans_page.blueprints.comment.models",
 ]
 api = Blueprint.group(
     security_bp,
